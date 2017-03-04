@@ -111,22 +111,33 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
+          <div id="indicador-mesa" class="indicador animated" hidden>
+            <h5 class="text-success">Mesa destino</h5>
+            <div class="mesa">
+              <img src="../assets/img/mesa.png">
+              <p></p>
+            </div>
+          </div>
+
           <h3>Registrar nuevo pedido</h3>
-          <div class="paso 1">
-            <h4>Paso 1 - Elige una mesa destino:</h4>
-            <div id="selector-mesas" class="selector text-center">
-              <img src="../assets/img/loading-wheel.gif">
+          <div class="paso-container">
+            <div class="paso 1 animated active">
+              <h4>Paso 1 - Elige una mesa destino:</h4>
+              <div id="selector-mesas" class="selector text-center">
+                <img src="../assets/img/loading-wheel.gif">
+              </div>
             </div>
-          </div>
-          <div class="paso 2" hidden>
-            <h4>Paso 2 - Elige un insumo:</h4>
-            <div id="selector-insumos" class="selector text-center">
-              <img src="../assets/img/loading-wheel.gif">
+
+            <div class="paso 2 animated" hidden>
+              <h4>Paso 2 - Elige un insumo:</h4>
+              <div id="selector-insumos" class="selector text-center">
+                <img src="../assets/img/loading-wheel.gif">
+              </div>
             </div>
-          </div>
-          <div class="paso 3" hidden>
-          </div>
-          <div class="paso 4" hidden>
+            <div class="paso 3 animated" hidden>
+            </div>
+            <div class="paso 4 animated" hidden>
+            </div>
           </div>
         </div>
       </div>
@@ -219,13 +230,26 @@
 
   function onSelectorMesaClick(mesa) {
     mMesa = mesa;
-    mostrarPaso(2);
+    mostrarIndicadorDeMesaSeleccionada(mesa, function() { mostrarPaso(2); });
     cargarSelectorInsumo(mesa);
   }
 
-  function mostrarPaso(numero) {
-    $('.paso').hide();
-    $('.paso.' + numero).show();
+  function mostrarIndicadorDeMesaSeleccionada(mesa, cb) {
+    var indicador = $('#indicador-mesa');
+    indicador.find('.mesa p').text(mesa.nombre);
+    indicador
+      .show()
+      .addClass('bounceIn')
+      .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', cb);
+  }
+
+  function mostrarPaso(numero, cb) {
+    $('.paso.active').addClass('fadeOutLeft').removeClass('active');
+    $('.paso.' + numero)
+      .show()
+      .addClass('fadeInRight')
+      .addClass('active')
+      .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', cb);
   }
 
   function cargarSelectorInsumo(mesa) {
