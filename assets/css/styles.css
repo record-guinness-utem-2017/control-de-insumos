@@ -1,4 +1,4 @@
-#selector-mesas .mesa {
+.selector .mesa {
   text-align: center;
   border: 1px solid gray;
   margin-bottom: 2.3em;
@@ -6,13 +6,13 @@
   border-radius: 8px;
 }
 
-#selector-mesas .mesa img {
+.selector .mesa img {
   width: 40%;
   height: auto;
   display: inline-block;
 }
 
-#selector-mesas .mesa p {
+.selector .mesa p {
   font-size: 250%;
 }
 

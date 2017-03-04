@@ -112,17 +112,21 @@
       <div class="container-fluid">
         <div class="row">
           <h3>Registrar nuevo pedido</h3>
-          <div id="paso-1">
-            <h4>Elige una mesa destino:</h4>
-            <div id="selector-mesas">
+          <div class="paso 1">
+            <h4>Paso 1 - Elige una mesa destino:</h4>
+            <div id="selector-mesas" class="selector text-center">
               <img src="../assets/img/loading-wheel.gif">
             </div>
           </div>
-          <div id="paso-2" hidden>
+          <div class="paso 2" hidden>
+            <h4>Paso 2 - Elige un insumo:</h4>
+            <div id="selector-insumos" class="selector text-center">
+              <img src="../assets/img/loading-wheel.gif">
+            </div>
           </div>
-          <div id="paso-3" hidden>
+          <div class="paso 3" hidden>
           </div>
-          <div id="paso-4" hidden>
+          <div class="paso 4" hidden>
           </div>
         </div>
       </div>
@@ -178,16 +182,24 @@
 <script src="../assets/js/demo.js"></script>
 
 <script>
+  var mMesa = null;
+
   $(function () {
-    $.get('../ajax/mesas/index.php', function (mesas) {
-      var container = $('#selector-mesas').html('');
-      mesas.forEach(function (mesa) {
-        container.append(getSelectorForMesa(mesa));
-      });
-    });
+    cargarSelectorMesa();
   });
 
-  function getSelectorForMesa(mesa) {
+  function cargarSelectorMesa() {
+    $.get('../ajax/mesas/index.php', construirSelectorMesa);
+  }
+
+  function construirSelectorMesa(mesas) {
+    var container = $('#selector-mesas').html('');
+    mesas.forEach(function (mesa) {
+      container.append(generarBotonSelectorMesa(mesa));
+    });
+  }
+
+  function generarBotonSelectorMesa(mesa) {
     var container = $('<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"></div>');
 
     container.append(
@@ -196,6 +208,46 @@
           $('<img src="../assets/img/mesa.png">')
         ).append(
           $('<p>' + mesa.nombre + '</p>')
+        )
+      ).click(function () {
+        onSelectorMesaClick(mesa);
+      })
+    );
+
+    return container;
+  }
+
+  function onSelectorMesaClick(mesa) {
+    mMesa = mesa;
+    mostrarPaso(2);
+    cargarSelectorInsumo(mesa);
+  }
+
+  function mostrarPaso(numero) {
+    $('.paso').hide();
+    $('.paso.' + numero).show();
+  }
+
+  function cargarSelectorInsumo(mesa) {
+    $.get('../ajax/insumos/index?mesaId=' + mesa.id, construirSelectorInsumo);
+  }
+
+  function construirSelectorInsumo(insumos) {
+    var container = $('#selector-insumos').html('');
+    insumos.forEach(function (insumo) {
+      container.append(generarBotonSelectorInsumo(insumo));
+    });
+  }
+
+  function generarBotonSelectorInsumo(insumo) {
+    var container = $('<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"></div>');
+
+    container.append(
+      $('<a href="#"></a>').append(
+        $('<div class="mesa"></div>').append(
+          $('<img src="../assets/img/insumo.png">')
+        ).append(
+          $('<p>' + insumo.nombre + '</p>')
         )
       )
     );
