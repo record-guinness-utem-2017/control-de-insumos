@@ -1,0 +1,31 @@
+#selector-mesas .mesa {
+  text-align: center;
+  border: 1px solid gray;
+  margin-bottom: 2.3em;
+  background: white;
+  border-radius: 8px;
+}
+
+#selector-mesas .mesa img {
+  width: 40%;
+  height: auto;
+  display: inline-block;
+}
+
+#selector-mesas .mesa p {
+  font-size: 250%;
+}
+
+.cantidad-col {
+  padding-top: 4em;
+}
+
+.cantidad-form {
+  text-align: center;
+}
+
+.cantidad-form input,
+.cantidad-form select {
+  width: 48%;
+  display: inline-block;
+}
