@@ -142,7 +142,28 @@
                 <img src="../assets/img/loading-wheel.gif">
               </div>
             </div>
+
             <div class="paso 3 animated" hidden>
+              <h4>Paso 3 - Cantidad y unidad:</h4>
+              <div class="selector row">
+                <div class="col-xs-0 col-sm-3 col-md-4"></div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div id="cantidad-form" method="post">
+                    <a href="#">
+                      <div class="mesa">
+                        <img src="#">
+                        <p></p>
+                      </div>
+                    </a>
+                    <input class="form-control" type="number" name="cantidad" placeholder="Cantidad" min="1" required>
+                    <select class="form-control" name="unidad">
+                    </select>
+                    <br>
+                    <button class="btn btn-default btn-block">Siguiente</button>
+                  </div>
+                </div>
+                <div class="col-xs-0 col-sm-3 col-md-4"></div>
+              </div>
             </div>
             <div class="paso 4 animated" hidden>
             </div>
@@ -201,7 +222,8 @@
 <script src="../assets/js/demo.js"></script>
 
 <script>
-  var mMesa = null;
+  var mMesa   = null;
+  var mInsumo = null;
 
   $(function () {
     cargarSelectorMesa();
@@ -288,7 +310,12 @@
   }
 
   function onSelectorInsumoClick(insumo) {
-    mostrarIndicadorDeInsumoSeleccionado(insumo);
+    mInsumo = insumo;
+    mostrarIndicadorDeInsumoSeleccionado(insumo, function() {
+      mostrarInsumoEnSelectorDeCantidad(insumo);
+      mostrarUnidadesEnSelectorDeUnidades(insumo.unidades);
+      mostrarPaso(3);
+    });
   }
 
   function mostrarIndicadorDeInsumoSeleccionado(insumo, cb) {
@@ -299,6 +326,18 @@
       .show()
       .addClass('bounceIn')
       .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', cb);
+  }
+
+  function mostrarInsumoEnSelectorDeCantidad(insumo) {
+    var container = $('#cantidad-form').find('.mesa');
+    container.find('img').attr('src', insumo.img_url);
+    container.find('p').text(insumo.nombre);
+  }
+
+  function mostrarUnidadesEnSelectorDeUnidades(unidades) {
+    unidades.forEach(function(unidad) {
+      $('#cantidad-form').find('select').append( $('<option value="' + unidad + '">' + unidad + '</option>') );
+    });
   }
 </script>
 
