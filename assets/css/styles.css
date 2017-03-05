@@ -9,21 +9,6 @@
   width: 100%;
 }
 
-.indicador {
-  position: absolute;
-  text-align: center;
-}
-
-#indicador-mesa {
-  right: 15em;
-  top: 5em;
-}
-
-#indicador-insumo {
-  right: 8em;
-  top: 5em;
-}
-
 .selector .mesa,
 .indicador .mesa {
   text-align: center;
@@ -45,16 +30,6 @@
   font-size: 250%;
 }
 
-.indicador .mesa {
-  width: 5em;
-  height: 4em;
-  display: inline-block;
-}
-
-.indicador .mesa p {
-  font-size: 100%;
-}
-
 .cantidad-col {
   padding-top: 4em;
 }
@@ -68,3 +43,34 @@
   width: 48%;
   display: inline-block;
 }
+
+.indicador .mesa {
+  width: 5em;
+  height: 4em;
+  display: inline-block;
+}
+
+.indicador .mesa p {
+  font-size: 100%;
+}
+
+.indicador {
+  position: absolute;
+  text-align: center;
+  top: 5em;
+  min-width: 6em;
+}
+.indicador h4 {
+  margin: 0;
+}
+
+#indicador-mesa {
+  right: 13em;
+}
+#indicador-insumo {
+  right: 7em;
+}
+#indicador-cantidad {
+  right: 1em;
+}
+

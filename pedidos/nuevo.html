@@ -127,6 +127,14 @@
             </div>
           </div>
 
+          <div id="indicador-cantidad" class="indicador animated" hidden>
+            <h5 class="text-success">Cantidad</h5>
+            <div class="mesa">
+              <h4></h4>
+              <p></p>
+            </div>
+          </div>
+
           <h3>Registrar nuevo pedido</h3>
           <div class="paso-container">
             <div class="paso 1 animated active">
@@ -148,23 +156,21 @@
               <div class="selector row">
                 <div class="col-xs-0 col-sm-3 col-md-4"></div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                  <div id="cantidad-form" method="post">
-                    <a href="#">
-                      <div class="mesa">
-                        <img src="#">
-                        <p></p>
-                      </div>
-                    </a>
+                  <form id="cantidad-form" method="post">
+                    <div class="mesa">
+                      <img src="#">
+                      <p></p>
+                    </div>
                     <input class="form-control" type="number" name="cantidad" placeholder="Cantidad" min="1" required>
-                    <select class="form-control" name="unidad">
-                    </select>
+                    <select class="form-control" name="unidad"></select>
                     <br>
-                    <button class="btn btn-default btn-block">Siguiente</button>
-                  </div>
+                    <input type="submit" class="btn btn-default btn-block" value="Siguiente">
+                  </form>
                 </div>
                 <div class="col-xs-0 col-sm-3 col-md-4"></div>
               </div>
             </div>
+
             <div class="paso 4 animated" hidden>
             </div>
           </div>
@@ -222,11 +228,14 @@
 <script src="../assets/js/demo.js"></script>
 
 <script>
-  var mMesa   = null;
-  var mInsumo = null;
+  var mMesa     = null;
+  var mInsumo   = null;
+  var mCantidad = null;
+  var mUnidad   = null;
 
   $(function () {
     cargarSelectorMesa();
+    $('#cantidad-form').submit(onCantidadFormSubmit);
   });
 
   function cargarSelectorMesa() {
@@ -338,6 +347,27 @@
     unidades.forEach(function(unidad) {
       $('#cantidad-form').find('select').append( $('<option value="' + unidad + '">' + unidad + '</option>') );
     });
+  }
+
+  function onCantidadFormSubmit(e) {
+    e.preventDefault();
+
+    var form  = $('#cantidad-form');
+    mCantidad = form.find('[name=cantidad]').val();
+    mUnidad   = form.find('[name=unidad]').val();
+    mostrarIndicadorDeCantidad(mCantidad, mUnidad, function() {
+      mostrarPaso(4);
+    });
+  }
+
+  function mostrarIndicadorDeCantidad(cantidad, unidad, cb) {
+    var indicador = $('#indicador-cantidad');
+    indicador.find('.mesa h4').text(cantidad);
+    indicador.find('.mesa p').text(unidad);
+    indicador
+      .show()
+      .addClass('bounceIn')
+      .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', cb);
   }
 </script>
 
