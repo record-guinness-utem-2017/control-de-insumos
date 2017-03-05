@@ -119,6 +119,14 @@
             </div>
           </div>
 
+          <div id="indicador-insumo" class="indicador animated" hidden>
+            <h5 class="text-success">Insumo</h5>
+            <div class="mesa">
+              <img src="#">
+              <p></p>
+            </div>
+          </div>
+
           <h3>Registrar nuevo pedido</h3>
           <div class="paso-container">
             <div class="paso 1 animated active">
@@ -273,10 +281,24 @@
         ).append(
           $('<p>' + insumo.nombre + '</p>')
         )
-      )
+      ).click(function() { onSelectorInsumoClick(insumo); })
     );
 
     return container;
+  }
+
+  function onSelectorInsumoClick(insumo) {
+    mostrarIndicadorDeInsumoSeleccionado(insumo);
+  }
+
+  function mostrarIndicadorDeInsumoSeleccionado(insumo, cb) {
+    var indicador = $('#indicador-insumo');
+    indicador.find('.mesa img').attr('src', insumo.img_url);
+    indicador.find('.mesa p').text(insumo.nombre);
+    indicador
+      .show()
+      .addClass('bounceIn')
+      .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', cb);
   }
 </script>
 

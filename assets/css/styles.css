@@ -11,9 +11,17 @@
 
 .indicador {
   position: absolute;
-  right: 1em;
-  top: 5em;
   text-align: center;
+}
+
+#indicador-mesa {
+  right: 15em;
+  top: 5em;
+}
+
+#indicador-insumo {
+  right: 8em;
+  top: 5em;
 }
 
 .selector .mesa,
