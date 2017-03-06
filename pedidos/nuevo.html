@@ -164,7 +164,7 @@
                     <input class="form-control" type="number" name="cantidad" placeholder="Cantidad" min="1" required>
                     <select class="form-control" name="unidad"></select>
                     <br>
-                    <input type="submit" class="btn btn-default btn-block" value="Siguiente">
+                    <input type="submit" class="btn btn-default btn-lg" value="Siguiente">
                   </form>
                 </div>
                 <div class="col-xs-0 col-sm-3 col-md-4"></div>
@@ -200,6 +200,12 @@
                   </form>
                 </div>
               </div>
+            </div>
+
+            <div class="paso 5 animated text-center" hidden>
+              <h1>¡Pedido registrado!</h1>
+              <h3>Tu pedido se ha registrado.</h3>
+              <h4><a href="nuevo.html" class="btn btn-lg btn-primary">Registrar otro pedido</a></h4>
             </div>
           </div>
         </div>
@@ -270,8 +276,17 @@
 
   function onConfirmarFormSubmit(e) {
     e.preventDefault();
-    $.post('../ajax/pedidos/create.php', $(this).serialize(), function(pedido) {
-      mSocket.emit('crear_nuevo_pedido', pedido);
+    $.ajax({
+      type: 'post',
+      url: '../ajax/pedidos/create.php',
+      data: $(this).serialize(),
+      error: function() {
+        BootstrapDialog.alert('Ocurrió un error de conexión y no se ha podido registrar el nuevo pedido.');
+      },
+      success: function(pedido) {
+        mSocket.emit('creado_nuevo_pedido', pedido);
+        mostrarPaso(5);
+      }
     });
   }
 
