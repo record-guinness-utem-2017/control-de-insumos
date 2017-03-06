@@ -271,7 +271,6 @@
   function onConfirmarFormSubmit(e) {
     e.preventDefault();
     $.post('../ajax/pedidos/create.php', $(this).serialize(), function(pedido) {
-      console.log(pedido);
       mSocket.emit('crear_nuevo_pedido', pedido);
     });
   }

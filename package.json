@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/record-guinness-utem-2017/control-de-insumos#readme",
   "dependencies": {
+    "debug": "^2.6.1",
     "socket.io": "^1.7.3"
   }
 }
