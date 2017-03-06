@@ -172,6 +172,34 @@
             </div>
 
             <div class="paso 4 animated" hidden>
+              <h4>Paso 4 - Confirmar nuevo pedido</h4>
+              <div class="row">
+                <div class="col-xs-12">
+                  <h5 class="text-center">¿Confirmas el registro de este nuevo pedido?</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <p id="confirmacion-pedido" class="text-center text-success">
+                    <span id="cantidad"></span> <span id="unidad"></span> de
+                    <span id="insumo"></span> para la mesa <span id="mesa"></span>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-0"></div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 text-center">
+                  <form id="confirmar-form">
+                    <input type="hidden" name="mesa_id">
+                    <input type="hidden" name="insumo_id">
+                    <input type="hidden" name="cantidad">
+                    <input type="hidden" name="unidad">
+                    <input id="confirmar-submit" type="submit" value="Confirmar" class="btn btn-danger">
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -236,7 +264,15 @@
   $(function () {
     cargarSelectorMesa();
     $('#cantidad-form').submit(onCantidadFormSubmit);
+    $('#confirmar-form').submit(onConfirmarFormSubmit);
   });
+
+  function onConfirmarFormSubmit(e) {
+    e.preventDefault();
+    $.post('../ajax/pedidos/create.php', $(this).serialize(), function(pedido) {
+      console.log(pedido);
+    });
+  }
 
   function cargarSelectorMesa() {
     $.get('../ajax/mesas/index.php', construirSelectorMesa);
@@ -356,6 +392,7 @@
     mCantidad = form.find('[name=cantidad]').val();
     mUnidad   = form.find('[name=unidad]').val();
     mostrarIndicadorDeCantidad(mCantidad, mUnidad, function() {
+      mostrarInformacionParaConfirmar();
       mostrarPaso(4);
     });
   }
@@ -368,6 +405,14 @@
       .show()
       .addClass('bounceIn')
       .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', cb);
+  }
+
+  function mostrarInformacionParaConfirmar() {
+    var container = $('#confirmacion-pedido');
+    container.find('#cantidad').text(mCantidad);
+    container.find('#unidad').text(mUnidad);
+    container.find('#insumo').text(mInsumo.nombre.toLowerCase());
+    container.find('#mesa').text(mMesa.nombre);
   }
 </script>
 
