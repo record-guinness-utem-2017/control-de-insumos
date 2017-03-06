@@ -191,7 +191,7 @@
               </div>
               <div class="row">
                 <div class="col-xs-12 text-center">
-                  <form id="confirmar-form">
+                  <form id="confirmacion-form">
                     <input type="hidden" name="mesa_id">
                     <input type="hidden" name="insumo_id">
                     <input type="hidden" name="cantidad">
@@ -264,7 +264,7 @@
   $(function () {
     cargarSelectorMesa();
     $('#cantidad-form').submit(onCantidadFormSubmit);
-    $('#confirmar-form').submit(onConfirmarFormSubmit);
+    $('#confirmacion-form').submit(onConfirmarFormSubmit);
   });
 
   function onConfirmarFormSubmit(e) {
@@ -409,10 +409,16 @@
 
   function mostrarInformacionParaConfirmar() {
     var container = $('#confirmacion-pedido');
+    container.find('#mesa').text(mMesa.nombre);
+    container.find('#insumo').text(mInsumo.nombre.toLowerCase());
     container.find('#cantidad').text(mCantidad);
     container.find('#unidad').text(mUnidad);
-    container.find('#insumo').text(mInsumo.nombre.toLowerCase());
-    container.find('#mesa').text(mMesa.nombre);
+
+    container = $('#confirmacion-form');
+    container.find('[name=mesa_id]').val(mMesa.id);
+    container.find('[name=insumo_id]').val(mInsumo.id);
+    container.find('[name=cantidad]').val(mCantidad);
+    container.find('[name=unidad]').val(mUnidad);
   }
 </script>
 
