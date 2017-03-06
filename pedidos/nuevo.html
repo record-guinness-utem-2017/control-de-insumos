@@ -270,7 +270,10 @@
 
   function onConfirmarFormSubmit(e) {
     e.preventDefault();
-    mSocket.emit('crear_nuevo_pedido', { data: $(this).serialize(); });
+    $.post('../ajax/pedidos/create.php', $(this).serialize(), function(pedido) {
+      console.log(pedido);
+      mSocket.emit('crear_nuevo_pedido', pedido);
+    });
   }
 
   function cargarSelectorMesa() {
