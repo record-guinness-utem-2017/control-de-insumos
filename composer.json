@@ -6,5 +6,7 @@
             "email": "kevindperezm@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "workerman/phpsocket.io": "^1.1"
+    }
 }
