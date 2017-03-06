@@ -252,10 +252,11 @@
 <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 <script src="../assets/js/paper-dashboard.js"></script>
 
-<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/js/demo.js"></script>
+<script src="../assets/js/socket.io.min.js"></script>
 
 <script>
+  var mSocket = io('http://localhost:2021');
+
   var mMesa     = null;
   var mInsumo   = null;
   var mCantidad = null;
@@ -269,9 +270,7 @@
 
   function onConfirmarFormSubmit(e) {
     e.preventDefault();
-    $.post('../ajax/pedidos/create.php', $(this).serialize(), function(pedido) {
-      console.log(pedido);
-    });
+    mSocket.emit('crear_nuevo_pedido', { data: $(this).serialize(); });
   }
 
   function cargarSelectorMesa() {
