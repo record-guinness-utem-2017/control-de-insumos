@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+  <title>Nuevo pedido - Control de insumos</title>
+
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+  <meta name="viewport" content="width=device-width"/>
+
+
+  <!-- Bootstrap core CSS     -->
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Animation library for notifications   -->
+  <link href="../assets/css/animate.min.css" rel="stylesheet"/>
+
+  <!--  Paper Dashboard core CSS    -->
+  <link href="../assets/css/paper-dashboard.css" rel="stylesheet"/>
+
+  <!--  CSS for Demo Purpose, don't include it in your project     -->
+  <link href="../assets/css/demo.css" rel="stylesheet"/>
+
+  <!--  Fonts and icons     -->
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+  <link href="../assets/css/themify-icons.css" rel="stylesheet">
+  <link href="../assets/css/styles.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="sidebar" data-background-color="white" data-active-color="danger">
+
+    <!--
+        Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+        Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+      -->
+
+    <div class="sidebar-wrapper">
+      <div class="logo">
+        <a href="http://www.creative-tim.com" class="simple-text">
+          Creative Tim
+        </a>
+      </div>
+
+      <ul class="nav">
+        <li class="active">
+          <a href="dashboard.html">
+            <i class="ti-pie-chart"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-panel">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar bar1"></span>
+            <span class="icon-bar bar2"></span>
+            <span class="icon-bar bar3"></span>
+          </button>
+          <a class="navbar-brand" href="#">Template</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="ti-panel"></i>
+                <p>Stats</p>
+              </a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="ti-bell"></i>
+                <p class="notification">5</p>
+                <p>Notifications</p>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Notification 1</a></li>
+                <li><a href="#">Notification 2</a></li>
+                <li><a href="#">Notification 3</a></li>
+                <li><a href="#">Notification 4</a></li>
+                <li><a href="#">Another notification</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">
+                <i class="ti-settings"></i>
+                <p>Settings</p>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div id="indicador-mesa" class="indicador animated" hidden>
+            <h5 class="text-success">Mesa destino</h5>
+            <div class="mesa">
+              <img src="../assets/img/mesa.png">
+              <p></p>
+            </div>
+          </div>
+
+          <div id="indicador-insumo" class="indicador animated" hidden>
+            <h5 class="text-success">Insumo</h5>
+            <div class="mesa">
+              <img src="#">
+              <p></p>
+            </div>
+          </div>
+
+          <div id="indicador-cantidad" class="indicador animated" hidden>
+            <h5 class="text-success">Cantidad</h5>
+            <div class="mesa">
+              <h4></h4>
+              <p></p>
+            </div>
+          </div>
+
+          <h3>Registrar nuevo pedido</h3>
+          <div class="paso-container">
+            <div class="paso 1 animated active">
+              <h4>Paso 1 - Elige una mesa destino:</h4>
+              <div id="selector-mesas" class="selector text-center">
+                <img src="../assets/img/loading-wheel.gif">
+              </div>
+            </div>
+
+            <div class="paso 2 animated" hidden>
+              <h4>Paso 2 - Elige un insumo:</h4>
+              <div id="selector-insumos" class="selector text-center">
+                <img src="../assets/img/loading-wheel.gif">
+              </div>
+            </div>
+
+            <div class="paso 3 animated" hidden>
+              <h4>Paso 3 - Cantidad y unidad:</h4>
+              <div class="selector row">
+                <div class="col-xs-0 col-sm-3 col-md-4"></div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                  <form id="cantidad-form" method="post">
+                    <div class="mesa">
+                      <img src="#">
+                      <p></p>
+                    </div>
+                    <input class="form-control" type="number" name="cantidad" placeholder="Cantidad" min="1" required>
+                    <select class="form-control" name="unidad"></select>
+                    <br>
+                    <input type="submit" class="btn btn-default btn-lg" value="Siguiente">
+                  </form>
+                </div>
+                <div class="col-xs-0 col-sm-3 col-md-4"></div>
+              </div>
+            </div>
+
+            <div class="paso 4 animated" hidden>
+              <h4>Paso 4 - Confirmar nuevo pedido</h4>
+              <div class="row">
+                <div class="col-xs-12">
+                  <h5 class="text-center">¿Confirmas el registro de este nuevo pedido?</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <p id="confirmacion-pedido" class="text-center text-success">
+                    <span id="cantidad"></span> <span id="unidad"></span> de
+                    <span id="insumo"></span> para la mesa <span id="mesa"></span>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-0"></div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 text-center">
+                  <form id="confirmacion-form">
+                    <input type="hidden" name="mesa_id">
+                    <input type="hidden" name="insumo_id">
+                    <input type="hidden" name="cantidad">
+                    <input type="hidden" name="unidad">
+                    <input id="confirmar-submit" type="submit" value="Confirmar" class="btn btn-danger">
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="paso 5 animated text-center" hidden>
+              <h1>¡Pedido registrado!</h1>
+              <h3>Tu pedido se ha registrado.</h3>
+              <h4><a href="nuevo.html" class="btn btn-lg btn-primary">Registrar otro pedido</a></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <nav class="pull-left">
+          <ul>
+
+            <li>
+              <a href="#">
+                Home
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright pull-right">
+          &copy;
+          <script>document.write(new Date().getFullYear())</script>
+          , made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</div>
+
+
+</body>
+
+<!--   Core JS Files   -->
+<script src="../assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="../assets/js/bootstrap-checkbox-radio.js"></script>
+
+<!--  Charts Plugin -->
+<script src="../assets/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="../assets/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+<!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+<script src="../assets/js/paper-dashboard.js"></script>
+
+<script src="../assets/js/socket.io.min.js"></script>
+
+<script>
+  var mSocket = io('http://localhost:2021');
+
+  var mMesa     = null;
+  var mInsumo   = null;
+  var mCantidad = null;
+  var mUnidad   = null;
+
+  $(function () {
+    cargarSelectorMesa();
+    $('#cantidad-form').submit(onCantidadFormSubmit);
+    $('#confirmacion-form').submit(onConfirmarFormSubmit);
+  });
+
+  function onConfirmarFormSubmit(e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'post',
+      url: '../ajax/pedidos/create.php',
+      data: $(this).serialize(),
+      error: function() {
+        BootstrapDialog.alert('Ocurrió un error de conexión y no se ha podido registrar el nuevo pedido.');
+      },
+      success: function(pedido) {
+        mSocket.emit('creado_nuevo_pedido', pedido);
+        mostrarPaso(5);
+      }
+    });
+  }
+
+  function cargarSelectorMesa() {
+    $.get('../ajax/mesas/index.php', construirSelectorMesa);
+  }
+
+  function construirSelectorMesa(mesas) {
+    var container = $('#selector-mesas').html('');
+    mesas.forEach(function (mesa) {
+      container.append(generarBotonSelectorMesa(mesa));
+    });
+  }
+
+  function generarBotonSelectorMesa(mesa) {
+    var container = $('<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"></div>');
+
+    container.append(
+      $('<a href="#"></a>').append(
+        $('<div class="mesa"></div>').append(
+          $('<img src="../assets/img/mesa.png">')
+        ).append(
+          $('<p>' + mesa.nombre + '</p>')
+        )
+      ).click(function () {
+        onSelectorMesaClick(mesa);
+      })
+    );
+
+    return container;
+  }
+
+  function onSelectorMesaClick(mesa) {
+    mMesa = mesa;
+    mostrarIndicadorDeMesaSeleccionada(mesa, function() { mostrarPaso(2); });
+    cargarSelectorInsumo(mesa);
+  }
+
+  function mostrarIndicadorDeMesaSeleccionada(mesa, cb) {
+    var indicador = $('#indicador-mesa');
+    indicador.find('.mesa p').text(mesa.nombre);
+    indicador
+      .show()
+      .addClass('bounceIn')
+      .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', cb);
+  }
+
+  function mostrarPaso(numero, cb) {
+    $('.paso.active').addClass('fadeOutLeft').removeClass('active');
+    $('.paso.' + numero)
+      .show()
+      .addClass('fadeInRight')
+      .addClass('active')
+      .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', cb);
+  }
+
+  function cargarSelectorInsumo(mesa) {
+    $.get('../ajax/insumos/index?mesaId=' + mesa.id, construirSelectorInsumo);
+  }
+
+  function construirSelectorInsumo(insumos) {
+    var container = $('#selector-insumos').html('');
+    insumos.forEach(function (insumo) {
+      container.append(generarBotonSelectorInsumo(insumo));
+    });
+  }
+
+  function generarBotonSelectorInsumo(insumo) {
+    var container = $('<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"></div>');
+
+    container.append(
+      $('<a href="#"></a>').append(
+        $('<div class="mesa"></div>').append(
+          $('<img src="../assets/img/insumo.png">')
+        ).append(
+          $('<p>' + insumo.nombre + '</p>')
+        )
+      ).click(function() { onSelectorInsumoClick(insumo); })
+    );
+
+    return container;
+  }
+
+  function onSelectorInsumoClick(insumo) {
+    mInsumo = insumo;
+    mostrarIndicadorDeInsumoSeleccionado(insumo, function() {
+      mostrarInsumoEnSelectorDeCantidad(insumo);
+      mostrarUnidadesEnSelectorDeUnidades(insumo.unidades);
+      mostrarPaso(3);
+    });
+  }
+
+  function mostrarIndicadorDeInsumoSeleccionado(insumo, cb) {
+    var indicador = $('#indicador-insumo');
+    indicador.find('.mesa img').attr('src', insumo.img_url);
+    indicador.find('.mesa p').text(insumo.nombre);
+    indicador
+      .show()
+      .addClass('bounceIn')
+      .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', cb);
+  }
+
+  function mostrarInsumoEnSelectorDeCantidad(insumo) {
+    var container = $('#cantidad-form').find('.mesa');
+    container.find('img').attr('src', insumo.img_url);
+    container.find('p').text(insumo.nombre);
+  }
+
+  function mostrarUnidadesEnSelectorDeUnidades(unidades) {
+    unidades.forEach(function(unidad) {
+      $('#cantidad-form').find('select').append( $('<option value="' + unidad + '">' + unidad + '</option>') );
+    });
+  }
+
+  function onCantidadFormSubmit(e) {
+    e.preventDefault();
+
+    var form  = $('#cantidad-form');
+    mCantidad = form.find('[name=cantidad]').val();
+    mUnidad   = form.find('[name=unidad]').val();
+    mostrarIndicadorDeCantidad(mCantidad, mUnidad, function() {
+      mostrarInformacionParaConfirmar();
+      mostrarPaso(4);
+    });
+  }
+
+  function mostrarIndicadorDeCantidad(cantidad, unidad, cb) {
+    var indicador = $('#indicador-cantidad');
+    indicador.find('.mesa h4').text(cantidad);
+    indicador.find('.mesa p').text(unidad);
+    indicador
+      .show()
+      .addClass('bounceIn')
+      .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', cb);
+  }
+
+  function mostrarInformacionParaConfirmar() {
+    var container = $('#confirmacion-pedido');
+    container.find('#mesa').text(mMesa.nombre);
+    container.find('#insumo').text(mInsumo.nombre.toLowerCase());
+    container.find('#cantidad').text(mCantidad);
+    container.find('#unidad').text(mUnidad);
+
+    container = $('#confirmacion-form');
+    container.find('[name=mesa_id]').val(mMesa.id);
+    container.find('[name=insumo_id]').val(mInsumo.id);
+    container.find('[name=cantidad]').val(mCantidad);
+    container.find('[name=unidad]').val(mUnidad);
+  }
+</script>
+
+</html>

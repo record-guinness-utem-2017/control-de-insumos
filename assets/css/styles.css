@@ -1,0 +1,85 @@
+.paso-container {
+  position: relative;
+}
+
+.paso-container .paso {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.selector .mesa,
+.indicador .mesa {
+  text-align: center;
+  margin-bottom: 2.3em;
+  border: 1px solid gray;
+  background: white;
+  border-radius: 8px;
+}
+
+.selector .mesa img,
+.indicador .mesa img {
+  width: 40%;
+  height: auto;
+  display: inline-block;
+}
+
+.selector .mesa p,
+.indicador .mesa p {
+  font-size: 250%;
+}
+
+.cantidad-col {
+  padding-top: 4em;
+}
+
+.cantidad-form {
+  text-align: center;
+}
+
+.cantidad-form input,
+.cantidad-form select {
+  width: 48%;
+  display: inline-block;
+}
+
+.indicador .mesa {
+  width: 5em;
+  height: 4em;
+  display: inline-block;
+}
+
+.indicador .mesa p {
+  font-size: 100%;
+}
+
+.indicador {
+  position: absolute;
+  text-align: center;
+  top: 5em;
+  min-width: 6em;
+}
+.indicador h4 {
+  margin: 0;
+}
+
+#indicador-mesa {
+  right: 13em;
+}
+#indicador-insumo {
+  right: 7em;
+}
+#indicador-cantidad {
+  right: 1em;
+}
+
+#confirmacion-pedido {
+  font-size: 2.5em;
+}
+
+#confirmar-submit {
+  font-size: 2em;
+  margin-top: 2em;
+}
+
