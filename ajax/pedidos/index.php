@@ -9,6 +9,8 @@ if ($estado = $_GET['estado'] ?? null) {
   $query .= ' WHERE estado = "' . $conexion->escape_string($estado) . '"';
 }
 
+$query .= ' ORDER BY id DESC';
+
 if ($pag = $_GET['pag'] ?? 1) {
   $offset = POR_PAGINA * ($pag - 1);
   $query .= ' LIMIT ' . POR_PAGINA . " OFFSET {$offset}";
