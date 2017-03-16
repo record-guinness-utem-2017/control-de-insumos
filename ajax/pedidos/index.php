@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../helpers.php';
+
 const POR_PAGINA = 50;
 /** @var Mysqli $conexion */
 $conexion = require_once __DIR__ . '/../bd.php';
@@ -16,14 +18,13 @@ if ($pag = $_GET['pag'] ?? 1) {
   $query .= ' LIMIT ' . POR_PAGINA . " OFFSET {$offset}";
 }
 
-$result = $conexion->query($query) or die($conexion->error);
-$filas  = [];
-while ($fila = $result->fetch_assoc()) {
+$filas = get_filas_desde_query($conexion, $query, function(array $fila) : array {
   $fila['insumo']        = ['nombre' => 'Jitomate'];
   $fila['mesa']          = ['nombre' => 'A'];
   $fila['encargado_por'] = ['nombre_completo' => 'Kevin Perez '];
-  $filas[]               = $fila;
-}
+
+  return $fila;
+});
 
 $respuesta = [
   'objetos' => $filas,
