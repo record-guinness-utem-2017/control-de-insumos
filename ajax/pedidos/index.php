@@ -18,8 +18,9 @@ if ($pag = $_GET['pag'] ?? 1) {
   $query .= ' LIMIT ' . POR_PAGINA . " OFFSET {$offset}";
 }
 
-$filas = get_filas_desde_query($conexion, $query, function(array $fila) : array {
-  $fila['insumo']        = ['nombre' => 'Jitomate'];
+$insumos = get_filas_desde_query($conexion, 'SELECT * FROM insumos');
+$pedidos = get_filas_desde_query($conexion, $query, function(array $fila) use ($insumos) : array {
+  $fila['insumo']        = get_fila_relacionada('id', $fila['insumo_id'], $insumos);
   $fila['mesa']          = ['nombre' => 'A'];
   $fila['encargado_por'] = ['nombre_completo' => 'Kevin Perez '];
 
@@ -27,7 +28,7 @@ $filas = get_filas_desde_query($conexion, $query, function(array $fila) : array 
 });
 
 $respuesta = [
-  'objetos' => $filas,
+  'objetos' => $pedidos,
   'sql'     => [$query],
 ];
 
