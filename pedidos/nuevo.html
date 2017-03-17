@@ -397,7 +397,7 @@
 
   function mostrarUnidadesEnSelectorDeUnidades(unidades) {
     unidades.forEach(function(unidad) {
-      $('#cantidad-form').find('select').append( $('<option value="' + unidad + '">' + unidad + '</option>') );
+      $('#cantidad-form').find('select').append( $('<option value="' + unidad.unidad + '">' + unidad.unidad + '</option>') );
     });
   }
 

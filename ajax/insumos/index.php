@@ -1,30 +1,27 @@
 <?php
 
-$insumos = [
-  [
-    'id'       => 1,
-    'nombre'   => 'Atún',
-    'img_url'  => '/assets/img/atun.png',
-    'unidades' => $unidades,
-  ],
-  [
-    'id'       => 2,
-    'nombre'   => 'Jitomate',
-    'img_url'  => '/assets/img/insumo.png',
-    'unidades' => ['kilos', 'cajas'],
-  ],
-  [
-    'id'       => 3,
-    'nombre'   => 'Cebolla',
-    'img_url'  => '/assets/img/insumo.png',
-    'unidades' => ['kilos', 'cajas'],
-  ],
-  [
-    'id'       => 4,
-    'nombre'   => 'Cilantro',
-    'img_url'  => '/assets/img/insumo.png',
-    'unidades' => ['kilos', 'cajas'],
-  ],
+require_once __DIR__ . '/../helpers.php';
+
+/** @var Mysqli $conexion */
+$conexion = require_once __DIR__ . '/../bd.php';
+$query    = 'SELECT * FROM insumos';
+
+$unidades = get_filas_desde_query($conexion, 'SELECT * FROM unidades');
+$insumos  = get_filas_desde_query($conexion, $query, function(array $insumo) use ($conexion, $unidades) : array {
+  $insumo['unidades'] = get_relacionadas_con_pivote($conexion,
+                                                    'insumos_unidades',
+                                                    'insumo_id',
+                                                    $insumo['id'],
+                                                    'unidad_id',
+                                                    'unidad',
+                                                    'unidades');
+
+  return $insumo;
+});
+
+$respuesta = [
+  'objetos' => $insumos,
+  'sql'     => [$query],
 ];
 
 header('Content-Type: application/json; encoding: utf8');
