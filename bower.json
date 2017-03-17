@@ -1,0 +1,24 @@
+{
+  "name": "control-de-insumos",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Kevin Perez <kevindperezm@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/record-guinness-utem-2017/control-de-insumos",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "datatables.net": "^2.1.1",
+    "datatables.net-bs": "^2.1.1",
+    "datatables.net-fixedheader": "^3.1.2",
+    "datatables.net-fixedheader-bs": "^3.1.2"
+  }
+}
