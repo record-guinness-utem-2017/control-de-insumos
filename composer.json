@@ -1,0 +1,12 @@
+{
+    "name": "utem-guinness-2017/control-de-insumos",
+    "require": {
+        "ozdemir/datatables": "1.*"
+    },
+    "authors": [
+        {
+            "name": "Kevin Perez",
+            "email": "kevindperezm@gmail.com"
+        }
+    ]
+}
