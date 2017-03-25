@@ -120,6 +120,7 @@
             <th>Mesa destino</th>
             <th>Encargado por</th>
             <th>Fecha y hora de encargo (24 horas)</th>
+            <th>Acciones</th>
           </tr>
           </thead>
           <tbody></tbody>
@@ -205,8 +206,15 @@
         '<td>' + pedido.mesa.nombre + '</td>' +
         '<td>' + pedido.encargado_por.nombre_completo + '</td>' +
         '<td>' + pedido.creado_en + '</td>' +
+        '<td>' + generarAccionesParaPedido(pedido)[0].outerHTML + '</td>' +
       '</tr>'
     );
+  }
+
+  function generarAccionesParaPedido(pedido) {
+    return $('<div class="text-center"></div>')
+      .append( $('<p><button class="btn btn-primary atender" data-pedido-id="' + pedido.id + '">Atender</button></p>') )
+      .append( $('<p><button class="btn btn-danger descartar" data-pedido-id="' + pedido.id + '">Descartar</button></p>') )
   }
 </script>
 
