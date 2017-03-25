@@ -15,5 +15,4 @@ $mesas = [
   ],
 ];
 
-header('Content-Type: application/json; encoding: utf8');
-echo json_encode($mesas);
+responder_json_de_objetos($mesas, []);

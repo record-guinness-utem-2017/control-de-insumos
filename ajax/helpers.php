@@ -42,6 +42,16 @@ get_relacionadas_con_pivote($conexion, $tabla_pivote, $clave1, $valor_esperado, 
   return get_filas_desde_query($conexion, $query);
 }
 
+function responder_json_de_objetos($objetos, $queries) {
+  $respuesta = [
+    'objetos' => $objetos,
+    'sql'     => $queries,
+  ];
+
+  header('Content-Type: application/json; encoding: utf8');
+  echo json_encode($respuesta);
+}
+
 function reportar_error_sql(Mysqli $conexion, string $query) : void {
   http_response_code(500);
   header('Content-Type: application/json; encoding: utf8');

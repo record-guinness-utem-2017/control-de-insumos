@@ -27,10 +27,4 @@ $pedidos = get_filas_desde_query($conexion, $query, function(array $fila) use ($
   return $fila;
 });
 
-$respuesta = [
-  'objetos' => $pedidos,
-  'sql'     => [$query],
-];
-
-header('Content-Type: application/json; encoding: utf8');
-echo json_encode($respuesta);
+responder_json_de_objetos($pedidos, [$query]);

@@ -19,10 +19,4 @@ $insumos  = get_filas_desde_query($conexion, $query, function(array $insumo) use
   return $insumo;
 });
 
-$respuesta = [
-  'objetos' => $insumos,
-  'sql'     => [$query],
-];
-
-header('Content-Type: application/json; encoding: utf8');
-echo json_encode($insumos);
+responder_json_de_objetos($insumos, [$query]);
