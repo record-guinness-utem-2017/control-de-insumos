@@ -294,9 +294,9 @@
     $.get('../ajax/mesas/index.php', construirSelectorMesa);
   }
 
-  function construirSelectorMesa(mesas) {
+  function construirSelectorMesa(respuesta) {
     var container = $('#selector-mesas').html('');
-    mesas.forEach(function (mesa) {
+    respuesta.objetos.forEach(function (mesa) {
       container.append(generarBotonSelectorMesa(mesa));
     });
   }
@@ -347,9 +347,9 @@
     $.get('../ajax/insumos/index?mesaId=' + mesa.id, construirSelectorInsumo);
   }
 
-  function construirSelectorInsumo(insumos) {
+  function construirSelectorInsumo(respuesta) {
     var container = $('#selector-insumos').html('');
-    insumos.forEach(function (insumo) {
+    respuesta.objetos.forEach(function (insumo) {
       container.append(generarBotonSelectorInsumo(insumo));
     });
   }

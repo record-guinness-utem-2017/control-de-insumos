@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../helpers.php';
+
 $mesas = [
   [
     'id'     => 1,

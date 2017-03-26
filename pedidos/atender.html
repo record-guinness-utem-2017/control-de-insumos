@@ -174,12 +174,53 @@
 
 <script src="../assets/js/socket.io.min.js"></script>
 
+<script src="../assets/bower/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
+
 <script>
   var mSocket = io('http://localhost:2021');
   var pedidos = [];
 
   $(function() {
-    mostrarPedidosPendientesHastaElMomento( $('#pedidos-table') );
+    const tabla = $('#pedidos-table');
+
+    mostrarPedidosPendientesHastaElMomento(tabla);
+
+    tabla.on('click', '.descartar', function() {
+      BootstrapDialog.confirm({
+        title: 'Confirmar descarte de pedido',
+        message: '<p>Para confirmar el descarte de este pedido escribe su ID y haz clic en <b class="text-danger">Descartar</b>.</p>' +
+                 '<p><input type="text" id="descartar-id" class="form-control"></p>' +
+                 '<input type="hidden" id="descartar-hidden" value="' + $(this).data('pedido-id') + '">',
+        btnOKLabel: 'Descartar',
+        btnOKClass: 'btn-danger',
+        btnCancelLabel: 'Cancelar',
+        callback: function(descartar) {
+          const pedidoId   = $('#descartar-hidden').val();
+          const confirmado = $('#descartar-id').val() == pedidoId;
+          if ( ! descartar) return;
+          if ( ! confirmado) {
+            $('#descartar-id').tooltip({ title: 'ID de pedido incorrecto.', }).tooltip('show');
+            return false;
+          }
+
+          this.disable();
+          this.spin();
+
+          const dialog = this.dialog;
+          $.get('../ajax/pedidos/descartar.php?id=' + pedidoId, function() {
+            dialog.close();
+            mostrarPedidosPendientesHastaElMomento(tabla);
+            BootstrapDialog.alert({
+              title: '',
+              message: 'Pedido descartado',
+              type: BootstrapDialog.TYPE_INFO,
+            });
+          });
+
+          return false;
+        }
+      });
+    });
   });
 
   function mostrarPedidosPendientesHastaElMomento(tabla) {

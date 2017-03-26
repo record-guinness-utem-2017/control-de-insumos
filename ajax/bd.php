@@ -2,4 +2,6 @@
 
 require_once __DIR__ . '/constantes.php';
 
-return mysqli_connect('localhost', 'root', 'root', 'control_de_insumos');
+$conexion = mysqli_connect('localhost', 'root', 'root', 'control_de_insumos') or die(mysqli_error($conexion));
+
+return $conexion;
