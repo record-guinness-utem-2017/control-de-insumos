@@ -110,7 +110,11 @@
       <div class="container-fluid">
         <h4>Listado de pedidos</h4>
 
-        <table id="pedidos-table" class="table table-condensed table-striped table-bordered">
+        <div id="sin-pedidos" class="alert alert-info" hidden>
+          <p>No hay pedidos registrados por atender.</p>
+        </div>
+
+        <table id="pedidos-table" class="table table-condensed table-striped table-bordered" hidden>
           <thead>
           <tr>
             <th>ID</th>
@@ -225,14 +229,25 @@
 
   function mostrarPedidosPendientesHastaElMomento(tabla) {
     $.get('../ajax/pedidos/index.php?estado=pendiente&pag=1', function(respuesta) {
-      const cuerpo = tabla.find('tbody');
-      cuerpo.html('');
+      const cuerpo     = tabla.find('tbody');
+      const sinPedidos = $('#sin-pedidos');
+      const pedidos    = respuesta.objetos;
 
-      const pedidos = respuesta.objetos;
-      let elemento;
-      for (var i = 0; i < pedidos.length; i++) {
-        elemento = crearFilaParaPedido(pedidos[i]);
-        cuerpo.append(elemento);
+      cuerpo.html('');
+      if (pedidos.length > 0) {
+        let elemento;
+        for (var i = 0; i < pedidos.length; i++) {
+          elemento = crearFilaParaPedido(pedidos[i]);
+          cuerpo.append(elemento);
+        }
+
+        // Mostrar tabla. Ocultar mensaje "sin pedidos"
+        tabla.show();
+        sinPedidos.hide();
+      } else {
+        // Ocultar tabla. Mostrar mensaje "sin pedidos"
+        tabla.hide();
+        sinPedidos.show();
       }
     });
   }
