@@ -5,10 +5,14 @@ require_once __DIR__ . '/../helpers.php';
 const POR_PAGINA = 50;
 /** @var Mysqli $conexion */
 $conexion = require_once __DIR__ . '/../bd.php';
-$query    = 'SELECT * FROM pedidos';
+$query    = 'SELECT * FROM pedidos WHERE 1=1';
 
 if ($estado = $_GET['estado'] ?? null) {
-  $query .= ' WHERE estado = "' . $conexion->escape_string($estado) . '"';
+  $query .= ' AND estado = "' . $conexion->escape_string($estado) . '"';
+}
+
+if ($id = $_GET['id'] ?? null) {
+  $query .= ' AND id = ' . $conexion->escape_string($id);
 }
 
 $query .= ' ORDER BY id DESC';

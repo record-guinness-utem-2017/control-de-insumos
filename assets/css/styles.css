@@ -83,3 +83,6 @@
   margin-top: 2em;
 }
 
+tr td {
+  transition: 0.5s;
+}

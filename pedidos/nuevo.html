@@ -284,7 +284,7 @@
         BootstrapDialog.alert('Ocurrió un error de conexión y no se ha podido registrar el nuevo pedido.');
       },
       success: function(pedido) {
-        mSocket.emit('creado_nuevo_pedido', pedido);
+        mSocket.emit('creado_nuevo_pedido', pedido.id);
         mostrarPaso(5);
       }
     });

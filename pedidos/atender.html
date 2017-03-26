@@ -117,14 +117,14 @@
         <table id="pedidos-table" class="table table-condensed table-striped table-bordered" hidden>
           <thead>
           <tr>
-            <th>ID</th>
-            <th>Insumo</th>
-            <th>Cantidad</th>
-            <th>Unidad</th>
-            <th>Mesa destino</th>
-            <th>Encargado por</th>
-            <th>Fecha y hora de encargo (24 horas)</th>
-            <th>Acciones</th>
+            <th class="text-center">ID</th>
+            <th class="text-center">Insumo</th>
+            <th class="text-center">Cantidad</th>
+            <th class="text-center">Unidad</th>
+            <th class="text-center">Mesa destino</th>
+            <th class="text-center">Encargado por</th>
+            <th class="text-center">Fecha y hora de encargo<br>(24 horas)</th>
+            <th class="text-center">Acciones</th>
           </tr>
           </thead>
           <tbody></tbody>
@@ -181,8 +181,7 @@
 <script src="../assets/bower/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
 
 <script>
-  const mSocket  = io('http://localhost:2021');
-  let   mPedidos = [];
+  let mPedidos = [];
 
   $(function() {
     const tabla = $('#pedidos-table');
@@ -263,7 +262,8 @@
 
   function mostrarPedidosPendientesHastaElMomento(tabla) {
     $.get('../ajax/pedidos/index.php?estado=pendiente&pag=1', function(respuesta) {
-      rellenarTablaDePedidos(tabla, respuesta.objetos);
+      mPedidos = respuesta.objetos;
+      rellenarTablaDePedidos(tabla, mPedidos);
     });
   }
 
@@ -309,6 +309,28 @@
     return $('<div class="text-center"></div>')
       .append( $('<p><button class="btn btn-primary atender" data-pedido-id="' + pedido.id + '">Atender</button></p>') )
       .append( $('<p><button class="btn btn-danger descartar" data-pedido-id="' + pedido.id + '">Descartar</button></p>') )
+  }
+
+  // socket.io code
+
+  const mSocket = io('http://localhost:2021');
+
+  mSocket.on('creado_nuevo_pedido', function(pedidoId) {
+    getPedidoIndividual(pedidoId, function(pedido) {
+      mPedidos.unshift(pedido);
+
+      let fila = crearFilaParaPedido(pedido).addClass('success');
+      $('#pedidos-table tbody').prepend(fila);
+
+      setTimeout(function() { $('tr.success').removeClass('success'); }, 3000);
+    });
+  });
+
+  function getPedidoIndividual(id, callback) {
+    $.get('../ajax/pedidos/index.php?id=' + id, function(respuesta) {
+      let pedido = respuesta.objetos[0];
+      callback(pedido);
+    });
   }
 </script>
 
