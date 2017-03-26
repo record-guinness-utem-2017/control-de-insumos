@@ -26,9 +26,26 @@ $insumos = get_filas_desde_query($conexion, 'SELECT * FROM insumos');
 $pedidos = get_filas_desde_query($conexion, $query, function(array $fila) use ($insumos) : array {
   $fila['insumo']        = get_fila_relacionada('id', $fila['insumo_id'], $insumos);
   $fila['mesa']          = ['nombre' => 'A'];
-  $fila['encargado_por'] = ['nombre_completo' => 'Kevin Perez '];
 
   return $fila;
 });
+
+# Cargar eficientemente personas asociadas.
+$encargados_ids = array_unique( array_map(function($pedido) { return $pedido['encargado_por']; }, $pedidos) );
+$encargados_ids = join(',', $encargados_ids);
+$query          = 'SELECT id, tipo, nombre, apellido_paterno, apellido_materno FROM personas WHERE id in (' . $encargados_ids . ')';
+$personas       = get_filas_desde_query($conexion, $query);
+$personas       = array_map(function($persona) {
+  $persona['nombre_completo'] = $persona['nombre'] . ' ' . $persona['apellido_paterno'] . ' ' . $persona['apellido_materno'];
+
+  return $persona;
+}, $personas);
+
+$pedidos = array_map(function($pedido) use ($personas) {
+  $filtrar                 = function($persona) use ($pedido) { return $persona['id'] == $pedido['encargado_por']; };
+  $pedido['encargado_por'] = array_filter($personas, $filtrar)[0] ?? null;
+
+  return $pedido;
+}, $pedidos);
 
 responder_json_de_objetos($pedidos, [$query]);
