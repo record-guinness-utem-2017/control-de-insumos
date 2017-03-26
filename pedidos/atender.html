@@ -181,7 +181,8 @@
 <script src="../assets/bower/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
 
 <script>
-  let mPedidos = [];
+  let mPedidos  = [];
+  const mSocket = io('http://localhost:2021');
 
   $(function() {
     const tabla = $('#pedidos-table');
@@ -221,6 +222,8 @@
             message: 'Pedido descartado',
             type: BootstrapDialog.TYPE_INFO,
           });
+
+          mSocket.emit('descartado_pedido', { id: pedidoId });
         });
 
         return false;
@@ -253,6 +256,8 @@
             message: 'Pedido marcado como enviado',
             type: BootstrapDialog.TYPE_SUCCESS,
           });
+
+          mSocket.emit('enviado_pedido', { id : pedidoId });
         });
 
         return false;
@@ -313,10 +318,8 @@
 
   // socket.io code
 
-  const mSocket = io('http://localhost:2021');
-
-  mSocket.on('creado_nuevo_pedido', function(pedidoId) {
-    getPedidoIndividual(pedidoId, function(pedido) {
+  mSocket.on('creado_nuevo_pedido', function(data) {
+    getPedidoIndividual(data.id, function(pedido) {
       mPedidos.unshift(pedido);
 
       let fila = crearFilaParaPedido(pedido).addClass('success');

@@ -1,14 +1,22 @@
-var server = require('http').createServer();
-var io     = require('socket.io')(server);
-var debug  = require('debug')('socketio-server');
+const server = require('http').createServer();
+const io     = require('socket.io')(server);
+const debug  = require('debug')('socketio-server');
+
+const events = [
+  'creado_nuevo_pedido',
+  'descartado_pedido',
+  'enviado_pedido'
+];
 
 io.on('connection', function(socket) {
   debug('Cliente conectado');
 
-  socket.on('creado_nuevo_pedido', function(pedido) {
-    debug('Evento "creado_nuevo_pedido" recibido');
-    debug(pedido);
-    socket.broadcast.emit('creado_nuevo_pedido', pedido);
+  events.forEach(function(event) {
+    socket.on(event, function(data) {
+      debug('----------------------------------------------------------')
+      debug('Nuevo evento "' + event + '" con ' + JSON.stringify(data));
+      socket.broadcast.emit(event, data);
+    });
   });
 });
 
