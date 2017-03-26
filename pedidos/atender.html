@@ -181,88 +181,126 @@
 <script src="../assets/bower/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
 
 <script>
-  var mSocket = io('http://localhost:2021');
-  var pedidos = [];
+  const mSocket  = io('http://localhost:2021');
+  let   mPedidos = [];
 
   $(function() {
     const tabla = $('#pedidos-table');
+    tabla.on('click', '.descartar', onDescartarClick);
+    tabla.on('click', '.atender', onAtenderClick);
 
     mostrarPedidosPendientesHastaElMomento(tabla);
-
-    tabla.on('click', '.descartar', function() {
-      BootstrapDialog.confirm({
-        title: 'Confirmar descarte de pedido',
-        message: '<p>Para confirmar el descarte de este pedido escribe su ID y haz clic en <b class="text-danger">Descartar</b>.</p>' +
-                 '<p><input type="text" id="descartar-id" class="form-control"></p>' +
-                 '<input type="hidden" id="descartar-hidden" value="' + $(this).data('pedido-id') + '">',
-        btnOKLabel: 'Descartar',
-        btnOKClass: 'btn-danger',
-        btnCancelLabel: 'Cancelar',
-        callback: function(descartar) {
-          const pedidoId   = $('#descartar-hidden').val();
-          const confirmado = $('#descartar-id').val() == pedidoId;
-          if ( ! descartar) return;
-          if ( ! confirmado) {
-            $('#descartar-id').tooltip({ title: 'ID de pedido incorrecto.', }).tooltip('show');
-            return false;
-          }
-
-          this.disable();
-          this.spin();
-
-          const dialog = this.dialog;
-          $.get('../ajax/pedidos/descartar.php?id=' + pedidoId, function() {
-            dialog.close();
-            mostrarPedidosPendientesHastaElMomento(tabla);
-            BootstrapDialog.alert({
-              title: '',
-              message: 'Pedido descartado',
-              type: BootstrapDialog.TYPE_INFO,
-            });
-          });
-
-          return false;
-        }
-      });
-    });
   });
 
-  function mostrarPedidosPendientesHastaElMomento(tabla) {
-    $.get('../ajax/pedidos/index.php?estado=pendiente&pag=1', function(respuesta) {
-      const cuerpo     = tabla.find('tbody');
-      const sinPedidos = $('#sin-pedidos');
-      const pedidos    = respuesta.objetos;
-
-      cuerpo.html('');
-      if (pedidos.length > 0) {
-        let elemento;
-        for (var i = 0; i < pedidos.length; i++) {
-          elemento = crearFilaParaPedido(pedidos[i]);
-          cuerpo.append(elemento);
+  function onDescartarClick() {
+    BootstrapDialog.confirm({
+      title: 'Confirmar descarte de pedido',
+      message: '<p>Para confirmar el descarte de este pedido escribe su ID y haz clic en <b class="text-danger">Descartar</b>.</p>' +
+      '<p><input type="text" id="descartar-id" class="form-control"></p>' +
+      '<input type="hidden" id="descartar-hidden" value="' + $(this).data('pedido-id') + '">',
+      btnOKLabel: 'Descartar',
+      btnOKClass: 'btn-danger',
+      btnCancelLabel: 'Cancelar',
+      callback: function(descartar) {
+        const pedidoId   = $('#descartar-hidden').val();
+        const confirmado = $('#descartar-id').val() == pedidoId;
+        if ( ! descartar) return;
+        if ( ! confirmado) {
+          $('#descartar-id').tooltip({ title: 'ID de pedido incorrecto.', }).tooltip('show');
+          return false;
         }
 
-        // Mostrar tabla. Ocultar mensaje "sin pedidos"
-        tabla.show();
-        sinPedidos.hide();
-      } else {
-        // Ocultar tabla. Mostrar mensaje "sin pedidos"
-        tabla.hide();
-        sinPedidos.show();
+        this.disable();
+        this.spin();
+
+        const dialog = this.dialog;
+        $.get('../ajax/pedidos/descartar.php?id=' + pedidoId, function() {
+          $('#pedido-' + pedidoId).remove();
+          dialog.close();
+          BootstrapDialog.alert({
+            title: '',
+            message: 'Pedido descartado',
+            type: BootstrapDialog.TYPE_INFO,
+          });
+        });
+
+        return false;
       }
     });
   }
 
+  function onAtenderClick() {
+    BootstrapDialog.confirm({
+      title: 'Confirmar envío de pedido',
+      message: 'Antes de marcar el pedido como enviado, revisa otra vez que el pedido se haya surtido como se ordenó. Si todo está ' +
+               'en orden, haz clic en <b>Marcar como enviado</b>.' +
+               '<input type="hidden" id="enviar-hidden" value="' + $(this).data('pedido-id') + '">',
+      btnOKLabel: 'Marcar como enviado',
+      btnOKClass: 'btn-success',
+      btnCancelLabel: 'Cancelar',
+      callback: function(enviar) {
+        if ( ! enviar) return;
+        const pedidoId = $('#enviar-hidden').val();
+
+        this.disable();
+        this.spin();
+
+        const dialog = this.dialog;
+        $.get('../ajax/pedidos/atender.php?id=' + pedidoId, function() {
+          $('#pedido-' + pedidoId).remove();
+          dialog.close();
+          BootstrapDialog.alert({
+            title: '',
+            message: 'Pedido marcado como enviado',
+            type: BootstrapDialog.TYPE_SUCCESS,
+          });
+        });
+
+        return false;
+      }
+    });
+  }
+
+  function mostrarPedidosPendientesHastaElMomento(tabla) {
+    $.get('../ajax/pedidos/index.php?estado=pendiente&pag=1', function(respuesta) {
+      rellenarTablaDePedidos(tabla, respuesta.objetos);
+    });
+  }
+
+  function rellenarTablaDePedidos(tabla, pedidos) {
+    const cuerpo     = tabla.find('tbody');
+    const sinPedidos = $('#sin-pedidos');
+
+    cuerpo.html('');
+
+    if (pedidos.length > 0) {
+      let elemento;
+      for (var i = 0; i < pedidos.length; i++) {
+        elemento = crearFilaParaPedido(pedidos[i]);
+        cuerpo.append(elemento);
+      }
+
+      // Mostrar tabla. Ocultar mensaje "sin pedidos"
+      tabla.show();
+      sinPedidos.hide();
+    } else {
+      // Ocultar tabla. Mostrar mensaje "sin pedidos"
+      tabla.hide();
+      sinPedidos.show();
+    }
+  }
+
   function crearFilaParaPedido(pedido) {
     return $(
-      '<tr>' +
-        '<td>' + pedido.id + '</td>' +
-        '<td>' + pedido.insumo.nombre + '</td>' +
-        '<td>' + pedido.cantidad + '</td>' +
-        '<td>' + pedido.unidad + '</td>' +
-        '<td>' + pedido.mesa.nombre + '</td>' +
-        '<td>' + pedido.encargado_por.nombre_completo + '</td>' +
-        '<td>' + pedido.creado_en + '</td>' +
-        '<td>' + generarAccionesParaPedido(pedido)[0].outerHTML + '</td>' +
+      '<tr id="pedido-' + pedido.id + '">' +
+        '<td class="text-center">' + pedido.id + '</td>' +
+        '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
+        '<td class="text-center">' + pedido.cantidad + '</td>' +
+        '<td class="text-center">' + pedido.unidad + '</td>' +
+        '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
+        '<td class="text-center">' + pedido.encargado_por.nombre_completo + '</td>' +
+        '<td class="text-center">' + pedido.creado_en + '</td>' +
+        '<td class="text-center">' + generarAccionesParaPedido(pedido)[0].outerHTML + '</td>' +
       '</tr>'
     );
   }

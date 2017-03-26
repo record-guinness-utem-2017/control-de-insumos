@@ -311,7 +311,8 @@
         ).append(
           $('<p>' + mesa.nombre + '</p>')
         )
-      ).click(function () {
+      ).click(function (e) {
+        e.preventDefault();
         onSelectorMesaClick(mesa);
       })
     );
@@ -364,7 +365,9 @@
         ).append(
           $('<p>' + insumo.nombre + '</p>')
         )
-      ).click(function() { onSelectorInsumoClick(insumo); })
+      ).click(function(e) {
+        e.preventDefault();
+        onSelectorInsumoClick(insumo); })
     );
 
     return container;

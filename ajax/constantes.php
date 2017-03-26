@@ -1,4 +1,5 @@
 <?php
 
-define('ESTADO_PENDIENTE', 'pendiente');
-define('ESTADO_DESCARTADO', 'descartado');
+define('PEDIDO_PENDIENTE',  'pendiente');
+define('PEDIDO_ENVIADO',    'enviado');
+define('PEDIDO_DESCARTADO', 'descartado');

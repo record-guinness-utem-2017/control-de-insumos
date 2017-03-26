@@ -9,7 +9,7 @@ $query = "INSERT INTO pedidos (mesa_id, insumo_id, cantidad, unidad, encargado_p
            "{$datos['cantidad']}, " .
            "'{$datos['unidad']}'," .
            "null," .
-           "'" . ESTADO_PENDIENTE . "'" .
+           "'" . PEDIDO_PENDIENTE . "'" .
          ")";
 
 if ($bd->query($query)) {
