@@ -186,7 +186,7 @@
   const mTabla  = new PedidosTable( $('#pedidos-table'), mSocket );
 
   $(function() {
-    mTabla.initialize({ estado: 'pendiente' });
+    mTabla.init({ estado: 'pendiente' });
   });
 
   // socket.io code

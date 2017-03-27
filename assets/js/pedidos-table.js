@@ -6,7 +6,7 @@ class PedidosTable {
     this.socket  = socket;
   }
 
-  initialize(loadParams = {}) {
+  init(loadParams = {}) {
     this.loadPedidos(loadParams);
     this.bindEvents();
   }
@@ -175,6 +175,42 @@ class PedidosTable {
       this.table.hide();
       this.table.parent().find('#sin-pedidos').show();
     }
+  }
+
+}
+
+class IndexPedidosTable extends PedidosTable {
+
+  newRowForPedido(pedido) {
+    return $(
+      '<tr id="pedido-' + pedido.id + '">' +
+      '<td class="text-center">' + pedido.id + '</td>' +
+      '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
+      '<td class="text-center">' + pedido.cantidad + '</td>' +
+      '<td class="text-center">' + pedido.unidad + '</td>' +
+      '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
+      '<td class="text-center">' + pedido.creado_en + '</td>' +
+      '<td class="text-center">' + this.newActionButtonsForPedido(pedido).get(0).outerHTML + '</td>' +
+      '</tr>'
+    );
+  }
+
+}
+
+class PedidosEnviadosTable extends IndexPedidosTable {
+
+  newActionButtonsForPedido(pedido) {
+    return $('<div class="text-center"></div>')
+      .append( $('<p><button class="btn btn-primary recibir" data-pedido-id="' + pedido.id + '">Marcar como recibido</button></p>') );
+  }
+
+}
+
+class PedidosPorAtenderTable extends IndexPedidosTable {
+
+  newActionButtonsForPedido(pedido) {
+    return $('<div class="text-center"></div>')
+      .append( $('<p><button class="btn btn-primary descartar" data-pedido-id="' + pedido.id + '">Descartar</button></p>') );
   }
 
 }
