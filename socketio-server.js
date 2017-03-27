@@ -16,7 +16,7 @@ io.on('connection', function(socket) {
     socket.on(event, function(data) {
       debug('----------------------------------------------------------')
       debug('Nuevo evento "' + event + '" con ' + JSON.stringify(data));
-      socket.broadcast.emit(event, data);
+      io.sockets.emit(event, data);
     });
   });
 });

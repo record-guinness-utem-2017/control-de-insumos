@@ -243,18 +243,6 @@
     mPorAtenderTable.init({ estado: 'pendiente' });
     mDescartadosTable.init({ estado: 'descartado' });
   });
-
-  // socket.io code
-
-  mSocket.on('nuevo_pedido_creado', function(data) {
-    mPorAtenderTable.getSinglePedido(data.id, function(pedido) { mPorAtenderTable.prependPedido(pedido); });
-  });
-
-  mSocket.on('pedido_descartado', function(data) { mPorAtenderTable.dropPedido(data.id); });
-
-  mSocket.on('pedido_enviado', function(data) {
-    mEnviadosTable.getSinglePedido(data.id, function(pedido) { mEnviadosTable.prependPedido(pedido); });
-  });
 </script>
 
 </html>

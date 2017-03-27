@@ -9,6 +9,7 @@ class PedidosTable {
   init(loadParams = {}) {
     this.loadPedidos(loadParams);
     this.bindEvents();
+    this.bindSocketIoEvents();
   }
 
   loadPedidos(params = {}) {
@@ -33,6 +34,8 @@ class PedidosTable {
     this.table.on('click', '.atender', function() { self.onAtenderClick(this, self) });
     this.table.on('click', '.descartar', function() { self.onDescartarClick(this, self) });
   }
+
+  bindSocketIoEvents() { }
 
   fillUpTable() {
     const cuerpo     = this.table.find('tbody');
@@ -167,10 +170,29 @@ class PedidosTable {
 
   dropPedido(pedidoId) {
     const index = this.pedidos.findIndex(function(pedido) { return pedido.id == pedidoId; });
-    this.pedidos.splice(index, 1);
+    if (index >= 0) this.pedidos.splice(index, 1);
 
-    const row = this.table.find('#pedido-' + pedidoId);
-    row.fadeOut('fast', function() { row.remove(); });
+    this.table.find('#pedido-' + pedidoId).remove();
+
+    if (this.pedidos.length <= 0) {
+      this.table.hide();
+      this.table.parent().find('#sin-pedidos').show();
+    }
+  }
+
+}
+
+class AtenderPedidosTable extends PedidosTable {
+
+  bindSocketIoEvents() {
+    super.bindSocketIoEvents();
+
+    this.socket.on('nuevo_pedido_creado', function(data) {
+      this.getSinglePedido(data.id, function(pedido) { this.prependPedido(pedido) }.bind(this))
+    }.bind(this));
+
+    const removePedido = function(data) { this.dropPedido(data.id) }.bind(this);
+    this.socket.on('pedido_enviado', removePedido).on('pedido_descartado', removePedido);
   }
 
 }
@@ -255,6 +277,16 @@ class PedidosEnviadosTable extends IndexPedidosTable {
     };
   }
 
+  bindSocketIoEvents() {
+    super.bindSocketIoEvents();
+
+    this.socket.on('pedido_enviado', function(data) {
+      this.getSinglePedido(data.id, function(pedido) { this.prependPedido(pedido) }.bind(this))
+    }.bind(this));
+
+    this.socket.on('pedido_entregado', function(data) { this.dropPedido(data.id) }.bind(this));
+  }
+
 }
 
 class PedidosPorAtenderTable extends IndexPedidosTable {
@@ -262,6 +294,17 @@ class PedidosPorAtenderTable extends IndexPedidosTable {
   newActionButtonsForPedido(pedido) {
     return $('<div class="text-center"></div>')
       .append( $('<p><button class="btn btn-danger descartar" data-pedido-id="' + pedido.id + '">Descartar</button></p>') );
+  }
+
+  bindSocketIoEvents() {
+    super.bindSocketIoEvents();
+
+    this.socket.on('nuevo_pedido_creado', function(data) {
+      this.getSinglePedido(data.id, function(pedido) { this.prependPedido(pedido) }.bind(this))
+    }.bind(this));
+
+    const removePedido = function(data) { this.dropPedido(data.id) }.bind(this);
+    this.socket.on('pedido_descartado', removePedido).on('pedido_enviado', removePedido);
   }
 
 }
@@ -279,6 +322,14 @@ class PedidosDescartadosTable extends PedidosTable {
         '<td class="text-center">' + pedido.creado_en + '</td>' +
       '</tr>'
     );
+  }
+
+  bindSocketIoEvents() {
+    super.bindSocketIoEvents();
+
+    this.socket.on('pedido_descartado', function(data) {
+      this.getSinglePedido(data.id, function(pedido) { this.prependPedido(pedido) }.bind(this))
+    }.bind(this));
   }
 
 }

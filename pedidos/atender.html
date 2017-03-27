@@ -183,20 +183,10 @@
 
 <script>
   const mSocket = io('http://localhost:2021');
-  const mTabla  = new PedidosTable( $('#pedidos-table'), mSocket );
+  const mTabla  = new AtenderPedidosTable( $('#pedidos-table'), mSocket );
 
   $(function() {
     mTabla.init({ estado: 'pendiente' });
-  });
-
-  // socket.io code
-
-  mSocket.on('nuevo_pedido_creado', function(data) {
-    mTabla.getSinglePedido(data.id, function(pedido) { mTabla.prependPedido(pedido); });
-  });
-
-  mSocket.on('pedido_descartado', function(data) {
-    mTabla.dropPedido(data.id);
   });
 </script>
 
