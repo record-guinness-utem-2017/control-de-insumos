@@ -161,6 +161,26 @@
               <tbody></tbody>
             </table>
           </div>
+
+          <div id="descartados" class="tab-pane fade in">
+            <div id="sin-pedidos" class="alert alert-info" hidden>
+              <p>No tienes pedidos descartados.</p>
+            </div>
+
+            <table id="pedidos-table-descartados" class="table table-condensed table-striped table-bordered" hidden>
+              <thead>
+              <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Insumo</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Unidad</th>
+                <th class="text-center">Mesa destino</th>
+                <th class="text-center">Fecha y hora de encargo<br>(24 horas)</th>
+              </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
         </div>
 
       </div>
@@ -216,31 +236,27 @@
 <script src="../assets/js/pedidos-table.js"></script>
 
 <script>
-  const mSocket          = io('http://localhost:2021');
-  const mEnviadosTable   = new PedidosEnviadosTable($('#pedidos-table-enviados'), mSocket);
-  const mPorAtenderTable = new PedidosPorAtenderTable($('#pedidos-table-por-atender'), mSocket);
+  const mSocket           = io('http://localhost:2021');
+  const mEnviadosTable    = new PedidosEnviadosTable($('#pedidos-table-enviados'), mSocket);
+  const mPorAtenderTable  = new PedidosPorAtenderTable($('#pedidos-table-por-atender'), mSocket);
+  const mDescartadosTable = new PedidosDescartadosTable($('#pedidos-table-descartados'), mSocket);
 
   $(function() {
     mEnviadosTable.init({ estado: 'enviado' });
     mPorAtenderTable.init({ estado: 'pendiente' });
+    mDescartadosTable.init({ estado: 'descartado' });
   });
 
   // socket.io code
 
   mSocket.on('creado_nuevo_pedido', function(data) {
-    mPorAtenderTable.getSinglePedido(data.id, function(pedido) {
-      mPorAtenderTable.prependPedido(pedido);
-    });
+    mPorAtenderTable.getSinglePedido(data.id, function(pedido) { mPorAtenderTable.prependPedido(pedido); });
   });
 
-  mSocket.on('descartado_pedido', function(data) {
-    mPorAtenderTable.dropPedido(data.id);
-  });
+  mSocket.on('descartado_pedido', function(data) { mPorAtenderTable.dropPedido(data.id); });
 
   mSocket.on('enviado_pedido', function(data) {
-    mEnviadosTable.getSinglePedido(data.id, function(pedido) {
-      mEnviadosTable.prependPedido(pedido);
-    });
+    mEnviadosTable.getSinglePedido(data.id, function(pedido) { mEnviadosTable.prependPedido(pedido); });
   });
 </script>
 

@@ -225,3 +225,20 @@ class PedidosPorAtenderTable extends IndexPedidosTable {
   }
 
 }
+
+class PedidosDescartadosTable extends PedidosTable {
+
+  newRowForPedido(pedido) {
+    return $(
+      '<tr id="pedido-' + pedido.id + '">' +
+        '<td class="text-center">' + pedido.id + '</td>' +
+        '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
+        '<td class="text-center">' + pedido.cantidad + '</td>' +
+        '<td class="text-center">' + pedido.unidad + '</td>' +
+        '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
+        '<td class="text-center">' + pedido.creado_en + '</td>' +
+      '</tr>'
+    );
+  }
+
+}
