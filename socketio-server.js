@@ -3,10 +3,10 @@ const io     = require('socket.io')(server);
 const debug  = require('debug')('socketio-server');
 
 const events = [
-  'creado_nuevo_pedido',
-  'descartado_pedido',
-  'enviado_pedido',
-  'entregado_pedido',
+  'nuevo_pedido_creado',
+  'pedido_descartado',
+  'pedido_enviado',
+  'pedido_entregado',
 ];
 
 io.on('connection', function(socket) {

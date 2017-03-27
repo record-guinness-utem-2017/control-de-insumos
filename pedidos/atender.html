@@ -191,11 +191,11 @@
 
   // socket.io code
 
-  mSocket.on('creado_nuevo_pedido', function(data) {
+  mSocket.on('nuevo_pedido_creado', function(data) {
     mTabla.getSinglePedido(data.id, function(pedido) { mTabla.prependPedido(pedido); });
   });
 
-  mSocket.on('descartado_pedido', function(data) {
+  mSocket.on('pedido_descartado', function(data) {
     mTabla.dropPedido(data.id);
   });
 </script>

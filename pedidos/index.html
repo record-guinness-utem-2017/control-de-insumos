@@ -246,13 +246,13 @@
 
   // socket.io code
 
-  mSocket.on('creado_nuevo_pedido', function(data) {
+  mSocket.on('nuevo_pedido_creado', function(data) {
     mPorAtenderTable.getSinglePedido(data.id, function(pedido) { mPorAtenderTable.prependPedido(pedido); });
   });
 
-  mSocket.on('descartado_pedido', function(data) { mPorAtenderTable.dropPedido(data.id); });
+  mSocket.on('pedido_descartado', function(data) { mPorAtenderTable.dropPedido(data.id); });
 
-  mSocket.on('enviado_pedido', function(data) {
+  mSocket.on('pedido_enviado', function(data) {
     mEnviadosTable.getSinglePedido(data.id, function(pedido) { mEnviadosTable.prependPedido(pedido); });
   });
 </script>

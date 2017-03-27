@@ -122,7 +122,7 @@ class PedidosTable {
             type: BootstrapDialog.TYPE_INFO,
           });
 
-          self.socket.emit('descartado_pedido', { id: pedidoId });
+          self.socket.emit('pedido_descartado', { id: pedidoId });
         });
 
         return false;
@@ -157,7 +157,7 @@ class PedidosTable {
             type: BootstrapDialog.TYPE_SUCCESS,
           });
 
-          self.socket.emit('enviado_pedido', { id : pedidoId });
+          self.socket.emit('pedido_enviado', { id : pedidoId });
         });
 
         return false;
@@ -251,7 +251,7 @@ class PedidosEnviadosTable extends IndexPedidosTable {
       });
 
       self.dropPedido(pedidoId);
-      self.socket.emit('entregado_pedido', { id: pedidoId });
+      self.socket.emit('pedido_entregado', { id: pedidoId });
     };
   }
 
