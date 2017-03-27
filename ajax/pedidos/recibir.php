@@ -6,7 +6,7 @@ require_once __DIR__ . '/../helpers.php';
 $conexion  = require_once __DIR__ . '/../bd.php';
 $pedido_id = $conexion->escape_string($_POST['id']);
 
-$sql    = 'UPDATE pedidos SET estado = "' . PEDIDO_ENTREGADO . '", entregado_en = NOW() WHERE id = ' . $pedido_id;
+$sql    = 'UPDATE pedidos SET estado = "' . PEDIDO_ENTREGADO . '", entregado_en = NOW(), updated_at = NOW() WHERE id = ' . $pedido_id;
 $result = $conexion->query($sql);
 
 if ($result) {

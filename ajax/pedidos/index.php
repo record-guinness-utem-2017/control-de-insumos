@@ -15,7 +15,7 @@ if ($id = $_GET['id'] ?? null) {
   $query .= ' AND id = ' . $conexion->escape_string($id);
 }
 
-$query .= ' ORDER BY id DESC';
+$query .= ' ORDER BY updated_at DESC, creado_en DESC, id DESC';
 
 if ($pag = $_GET['pag'] ?? 1) {
   $offset = POR_PAGINA * ($pag - 1);
