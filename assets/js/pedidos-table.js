@@ -82,8 +82,12 @@ class PedidosTable {
   }
 
   prependPedido(pedido) {
+    this.pedidos.unshift(pedido);
     this.table.prepend( this.newRowForPedido(pedido).addClass('success') );
+
     setTimeout(function() { $('tr.success').removeClass('success'); }, 3000);
+
+    this.showTableIfNeeded();
   }
 
   getSinglePedido(id, callback) {
@@ -174,14 +178,21 @@ class PedidosTable {
 
     this.table.find('#pedido-' + pedidoId).remove();
 
-    if (this.pedidos.length <= 0) {
-      this.table.hide();
-      this.table.parent().find('#sin-pedidos').show();
-    }
+    this.showTableIfNeeded();
   }
 
   fetchAndPrependSinglePedido(id) {
     this.getSinglePedido(id, function(pedido) { this.prependPedido(pedido) }.bind(this));
+  }
+
+  showTableIfNeeded() {
+    if (this.pedidos.length <= 0) {
+      this.table.hide();
+      this.table.parent().find('#sin-pedidos').show();
+    } else {
+      this.table.show();
+      this.table.parent().find('#sin-pedidos').hide();
+    }
   }
 
 }
@@ -221,16 +232,16 @@ class PedidosEnviadosTable extends IndexPedidosTable {
 
   newActionButtonsForPedido(pedido) {
     return $('<div class="text-center"></div>')
-      .append( $('<p><button class="btn btn-success recibir" data-pedido-id="' + pedido.id + '">Marcar como recibido</button></p>') );
+      .append( $('<p><button class="btn btn-success entregar" data-pedido-id="' + pedido.id + '">Marcar como recibido</button></p>') );
   }
 
   bindEvents() {
     const self = this;
 
-    $(this.table).on('click', '.recibir', function() { self.onRecibirClick(this, self); });
+    $(this.table).on('click', '.entregar', function() { self.onEntregarClick(this, self); });
   }
 
-  onRecibirClick(button, self) {
+  onEntregarClick(button, self) {
     BootstrapDialog.confirm({
       title: 'Confirmar recepción de pedido',
       message: '¿Confirmas que el pedido llegó a la mesa correcta?',
@@ -256,7 +267,7 @@ class PedidosEnviadosTable extends IndexPedidosTable {
   markPedidoAsEntregado(id, callback) {
     $.ajax({
       type: 'post',
-      url: '/ajax/pedidos/recibir.php',
+      url: '/ajax/pedidos/entregar.php',
       data: { id: id },
       success: function(response) { callback && callback(response); }
     })
