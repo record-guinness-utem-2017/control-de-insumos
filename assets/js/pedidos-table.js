@@ -180,6 +180,10 @@ class PedidosTable {
     }
   }
 
+  fetchAndPrependSinglePedido(id) {
+    this.getSinglePedido(id, function(pedido) { this.prependPedido(pedido) }.bind(this));
+  }
+
 }
 
 class AtenderPedidosTable extends PedidosTable {
@@ -187,9 +191,7 @@ class AtenderPedidosTable extends PedidosTable {
   bindSocketIoEvents() {
     super.bindSocketIoEvents();
 
-    this.socket.on('nuevo_pedido_creado', function(data) {
-      this.getSinglePedido(data.id, function(pedido) { this.prependPedido(pedido) }.bind(this))
-    }.bind(this));
+    this.socket.on('nuevo_pedido_creado', function(data) { this.fetchAndPrependSinglePedido(data.id)}.bind(this));
 
     const removePedido = function(data) { this.dropPedido(data.id) }.bind(this);
     this.socket.on('pedido_enviado', removePedido).on('pedido_descartado', removePedido);
@@ -280,9 +282,7 @@ class PedidosEnviadosTable extends IndexPedidosTable {
   bindSocketIoEvents() {
     super.bindSocketIoEvents();
 
-    this.socket.on('pedido_enviado', function(data) {
-      this.getSinglePedido(data.id, function(pedido) { this.prependPedido(pedido) }.bind(this))
-    }.bind(this));
+    this.socket.on('pedido_enviado', function(data) { this.fetchAndPrependSinglePedido(data.id) }.bind(this));
 
     this.socket.on('pedido_entregado', function(data) { this.dropPedido(data.id) }.bind(this));
   }
@@ -299,9 +299,7 @@ class PedidosPorAtenderTable extends IndexPedidosTable {
   bindSocketIoEvents() {
     super.bindSocketIoEvents();
 
-    this.socket.on('nuevo_pedido_creado', function(data) {
-      this.getSinglePedido(data.id, function(pedido) { this.prependPedido(pedido) }.bind(this))
-    }.bind(this));
+    this.socket.on('nuevo_pedido_creado', function(data) { this.fetchAndPrependSinglePedido(data.id) }.bind(this));
 
     const removePedido = function(data) { this.dropPedido(data.id) }.bind(this);
     this.socket.on('pedido_descartado', removePedido).on('pedido_enviado', removePedido);
@@ -327,9 +325,15 @@ class PedidosDescartadosTable extends PedidosTable {
   bindSocketIoEvents() {
     super.bindSocketIoEvents();
 
-    this.socket.on('pedido_descartado', function(data) {
-      this.getSinglePedido(data.id, function(pedido) { this.prependPedido(pedido) }.bind(this))
-    }.bind(this));
+    this.socket.on('pedido_descartado', function(data) { this.fetchAndPrependSinglePedido(data.id) }.bind(this));
+  }
+
+}
+
+class PedidosEntregadosTable extends PedidosDescartadosTable {
+
+  bindSocketIoEvents() {
+    this.socket.on('pedido_entregado', function(data) { this.fetchAndPrependSinglePedido(data.id) }.bind(this));
   }
 
 }

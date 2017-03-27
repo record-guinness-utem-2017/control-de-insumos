@@ -112,15 +112,16 @@
 
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#enviados">Enviados</a></li>
+          <li><a data-toggle="tab" href="#entregados">Entregados</a></li>
           <li><a data-toggle="tab" href="#por-atender">Por atender</a></li>
           <li><a data-toggle="tab" href="#descartados">Descartados</a></li>
         </ul>
 
         <div class="tab-content">
           <div id="enviados" class="tab-pane fade in active">
-            <div id="sin-pedidos" class="alert alert-info" hidden>
+            <h3 id="sin-pedidos" hidden>
               <p>No tienes pedidos registrados.</p>
-            </div>
+            </h3>
 
             <table id="pedidos-table-enviados" class="table table-condensed table-striped table-bordered" hidden>
               <thead>
@@ -138,10 +139,30 @@
             </table>
           </div>
 
+          <div id="entregados" class="tab-pane fade in">
+            <h3 id="sin-pedidos" hidden>
+              <p>No tienes pedidos entregados aún.</p>
+            </h3>
+
+            <table id="pedidos-table-entregados" class="table table-condensed table-striped table-bordered" hidden>
+              <thead>
+              <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Insumo</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Unidad</th>
+                <th class="text-center">Mesa destino</th>
+                <th class="text-center">Fecha y hora de encargo<br>(24 horas)</th>
+              </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
           <div id="por-atender" class="tab-pane fade in">
-            <div id="sin-pedidos" class="alert alert-info" hidden>
+            <h3 id="sin-pedidos" hidden>
               <p>No tienes pedidos registrados.</p>
-            </div>
+            </h3>
 
             <table id="pedidos-table-por-atender" class="table table-condensed table-striped table-bordered" hidden>
               <thead>
@@ -160,9 +181,9 @@
           </div>
 
           <div id="descartados" class="tab-pane fade in">
-            <div id="sin-pedidos" class="alert alert-info" hidden>
+            <h3 id="sin-pedidos" hidden>
               <p>No tienes pedidos descartados.</p>
-            </div>
+            </h3>
 
             <table id="pedidos-table-descartados" class="table table-condensed table-striped table-bordered" hidden>
               <thead>
@@ -235,11 +256,13 @@
 <script>
   const mSocket           = io('http://localhost:2021');
   const mEnviadosTable    = new PedidosEnviadosTable($('#pedidos-table-enviados'), mSocket);
+  const mEntregadosTable  = new PedidosEntregadosTable($('#pedidos-table-entregados'), mSocket);
   const mPorAtenderTable  = new PedidosPorAtenderTable($('#pedidos-table-por-atender'), mSocket);
   const mDescartadosTable = new PedidosDescartadosTable($('#pedidos-table-descartados'), mSocket);
 
   $(function() {
     mEnviadosTable.init({ estado: 'enviado' });
+    mEntregadosTable.init({ estado: 'entregado' });
     mPorAtenderTable.init({ estado: 'pendiente' });
     mDescartadosTable.init({ estado: 'descartado' });
   });
