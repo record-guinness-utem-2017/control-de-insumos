@@ -3,4 +3,4 @@
 define('PEDIDO_PENDIENTE',  'pendiente');
 define('PEDIDO_ENVIADO',    'enviado');
 define('PEDIDO_DESCARTADO', 'descartado');
-define('PEDIDO_RECIBIDO', 'recibido');
+define('PEDIDO_ENTREGADO', 'entregado');
