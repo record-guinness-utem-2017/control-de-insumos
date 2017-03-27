@@ -330,9 +330,25 @@ class PedidosDescartadosTable extends PedidosTable {
 
 }
 
-class PedidosEntregadosTable extends PedidosDescartadosTable {
+class PedidosEntregadosTable extends PedidosTable {
+
+  newRowForPedido(pedido) {
+    return $(
+      '<tr id="pedido-' + pedido.id + '">' +
+        '<td class="text-center">' + pedido.id + '</td>' +
+        '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
+        '<td class="text-center">' + pedido.cantidad + '</td>' +
+        '<td class="text-center">' + pedido.unidad + '</td>' +
+        '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
+        '<td class="text-center">' + pedido.creado_en + '</td>' +
+        '<td class="text-center">' + pedido.entregado_en + '</td>' +
+      '</tr>'
+    );
+  }
 
   bindSocketIoEvents() {
+    super.bindSocketIoEvents();
+
     this.socket.on('pedido_entregado', function(data) { this.fetchAndPrependSinglePedido(data.id) }.bind(this));
   }
 
