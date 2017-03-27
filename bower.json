@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap3-dialog": "BootstrapDialog#^1.35.4"
+    "bootstrap3-dialog": "BootstrapDialog#^1.35.4",
+    "chartist": "^0.10.1"
   }
 }
