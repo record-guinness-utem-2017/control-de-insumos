@@ -194,6 +194,10 @@
   mSocket.on('creado_nuevo_pedido', function(data) {
     mTabla.getSinglePedido(data.id, function(pedido) { mTabla.prependPedido(pedido); });
   });
+
+  mSocket.on('descartado_pedido', function(data) {
+    mTabla.dropPedido(data.id);
+  });
 </script>
 
 </html>

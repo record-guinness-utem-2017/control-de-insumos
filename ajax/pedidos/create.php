@@ -8,7 +8,7 @@ $query = "INSERT INTO pedidos (mesa_id, insumo_id, cantidad, unidad, encargado_p
            "{$datos['insumo_id']}, " .
            "{$datos['cantidad']}, " .
            "'{$datos['unidad']}'," .
-           "null," .
+           "1," .
            "'" . PEDIDO_PENDIENTE . "'" .
          ")";
 

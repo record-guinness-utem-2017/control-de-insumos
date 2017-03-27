@@ -224,6 +224,24 @@
     mEnviadosTable.init({ estado: 'enviado' });
     mPorAtenderTable.init({ estado: 'pendiente' });
   });
+
+  // socket.io code
+
+  mSocket.on('creado_nuevo_pedido', function(data) {
+    mPorAtenderTable.getSinglePedido(data.id, function(pedido) {
+      mPorAtenderTable.prependPedido(pedido);
+    });
+  });
+
+  mSocket.on('descartado_pedido', function(data) {
+    mPorAtenderTable.dropPedido(data.id);
+  });
+
+  mSocket.on('enviado_pedido', function(data) {
+    mEnviadosTable.getSinglePedido(data.id, function(pedido) {
+      mEnviadosTable.prependPedido(pedido);
+    });
+  });
 </script>
 
 </html>
