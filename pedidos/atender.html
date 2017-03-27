@@ -6,7 +6,7 @@
   <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-  <title>Listado de pedidos - Control de insumos</title>
+  <title>Pedidos por atender - Control de insumos</title>
 
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
   <meta name="viewport" content="width=device-width"/>
@@ -179,162 +179,21 @@
 <script src="../assets/js/socket.io.min.js"></script>
 
 <script src="../assets/bower/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
+<script src="../assets/js/pedidos-table.js"></script>
 
 <script>
-  let mPedidos  = [];
   const mSocket = io('http://localhost:2021');
+  const mTabla  = new PedidosTable( $('#pedidos-table'), mSocket );
 
   $(function() {
-    const tabla = $('#pedidos-table');
-    tabla.on('click', '.descartar', onDescartarClick);
-    tabla.on('click', '.atender', onAtenderClick);
-
-    mostrarPedidosPendientesHastaElMomento(tabla);
+    mTabla.initialize({ estado: 'pendiente' });
   });
-
-  function onDescartarClick() {
-    BootstrapDialog.confirm({
-      title: 'Confirmar descarte de pedido',
-      message: '<p>Para confirmar el descarte de este pedido escribe su ID y haz clic en <b class="text-danger">Descartar</b>.</p>' +
-      '<p><input type="text" id="descartar-id" class="form-control"></p>' +
-      '<input type="hidden" id="descartar-hidden" value="' + $(this).data('pedido-id') + '">',
-      btnOKLabel: 'Descartar',
-      btnOKClass: 'btn-danger',
-      btnCancelLabel: 'Cancelar',
-      callback: function(descartar) {
-        const pedidoId   = $('#descartar-hidden').val();
-        const confirmado = $('#descartar-id').val() == pedidoId;
-        if ( ! descartar) return;
-        if ( ! confirmado) {
-          $('#descartar-id').tooltip({ title: 'ID de pedido incorrecto.', }).tooltip('show');
-          return false;
-        }
-
-        this.disable();
-        this.spin();
-
-        const dialog = this.dialog;
-        $.get('../ajax/pedidos/descartar.php?id=' + pedidoId, function() {
-          $('#pedido-' + pedidoId).remove();
-          dialog.close();
-          BootstrapDialog.alert({
-            title: '',
-            message: 'Pedido descartado',
-            type: BootstrapDialog.TYPE_INFO,
-          });
-
-          mSocket.emit('descartado_pedido', { id: pedidoId });
-        });
-
-        return false;
-      }
-    });
-  }
-
-  function onAtenderClick() {
-    BootstrapDialog.confirm({
-      title: 'Confirmar envío de pedido',
-      message: 'Antes de marcar el pedido como enviado, revisa otra vez que el pedido se haya surtido como se ordenó. Si todo está ' +
-               'en orden, haz clic en <b>Marcar como enviado</b>.' +
-               '<input type="hidden" id="enviar-hidden" value="' + $(this).data('pedido-id') + '">',
-      btnOKLabel: 'Marcar como enviado',
-      btnOKClass: 'btn-success',
-      btnCancelLabel: 'Cancelar',
-      callback: function(enviar) {
-        if ( ! enviar) return;
-        const pedidoId = $('#enviar-hidden').val();
-
-        this.disable();
-        this.spin();
-
-        const dialog = this.dialog;
-        $.get('../ajax/pedidos/atender.php?id=' + pedidoId, function() {
-          $('#pedido-' + pedidoId).remove();
-          dialog.close();
-          BootstrapDialog.alert({
-            title: '',
-            message: 'Pedido marcado como enviado',
-            type: BootstrapDialog.TYPE_SUCCESS,
-          });
-
-          mSocket.emit('enviado_pedido', { id : pedidoId });
-        });
-
-        return false;
-      }
-    });
-  }
-
-  function mostrarPedidosPendientesHastaElMomento(tabla) {
-    $.get('../ajax/pedidos/index.php?estado=pendiente&pag=1', function(respuesta) {
-      mPedidos = respuesta.objetos;
-      rellenarTablaDePedidos(tabla, mPedidos);
-    });
-  }
-
-  function rellenarTablaDePedidos(tabla, pedidos) {
-    const cuerpo     = tabla.find('tbody');
-    const sinPedidos = $('#sin-pedidos');
-
-    cuerpo.html('');
-
-    if (pedidos.length > 0) {
-      let elemento;
-      for (var i = 0; i < pedidos.length; i++) {
-        elemento = crearFilaParaPedido(pedidos[i]);
-        cuerpo.append(elemento);
-      }
-
-      // Mostrar tabla. Ocultar mensaje "sin pedidos"
-      tabla.show();
-      sinPedidos.hide();
-    } else {
-      // Ocultar tabla. Mostrar mensaje "sin pedidos"
-      tabla.hide();
-      sinPedidos.show();
-    }
-  }
-
-  function crearFilaParaPedido(pedido) {
-    return $(
-      '<tr id="pedido-' + pedido.id + '">' +
-        '<td class="text-center">' + pedido.id + '</td>' +
-        '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
-        '<td class="text-center">' + pedido.cantidad + '</td>' +
-        '<td class="text-center">' + pedido.unidad + '</td>' +
-        '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
-        '<td class="text-center">' + pedido.encargado_por.nombre_completo + '</td>' +
-        '<td class="text-center">' + pedido.creado_en + '</td>' +
-        '<td class="text-center">' + generarAccionesParaPedido(pedido)[0].outerHTML + '</td>' +
-      '</tr>'
-    );
-  }
-
-  function generarAccionesParaPedido(pedido) {
-    return $('<div class="text-center"></div>')
-      .append( $('<p><button class="btn btn-primary atender" data-pedido-id="' + pedido.id + '">Atender</button></p>') )
-      .append( $('<p><button class="btn btn-danger descartar" data-pedido-id="' + pedido.id + '">Descartar</button></p>') )
-  }
 
   // socket.io code
 
   mSocket.on('creado_nuevo_pedido', function(data) {
-    getPedidoIndividual(data.id, function(pedido) {
-      mPedidos.unshift(pedido);
-
-      let fila = crearFilaParaPedido(pedido).addClass('success');
-      $('#pedidos-table tbody').prepend(fila);
-
-      setTimeout(function() { $('tr.success').removeClass('success'); }, 3000);
-    });
+    mTabla.getSinglePedido(data.id, function(pedido) { mTabla.prependPedido(pedido); });
   });
-
-  function getPedidoIndividual(id, callback) {
-    $.get('../ajax/pedidos/index.php?id=' + id, function(respuesta) {
-      let pedido = respuesta.objetos[0];
-      callback(pedido);
-    });
-  }
 </script>
 
 </html>
