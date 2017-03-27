@@ -169,12 +169,23 @@ class PedidosTable {
     const index  = this.pedidos.findIndex(function(pedido) { return pedido.id == pedidoId; });
     this.pedidos.splice(index, 1);
 
-    this.table.find('#pedido-' + pedidoId).remove();
+    const row    = this.table.find('#pedido-' + pedidoId).css('position', 'relative').addClass('danger');
+    const banner = $('<div><h4>Descartado</h4></div>')
+      .css({ position: 'absolute',
+             top: row.position().top + 'px',
+             left: row.position().left + 'px',
+             width: row.width(),
+             height: row.height() })
+      .addClass('text-center')
+      .appendTo(row);
 
-    if (this.pedidos.length <= 0) {
-      this.table.hide();
-      this.table.parent().find('#sin-pedidos').show();
-    }
+    setTimeout(function() {
+      row.fadeOut('fast');
+      if (this.pedidos.length <= 0) {
+        this.table.fadeOut('fast');
+        this.table.parent().find('#sin-pedidos').fadeIn('fast');
+      }
+    }, 3000);
   }
 
 }
@@ -201,7 +212,7 @@ class PedidosEnviadosTable extends IndexPedidosTable {
 
   newActionButtonsForPedido(pedido) {
     return $('<div class="text-center"></div>')
-      .append( $('<p><button class="btn btn-primary recibir" data-pedido-id="' + pedido.id + '">Marcar como recibido</button></p>') );
+      .append( $('<p><button class="btn btn-success recibir" data-pedido-id="' + pedido.id + '">Marcar como recibido</button></p>') );
   }
 
 }
@@ -210,7 +221,7 @@ class PedidosPorAtenderTable extends IndexPedidosTable {
 
   newActionButtonsForPedido(pedido) {
     return $('<div class="text-center"></div>')
-      .append( $('<p><button class="btn btn-primary descartar" data-pedido-id="' + pedido.id + '">Descartar</button></p>') );
+      .append( $('<p><button class="btn btn-danger descartar" data-pedido-id="' + pedido.id + '">Descartar</button></p>') );
   }
 
 }
