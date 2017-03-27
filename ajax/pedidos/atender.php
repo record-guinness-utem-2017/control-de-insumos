@@ -4,7 +4,7 @@ require_once __DIR__ . '/../helpers.php';
 
 /** @var Mysqli $conexion */
 $conexion  = require_once __DIR__ . '/../bd.php';
-$pedido_id = $conexion->escape_string($_GET['id']);
+$pedido_id = $conexion->escape_string($_POST['id']);
 $query     = "UPDATE pedidos SET estado = '" . PEDIDO_ENVIADO . "' WHERE id = $pedido_id";
 $result    = $conexion->query($query);
 

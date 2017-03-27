@@ -5,7 +5,8 @@ const debug  = require('debug')('socketio-server');
 const events = [
   'creado_nuevo_pedido',
   'descartado_pedido',
-  'enviado_pedido'
+  'enviado_pedido',
+  'entregado_pedido',
 ];
 
 io.on('connection', function(socket) {

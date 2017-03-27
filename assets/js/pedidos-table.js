@@ -148,7 +148,7 @@ class PedidosTable {
         this.disable();
         this.spin();
 
-        $.get('../ajax/pedidos/atender.php?id=' + pedidoId, function() {
+        $.post('../ajax/pedidos/atender.php', { id: pedidoId }, function() {
           self.dropPedido(pedidoId);
           dialog.close();
           BootstrapDialog.alert({
@@ -166,26 +166,11 @@ class PedidosTable {
   }
 
   dropPedido(pedidoId) {
-    const index  = this.pedidos.findIndex(function(pedido) { return pedido.id == pedidoId; });
+    const index = this.pedidos.findIndex(function(pedido) { return pedido.id == pedidoId; });
     this.pedidos.splice(index, 1);
 
-    const row    = this.table.find('#pedido-' + pedidoId).css('position', 'relative').addClass('danger');
-    const banner = $('<div><h4>Descartado</h4></div>')
-      .css({ position: 'absolute',
-             top: row.position().top + 'px',
-             left: row.position().left + 'px',
-             width: row.width(),
-             height: row.height() })
-      .addClass('text-center')
-      .appendTo(row);
-
-    setTimeout(function() {
-      row.fadeOut('fast');
-      if (this.pedidos.length <= 0) {
-        this.table.fadeOut('fast');
-        this.table.parent().find('#sin-pedidos').fadeIn('fast');
-      }
-    }, 3000);
+    const row = this.table.find('#pedido-' + pedidoId);
+    row.fadeOut('fast', function() { row.remove(); });
   }
 
 }
@@ -213,6 +198,61 @@ class PedidosEnviadosTable extends IndexPedidosTable {
   newActionButtonsForPedido(pedido) {
     return $('<div class="text-center"></div>')
       .append( $('<p><button class="btn btn-success recibir" data-pedido-id="' + pedido.id + '">Marcar como recibido</button></p>') );
+  }
+
+  bindEvents() {
+    const self = this;
+
+    $(this.table).on('click', '.recibir', function() { self.onRecibirClick(this, self); });
+  }
+
+  onRecibirClick(button, self) {
+    BootstrapDialog.confirm({
+      title: 'Confirmar recepción de pedido',
+      message: '¿Confirmas que el pedido llegó a la mesa correcta?',
+      btnOKLabel: 'Confirmar',
+      btnOKClass: 'btn-success',
+      btnOKHotkey: 13,
+      btnCancelLabel: 'Cancelar',
+      callback: function(confirmar) {
+        if ( ! confirmar) return;
+
+        this.disable();
+        this.spin();
+
+        const dialog   = this.dialog;
+        const pedidoId = $(button).data('pedido-id');
+        self.markPedidoAsEntregado(pedidoId, self.afterMarkPedidoAsEntregado(dialog, pedidoId));
+
+        return false;
+      }
+    });
+  }
+
+  markPedidoAsEntregado(id, callback) {
+    $.ajax({
+      type: 'post',
+      url: '/ajax/pedidos/recibir.php',
+      data: { id: id },
+      success: function(response) { callback && callback(response); }
+    })
+  }
+
+  afterMarkPedidoAsEntregado(dialog, pedidoId) {
+    const self = this;
+
+    return function() {
+      dialog.close();
+
+      BootstrapDialog.alert({
+        title: '',
+        message: 'Pedido marcado como entregado.',
+        type: BootstrapDialog.TYPE_SUCCESS,
+      });
+
+      self.dropPedido(pedidoId);
+      self.socket.emit('entregado_pedido', { id: pedidoId });
+    };
   }
 
 }
