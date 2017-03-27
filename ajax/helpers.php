@@ -48,8 +48,13 @@ function responder_json_de_objetos($objetos, $queries) {
     'sql'     => $queries,
   ];
 
-  header('Content-Type: application/json; encoding: utf8');
-  echo json_encode($respuesta);
+  $json = json_encode($respuesta);
+  if ($json) {
+    header('Content-Type: application/json; encoding: utf8');
+    echo $json;
+  } else {
+    reportar_error_json();
+  }
 }
 
 function reportar_error_sql(Mysqli $conexion, string $query) : void {
@@ -59,4 +64,10 @@ function reportar_error_sql(Mysqli $conexion, string $query) : void {
                     'sql'   => $query]);
 
   exit();
+}
+
+function reportar_error_json() {
+  http_response_code(500);
+  header('Content-Type: application/json; encoding: utf8');
+  echo json_encode(['error' => json_last_error_msg()]);
 }
