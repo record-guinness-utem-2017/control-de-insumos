@@ -215,13 +215,13 @@ class IndexPedidosTable extends PedidosTable {
   newRowForPedido(pedido) {
     return $(
       '<tr id="pedido-' + pedido.id + '">' +
-      '<td class="text-center">' + pedido.id + '</td>' +
-      '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
-      '<td class="text-center">' + pedido.cantidad + '</td>' +
-      '<td class="text-center">' + pedido.unidad + '</td>' +
-      '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
-      '<td class="text-center">' + pedido.creado_en + '</td>' +
-      '<td class="text-center">' + this.newActionButtonsForPedido(pedido).get(0).outerHTML + '</td>' +
+        '<td class="text-center">' + pedido.id + '</td>' +
+        '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
+        '<td class="text-center">' + pedido.cantidad + '</td>' +
+        '<td class="text-center">' + pedido.unidad + '</td>' +
+        '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
+        '<td class="text-center">' + pedido.creado_en + '</td>' +
+        '<td class="text-center">' + this.newActionButtonsForPedido(pedido).get(0).outerHTML + '</td>' +
       '</tr>'
     );
   }
@@ -364,3 +364,59 @@ class PedidosEntregadosTable extends PedidosTable {
   }
 
 }
+
+class AdminPedidosEnviadosTable extends PedidosEnviadosTable {
+
+  newRowForPedido(pedido) {
+    return $(
+      '<tr id="pedido-' + pedido.id + '">' +
+      '<td class="text-center">' + pedido.id + '</td>' +
+      '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
+      '<td class="text-center">' + pedido.cantidad + '</td>' +
+      '<td class="text-center">' + pedido.unidad + '</td>' +
+      '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
+      '<td class="text-center">' + pedido.encargado_por.nombre_completo + '</td>' +
+      '<td class="text-center">' + pedido.creado_en + '</td>' +
+      '</tr>'
+    );
+  }
+
+}
+
+class AdminPedidosEntregadosTable extends PedidosEntregadosTable {
+
+  newRowForPedido(pedido) {
+    return $(
+      '<tr id="pedido-' + pedido.id + '">' +
+      '<td class="text-center">' + pedido.id + '</td>' +
+      '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
+      '<td class="text-center">' + pedido.cantidad + '</td>' +
+      '<td class="text-center">' + pedido.unidad + '</td>' +
+      '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
+      '<td class="text-center">' + pedido.encargado_por.nombre_completo + '</td>' +
+      '<td class="text-center">' + pedido.creado_en + '</td>' +
+      '<td class="text-center">' + pedido.entregado_en + '</td>' +
+      '</tr>'
+    );
+  }
+
+}
+
+class AdminPedidosDescartadosTable extends PedidosDescartadosTable {
+
+  newRowForPedido(pedido) {
+    return $(
+      '<tr id="pedido-' + pedido.id + '">' +
+        '<td class="text-center">' + pedido.id + '</td>' +
+        '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
+        '<td class="text-center">' + pedido.cantidad + '</td>' +
+        '<td class="text-center">' + pedido.unidad + '</td>' +
+        '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
+        '<td class="text-center">' + pedido.encargado_por.nombre_completo + '</td>' +
+        '<td class="text-center">' + pedido.creado_en + '</td>' +
+      '</tr>'
+    );
+  }
+
+}
+
