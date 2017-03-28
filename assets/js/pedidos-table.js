@@ -39,7 +39,7 @@ class PedidosTable {
 
   fillUpTable() {
     const cuerpo     = this.table.find('tbody');
-    const sinPedidos = this.table.parent().find('#sin-pedidos');
+    const sinPedidos = this.table.parent().find('.sin-pedidos');
 
     cuerpo.html('');
 
