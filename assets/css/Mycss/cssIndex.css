@@ -1,0 +1,62 @@
+
+
+.bodyBaby{
+	visibility: hidden;
+}
+
+.RemoveCssLoad{
+	visibility: visible;
+}
+
+.pruebaxD{
+	display:none;
+}
+
+#TextName{
+	text-align: center;
+}
+
+.imgLoad{
+	visibility: visible;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+#inpNo_Control,#inpFecha{
+	border: 1px;
+	border-color: black;
+	background-color: #F4A460
+}
+
+#btnNoControl, #btnBusfiltroUno, #btnSearchFechaz{
+width: 100%;
+}
+
+#alargameee{
+	width: 100%;
+}
+
+.Scrollll{
+  overflow-y: scroll;
+  height: 200px;
+}
+
+#nombres{
+  overflow-y: scroll;
+  height: 200px;
+}
+
+#btnReload, #btnwindowPDentro, #btnFiltroDos, #btnFiltroTres{
+	cursor: pointer;
+}
+
+.Scrollll2{
+  overflow-y: scroll;
+  height: 440px;
+  /*height: 370px;*/
+}
+
+#btnAgregarUsers{
+	width: 100%;
+}

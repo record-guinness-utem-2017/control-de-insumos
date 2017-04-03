@@ -121,7 +121,7 @@ function SessionCheck(){
     var rank=localStorage['rank'];
     if((id!=undefined)||(nombre!=undefined)||(rank!=undefined)){
         console.log("Session on");
-        var url=VariableLocal+"/cevicheapp/cevicheapp/index.html";
+        var url = '/app/index.html';
         window.location=url;
     }
 }
@@ -161,7 +161,7 @@ function check(numero, contra){
 }
 
 function chekDB(numero, contra){
-    var url =VariableLocal+"/cevicheapp/php/acceso.php";
+    var url = '/ajax/login/acceso.php';
     var params={
         mensaje: numero,
         mensaje2: contra
@@ -204,7 +204,7 @@ function FaceFinal(nombre, rank, idPersona){
     localStorage['rank']=rank;
     localStorage['ids']=idPersona;
 
-    var url=VariableLocal+"/cevicheapp/php/UpdateStatus.php";
+    var url = '/ajax/login/update_status.php';
     params={
         mensaje: idPersona
     };
@@ -222,7 +222,7 @@ function cleanInpts(){
 
 
 function LoadingPages(){
-    var url=VariableLocal+"/cevicheapp/cevicheapp/index.html";
+    var url = '/app/index.html';
     window.location=url;
 }
 

@@ -10,7 +10,7 @@ $( window ).on( "load", function() {
 $(document).ready(function(){
 
 
-$('#LodadWindows').load('assets/WindowsEmergent/windowsIndex.html');
+$('#LodadWindows').load('/app/windowsIndex.html');
 
 mensajes={
 	mensaje:function(texto){
@@ -44,7 +44,7 @@ function sessionesInside(){
 	if((id==undefined)||(nombre==undefined)||(rank==undefined)){
 		mensajes.sessionDeath();
 		localStorage.clear();
-		var url=VariableLocal+"/cevicheapp/index.html";
+		var url="/app/index.html";
 		window.location=url;
 	}else{
 		LoadPrivileges(rank, id);
@@ -54,7 +54,7 @@ function sessionesInside(){
 sessionesInside();
 
 function LoadPrivileges(rank, id){
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/SearchModules.php";
+	var url = '/ajax/phpindex/SearchModules.php';
 	var params={
 		mensaje: id
 	};
@@ -155,7 +155,7 @@ btnClick=function(){
 	if(check(inpNo)==true){
 
 	var Arrastrada=$('#inpNo_Control').val().trim();
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/phpindex.php";
+	var url = '/ajax/phpindex/phpindex.php';
 		var params={
 			mensaje: Arrastrada
 		};
@@ -203,7 +203,7 @@ UpdateStatusOut=function(id){
 
     var Security=confirm("Seguro de que este alumno saldra de las instalaciones?");
     if(Security==true){
-    	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/ModifieStatusOut.php";
+    	var url = '/ajax/phpindex/ModifieStatusOut.php';
 		var params={
 			mensaje: textt,
 			mensaje2: localStorage['nombre']
@@ -223,7 +223,7 @@ UpdateStatus=function(id){
 
     var Security=confirm("Seguro de que este alumno ingresara a las instalaciones?");
     if(Security==true){
-    	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/ModifieStatus.php";
+    	var url = '/ajax/phpindex/ModifieStatus.php';
 		var params={
 			mensaje: textt,
 			mensaje2: localStorage['nombre']
@@ -247,14 +247,14 @@ function check(inpNo){
 }
 
 btnSecionClose= function(){
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleInside.php";
-	var url2 =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/SessionOut.php";
+	var url = '/ajax/phpindex/PeopleInside.php';
+	var url2 = '/ajax/phpindex/SessionOut.php';
 	var params={
 		mensaje: localStorage['ids']
 	};
 	$.post(url2, params).done(function(data){
 		localStorage.clear();
-		var url=VariableLocal+"/cevicheapp/index.html";
+		var url="/index.html";
 		window.location=url;
 	});
 }
@@ -263,7 +263,7 @@ btnSecionClose= function(){
 /////////////////////////_____________MODULO NUMERO DOS REPORTES DE PERSONAS DENTRO ETC...
 //////CONTADOR RAPIDO DE DATOS-_____________________________
 function PeopleSessionOn(){
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleSessionOn.php";
+	var url = '/ajax/phpindex/PeopleSessionOn.php';
 	contador=0;
 	$.post(url).done(function(data){
 		var json = JSON.parse(data);
@@ -277,7 +277,7 @@ function PeopleSessionOn(){
 PeopleSessionOn();
 
 function PeopleInside(){
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleInside.php";
+	var url = '/ajax/phpindex/PeopleInside.php';
 
 	$.post(url).done(function(data){
 		var json = JSON.parse(data);
@@ -291,7 +291,7 @@ function PeopleInside(){
 PeopleInside();
 
 function HistoryAll(){
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/HistoryAll.php";
+	var url = '/ajax/phpindex/HistoryAll.php';
 
 	$.post(url).done(function(data){
 		var json = JSON.parse(data);
@@ -357,7 +357,7 @@ $('#btnFiltroTres').on('click', function(){
 
 ///////cargando datos de filtrados----------------------------
 function ListaFiltradoUno(){
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleInsideFiltroUno.php";
+	var url = '/ajax/phpindex/PeopleInsideFiltroUno.php';
 	$('#insertDatesFiltroUno').html("");
 	var contador=0;
 	$.post(url).done(function(data){
@@ -379,7 +379,7 @@ function ListaFiltradoUno(){
 
 ///////cargando datos de filtrados----------------------------
 function ListaFiltradoDos(){
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleInsideFiltroDos.php";
+	var url = '/ajax/phpindex/PeopleInsideFiltroDos.php';
 	$('#insertDatesFiltroDos').html("");
 	var contador=0;
 	$.post(url).done(function(data){
@@ -411,7 +411,7 @@ function ListaFiltradoDos(){
 
 ///////cargando datos de filtrados----------------------------
 function ListaFiltradoTres(){
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleInsideFiltroTres.php";
+	var url = '/ajax/phpindex/PeopleInsideFiltroTres.php';
 	$('#insertDatesFiltroTres').html("");
 	var contador=0;
 	$.post(url).done(function(data){
@@ -450,7 +450,7 @@ filtroTres=function(){
 }
 
 function DateSearch(inpFil){
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/DateSearch.php";
+	var url = '/ajax/phpindex/DateSearch.php';
 	$('#insertDatesFiltroTres').html("");
 	var params={
 		mensaje: inpFil

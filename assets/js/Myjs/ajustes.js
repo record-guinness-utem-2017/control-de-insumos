@@ -10,7 +10,7 @@ $( window ).on( "load", function() {
 $(document).ready(function(){
 
 
-$('#LodadWindows').load('assets/WindowsEmergent/windowsIndex.html');
+$('#LodadWindows').load('/app/windowsIndex.html');
 
 mensajes={
 	mensaje:function(texto){
@@ -47,7 +47,7 @@ function sessionesInside(){
 	if((id==undefined)||(nombre==undefined)||(rank==undefined)){
 		mensajes.sessionDeath();
 		localStorage.clear();
-		var url=VariableLocal+"/cevicheapp/index.html";
+		var url="/app/index.html";
 		window.location=url;
 	}else{
 		LoadPrivileges(rank, id);
@@ -59,7 +59,7 @@ function sessionesInside(){
 sessionesInside();
 
 function LoadPrivileges(rank, id){
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/SearchModules.php";
+	var url = '/ajax/phpindex/SearchModules.php';
 	var params={
 		mensaje: id
 	};
@@ -144,14 +144,14 @@ myFunction=function(event){
 }
 
 btnSecionClose= function(){
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleInside.php";
-	var url2 =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/SessionOut.php";
+	var url = '/ajax/phpindex/PeopleInside.php';
+	var url2 = '/ajax/phpindex/SessionOut.php';
 	var params={
 		mensaje: localStorage['ids']
 	};
 	$.post(url2, params).done(function(data){
 		localStorage.clear();
-		var url=VariableLocal+"/cevicheapp/index.html";
+		var url="/index.html";
 		window.location=url;
 	});
 }
