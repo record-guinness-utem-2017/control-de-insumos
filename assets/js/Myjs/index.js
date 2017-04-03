@@ -390,8 +390,16 @@ function ListaFiltradoDos(){
 				var rank= json.ok[i].rank;
 			if(rank=="a"){
 				rank="ADMINISTRADOR";
-			}else if(rank=="u"){
-				rank="USUARIO";
+			}else if(rank=="c"){
+				rank="Checador";
+			}else if (rank=="nulll"){
+				rank="Sin Privilegios";
+			}else if (rank=="s"){
+				rank="Supervisor de mesas";
+			}else if(rank=="al"){
+				rank="Almacén";
+			}else if (rank=="d"){
+				rank="Director de carrera";
 			}
 
 			var tr=$("<tr></tr>");
