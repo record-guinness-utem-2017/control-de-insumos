@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/../bd.php';
+$con = include __DIR__ . '/../bd.php';
 
 $mensaje=$_POST['mensaje'];
 $concatenado=$_POST['concatenado'];
