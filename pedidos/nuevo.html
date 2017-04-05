@@ -343,7 +343,7 @@
   }
 
   function cargarSelectorInsumo(mesa) {
-    $.get('../ajax/insumos/index.php?mesaId=' + mesa.id, construirSelectorInsumo);
+    $.get('../ajax/insumos/index.php?disponibles=1&mesaId=' + mesa.id, construirSelectorInsumo);
   }
 
   function construirSelectorInsumo(respuesta) {
