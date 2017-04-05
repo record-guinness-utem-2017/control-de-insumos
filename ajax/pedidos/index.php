@@ -22,10 +22,14 @@ if ($pag = $_GET['pag'] ?? 1) {
   $query .= ' LIMIT ' . POR_PAGINA . " OFFSET {$offset}";
 }
 
-$insumos = get_filas_desde_query($conexion, 'SELECT * FROM insumos');
+$insumos = get_filas_desde_query($conexion, 'SELECT * FROM insumos_config');
 $pedidos = get_filas_desde_query($conexion, $query, function(array $fila) use ($insumos) : array {
-  $fila['insumo'] = get_fila_relacionada('id', $fila['insumo_id'], $insumos);
   $fila['mesa']   = ['nombre' => 'A'];
+  $fila['insumo'] = get_fila_relacionada('id_almacen', $fila['insumo_id'], $insumos, function($insumo) {
+    $insumo['nombre'] = $insumo['insumo'];
+
+    return $insumo;
+  });
 
   return $fila;
 });

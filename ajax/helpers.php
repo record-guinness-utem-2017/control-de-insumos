@@ -11,10 +11,10 @@ function get_filas_desde_query(Mysqli $conexion, string $query, Closure $callbac
   return $filas;
 }
 
-function get_fila_relacionada(string $campo_primario, string $valor_esperado, array $filas) : array {
+function get_fila_relacionada(string $campo_primario, string $valor_esperado, array $filas, Closure $callback = null) : array {
   foreach ($filas as $fila) {
     $valor = $fila[$campo_primario] ?? null;
-    if ($valor == $valor_esperado) return $fila;
+    if ($valor == $valor_esperado) return $callback ? $callback($fila) : $fila;
   }
 
   return [];
