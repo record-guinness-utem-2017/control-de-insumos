@@ -1,452 +1,224 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/shrimp.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta charset="utf-8"/>
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/shrimp.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-	<title>Sistema Ceviche</title>
+  <title>Sistema Ceviche</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-
-
-    <!-- Bootstrap core CSS     -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Animation library for notifications   -->
-    <link href="/assets/css/animate.min.css" rel="stylesheet"/>
-
-    <!--  Paper Dashboard core CSS    -->
-    <link href="/assets/css/paper-dashboard.css" rel="stylesheet"/>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+  <meta name="viewport" content="width=device-width"/>
 
 
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="/assets/css/demo.css" rel="stylesheet" />
+  <!-- Bootstrap core CSS     -->
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Animation library for notifications   -->
+  <link href="/assets/css/animate.min.css" rel="stylesheet"/>
+
+  <!--  Paper Dashboard core CSS    -->
+  <link href="/assets/css/paper-dashboard.css" rel="stylesheet"/>
 
 
-    <!--  Fonts and icons     -->
+  <!--  CSS for Demo Purpose, don't include it in your project     -->
+  <link href="/assets/css/demo.css" rel="stylesheet"/>
 
-   <!-- <script language="JavaScript" type="text/javascript" src="../js/jquery-3.2.0.js"></script>-->
-    <script language="JavaScript" type="text/javascript" src="/assets/js/jquery-1.10.2.js"></script>
-    <!--<script language="JavaScript" type="text/javascript" src="../inc/jquery/jquery-1.11.1.min.js"></script>-->
-    
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <link href="/assets/css/themify-icons.css" rel="stylesheet">
-    <!--<script src="/assets/js/ajaxJ.js" type="text/javascript"></script>-->
-    <script src="/assets/js/ajaxC.js" type="text/javascript"></script>
-    <script src="/assets/js/ajaxCI.js" type="text/javascript"></script>
-    <script src="/assets/js/ajaxCH.js" type="text/javascript"></script>
-    <script src="/assets/js/ajaxZ.js" type="text/javascript"></script>
-    <script src="/assets/js/ajaxT.js" type="text/javascript"></script>
-    <script src="/assets/js/ajaxS.js" type="text/javascript"></script>
-    <script src="/assets/js/ajaxA.js" type="text/javascript"></script>
-    <script src="/assets/js/ajaxL.js" type="text/javascript"></script>
-    <script src="/assets/js/ajaxJ.js" type="text/javascript"></script>
 
+  <!--  Fonts and icons     -->
+
+  <!-- <script language="JavaScript" type="text/javascript" src="../js/jquery-3.2.0.js"></script>-->
+  <script language="JavaScript" type="text/javascript" src="/assets/js/jquery-1.10.2.js"></script>
+  <!--<script language="JavaScript" type="text/javascript" src="../inc/jquery/jquery-1.11.1.min.js"></script>-->
+
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+  <link href="/assets/css/themify-icons.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-background-color="white" data-active-color="danger">
+  <div class="sidebar" data-background-color="white" data-active-color="danger">
 
     <!--
 		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
 		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 	-->
 
-    	<div class="sidebar-wrapper">
-            <div class="logo">
-                <a class="simple-text">
-                    Sistema Ceviche
-                </a>
-            </div>
+    <div class="sidebar-wrapper">
+      <div class="logo">
+        <a class="simple-text">
+          Sistema Ceviche
+        </a>
+      </div>
 
-            <ul class="nav">
-                <li class="active">
-                    <a href="dashboard.html">
-                        <i class="ti-panel"></i>
-                        <p>Almacen</p>
-                    </a>
-                </li>
-				
-            </ul>
-    	</div>
+      <ul class="nav">
+        <li class="active">
+          <a href="dashboard.html">
+            <i class="ti-panel"></i>
+            <p>Almacen</p>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-panel">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar bar1"></span>
+            <span class="icon-bar bar2"></span>
+            <span class="icon-bar bar3"></span>
+            Guardar
+          </button>
+          <a class="navbar-brand" href="#">Almacen</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="ti-panel"></i>
+                <p>Stats</p>
+              </a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="ti-bell"></i>
+                <p class="notification">1</p>
+                <p>Notifications</p>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Notification 1</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">
+                <i class="ti-settings"></i>
+                <p>Settings</p>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <div class="content">
+      <div class="container-fluid">
+        <div id="insumos-grid" class="row">
+          <h5>Cargando insumos...</h5>
+        </div>
+      </div>
     </div>
 
-    <div class="main-panel">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar bar1"></span>
-                        <span class="icon-bar bar2"></span>
-                        <span class="icon-bar bar3"></span>
-                    Guardar</button>
-                    <a class="navbar-brand" href="#">Almacen</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="ti-panel"></i>
-								<p>Stats</p>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">1</p>
-									<p>Notifications</p>
-									<b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                              </ul>
-                        </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
-                        </li>
-                    </ul>
+    <div class="footer">
+      <hr/>
+      <div class="stats">
 
-                </div>
-            </div>
-        </nav>
-
-  <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                            
-                                <div class="row">
-
-
-                                 <input class="form-control" type="number" id="inputJitomateC" name="jitomate" placeholder="Cajas">
-
-                                   <input class="form-control" type="number" id="inputJitomateK" name="jitomate" placeholder="Kilos">
-
-                                 <button type="button" id="btnClickJ" class="btn btn-primary">Guardar</button>
-                                    <div class="col-xs-5">
-
-                                     <p>Jitomate</p>
-                                   
-                                        <div class="icon-big icon-warning text-center">
-                                          
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-
-                                           
-                                       
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                      <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                            
-                                <div class="row">
-                                <input class="form-control" type="input" id="inputCebollaC" name="cebolla" placeholder="Cajas">
-
-                                <input class="form-control" type="input" id="inputCebollaK" name="cebolla" placeholder="Kilos">
-
-                                 <button type="button" id="btnClickC" class="btn btn-primary">Guardar</button>
-                                    <div class="col-xs-5">
-                                     <p>Cebolla</p>
-                                   
-                                        <div class="icon-big icon-warning text-center">
-                                          
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-
-                                           
-                                       
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                      <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                            
-                                <div class="row">
-                                <input class="form-control" type="input" id="inputCilantroC" name="cilantro" placeholder="Cajas">
-                                 <input class="form-control" type="input" id="inputCilantroK" name="cilantro" placeholder="Kilos">
-
-                                 <button type="button" id="btnClickCI" class="btn btn-primary">Guardar</button>
-                                    <div class="col-xs-5">
-                                     <p>Cilantro</p>
-                                        <div class="icon-big icon-warning text-center">
-                                          
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-
-                                           
-                                       
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                            
-                                <div class="row">
-                                 <input class="form-control" type="input" id="inputChileC"  name="chile" placeholder="Cajas">
-                                 <input class="form-control" type="input" id="inputChileK"  name="chile" placeholder="Kilos">
-
-                                 <button type="button" id="btnClickCH"  class="btn btn-primary">Guardar</button>
-                                    <div class="col-xs-5">
-                                     <p>Chile</p>
-                                        <div class="icon-big icon-warning text-center">
-                                          
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-
-                                           
-                                       
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                 <input class="form-control" type="inputZanahoria" id="inputZanahoriaC" name="zanahoria"  placeholder="Cajas">
-
-                                 <input class="form-control" type="inputZanahoria" id="inputZanahoriaK" name="zanahoria"  placeholder="Kilos">
-
-
-                                 <button type="button"  id="btnClickZ"  class="btn btn-primary"  class="enviob">Guardar</button>
-                                    <div class="col-xs-5">
-                                          <p>Zanahoria</p>
-                                        <div class="icon-big icon-success text-center">
-                                           
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                 
-                                        <div class="numbers">
-                                     
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                   
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                 <input class="form-control" type="inputAtun" id="inputAtunC" placeholder="Cajas" name="atun">
-                                <input class="form-control" type="inputAtun" id="inputAtunK" placeholder="Kilos" name="atun">
-
-                                 <button type="button" id="btnClickA" class="btn btn-primary"  class="enviob">Guardar</button>
-                                    <div class="col-xs-5">
-                                       <p>Atun</p>
-                                        <div class="icon-big icon-danger text-center">
-                                          
-                                        </div>
-                                    </div>
-                                     <div class="col-xs-7">
-                                   
-                                        <div class="numbers">
-                                           
-                                    
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                              
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                <input class="form-control" type="input" id="inputTostadaC"  placeholder="Cajas" name="tostadas">
-                                <input class="form-control" type="input" id="inputTostadaK"  placeholder="Kilos" name="tostadas">
-
-                                 <button type="button"  id="btnClickT"  class="btn btn-primary"  class="enviob">Guardar</button>
-                                    <div class="col-xs-5">
-                                     <p>Tostadas</p>
-                                        <div class="icon-big icon-danger text-center">
-                                         
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                     
-                                        <div class="numbers">
-                                          
-                                      
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                <input class="form-control" type="inputlimon" id="inputLimonC"  placeholder="Cajas" name="limon">
-                                <input class="form-control" type="inputlimon" id="inputLimonK"  placeholder="Kilos" name="limon">
-
-                                 <button type="button" id="btnClickL"  class="btn btn-primary" class="enviob">Guardar</button>
-                                    <div class="col-xs-5">
-                                      <p>Limon</p>
-                                        <div class="icon-big icon-info text-center">
-                                         
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                    
-                                        <div class="numbers">
-                                          
-                                   
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                <input class="form-control" type="inputsal" id="inputSalC" placeholder="Cajas" name="sal">
-                                     <input class="form-control" type="inputsal" id="inputSalK" placeholder="Kilos" name="sal">
-
-                                 <button type="button" id="btnClickS" class="btn btn-primary"  class="enviob">Guardar</button>
-                                    <div class="col-xs-5">
-                                      <p>Sal</p>
-                                        <div class="icon-big icon-info text-center">
-                                         
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                    
-                                        <div class="numbers">
-                                          
-                                   
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-                
-
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 
-    <!--   Core JS Files   -->
-    <script src="/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+<!--   Core JS Files   -->
+<script src="/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="/assets/js/bootstrap-checkbox-radio.js"></script>
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="/assets/js/bootstrap-checkbox-radio.js"></script>
 
-	<!--  Charts Plugin -->
-	<script src="/assets/js/chartist.min.js"></script>
+<!--  Charts Plugin -->
+<script src="/assets/js/chartist.min.js"></script>
 
-    <!--  Notifications Plugin    -->
-    <script src="/assets/js/bootstrap-notify.js"></script>
+<!--  Notifications Plugin    -->
+<script src="/assets/js/bootstrap-notify.js"></script>
 
-    <!--  Google Maps Plugin    -->
+<!--  Google Maps Plugin    -->
 
-    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
-	<script src="/assets/js/paper-dashboard.js"></script>
+<!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+<script src="/assets/js/paper-dashboard.js"></script>
 
-	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-	<script src="/assets/js/demo.js"></script>
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script src="/assets/js/demo.js"></script>
 
-	<script type="text/javascript">
-    	$(document).ready(function(){
+<script src="../assets/bower/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
+<script src="/assets/js/socket.io.min.js"></script>
 
-        	
+<script>
+  var mSocket = io('http://localhost:2021');
 
-    	});
-	</script>
+  $(function () {
+    $.ajax({
+      type: 'get',
+      url: '/ajax/insumos/index.php',
+      success: function (response) {
+        const container = $('#insumos-grid').html('');
+
+        response.objetos.forEach(function (insumo) {
+          container.append(elementForInsumo(insumo));
+        });
+
+        container.on('submit', '.insumo-form', function (e) {
+          e.preventDefault();
+          const form = $(this);
+
+          const insumoId = form.data('insumo-id');
+          $.ajax({
+            type: 'post',
+            url: '/ajax/insumos/almacenar.php?id=' + insumoId,
+            data: form.serialize(),
+            success: function (response) {
+              form.get(0).reset();
+
+              const insumo = response.objetos[0];
+              mSocket.emit('insertar_insumo_en_almacen', {insumo: insumo});
+              BootstrapDialog.alert('Se registraron las cajas y kilos de ' + insumo.nombre + ' en el almacén.');
+            },
+            error: function () {
+              form.get(0).reset();
+
+              BootstrapDialog.show({
+                message: 'Ocurrió un error al contactar al servidor. Intenta de nuevo o consulta con los administradores del sistema.',
+                type: BootstrapDialog.TYPE_DANGER,
+              });
+            },
+          });
+        });
+      },
+      error: function () {
+        BootstrapDialog.alert({
+          message: 'Ocurrió un error al contactar al servidor. Intenta de nuevo o consulta con los administradores del sistema.',
+          type: BootstrapDialog.TYPE_DANGER,
+        });
+      }
+    });
+  });
+
+  function elementForInsumo (insumo) {
+    return '' +
+      '<div class="col-sm-6 col-md-4 col-lg-3">' +
+        '<div class="card">' +
+          '<div class="header">' +
+            insumo.nombre +
+          '</div>' +
+          '<div class="content"></div>' +
+            '<form class="insumo-form" data-insumo-id="' + insumo.id + '">' +
+              '<input type="number" class="form-control" name="cajas" min="1" placeholder="Cajas">' +
+              '<input type="number" class="form-control" name="kilos" min="1" placeholder="Kilos">' +
+              '<input type="submit" class="btn btn-block" value="Guardar en almacén">' +
+            '</form>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+  }
+</script>
 
 </html>

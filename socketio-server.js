@@ -2,19 +2,20 @@ const server = require('http').createServer();
 const io     = require('socket.io')(server);
 const debug  = require('debug')('socketio-server');
 
-const events = [
+const forwarded_events = [
   'nuevo_pedido_creado',
   'pedido_descartado',
   'pedido_enviado',
   'pedido_entregado',
+  'insertar_insumo_en_almacen',
 ];
 
 io.on('connection', function(socket) {
   debug('Cliente conectado');
 
-  events.forEach(function(event) {
+  forwarded_events.forEach(function(event) {
     socket.on(event, function(data) {
-      debug('----------------------------------------------------------')
+      debug('----------------------------------------------------------');
       debug('Nuevo evento "' + event + '" con ' + JSON.stringify(data));
       io.sockets.emit(event, data);
     });

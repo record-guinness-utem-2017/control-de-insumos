@@ -394,6 +394,7 @@
     var container = $('#cantidad-form').find('.mesa');
     container.find('img').attr('src', insumo.img_url);
     container.find('p').text(insumo.nombre);
+    container.parent().find('input').attr('max', insumo.kg_reales);
   }
 
   function mostrarUnidadesEnSelectorDeUnidades(unidades) {
@@ -437,6 +438,11 @@
     container.find('[name=cantidad]').val(mCantidad);
     container.find('[name=unidad]').val(mUnidad);
   }
+
+  mSocket.on('insertar_insumo_en_almacen', function(data) {
+    const insumo = data.insumo;
+    $('#cantidad-form').find('input').attr('max', insumo.kg_reales);
+  });
 </script>
 
 </html>
