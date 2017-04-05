@@ -269,7 +269,20 @@ class PedidosEnviadosTable extends IndexPedidosTable {
       type: 'post',
       url: '/ajax/pedidos/entregar.php',
       data: { id: id },
-      success: function(response) { callback && callback(response); }
+      success: function(response) { callback && callback(response); },
+      error: function (response) {
+        if (response.status == 422) {
+          BootstrapDialog.alert({
+            message: 'No se puede marcar este pedido como entregado. No hay suficiente insumo en almacen para surtirlo.',
+            type: BootstrapDialog.TYPE_DANGER,
+          });
+        } else {
+          BootstrapDialog.alert({
+            message: 'Ocurrió un error al contactar al servidor. Intenta de nuevo o notifica a los administradores del sistema.',
+            type: BootstrapDialog.TYPE_DANGER,
+          });
+        }
+      }
     })
   }
 
