@@ -26,6 +26,7 @@ $insumos = get_filas_desde_query($conexion, 'SELECT * FROM insumos_config');
 $pedidos = get_filas_desde_query($conexion, $query, function(array $fila) use ($insumos) : array {
   $fila['mesa']   = ['nombre' => 'A'];
   $fila['insumo'] = get_fila_relacionada('id_almacen', $fila['insumo_id'], $insumos, function($insumo) {
+    $insumo['id']     = $insumo['id_almacen'];
     $insumo['nombre'] = $insumo['insumo'];
 
     return $insumo;

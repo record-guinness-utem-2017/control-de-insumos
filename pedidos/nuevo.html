@@ -394,7 +394,7 @@
     var container = $('#cantidad-form').find('.mesa');
     container.find('img').attr('src', insumo.img_url);
     container.find('p').text(insumo.nombre);
-    container.parent().find('input').attr('max', insumo.kg_reales);
+    container.parent().find('input[type=number]').attr('max', insumo.kg_reales);
   }
 
   function mostrarUnidadesEnSelectorDeUnidades(unidades) {
@@ -440,9 +440,18 @@
   }
 
   mSocket.on('insertar_insumo_en_almacen', function(data) {
-    const insumo = data.insumo;
-    $('#cantidad-form').find('input').attr('max', insumo.kg_reales);
+    updateMaxCantidad(data.insumo);
   });
+
+  mSocket.on('pedido_entregado', function(data) {
+    updateMaxCantidad(data.insumo);
+  });
+
+  function updateMaxCantidad (insumo) {
+    if ( ! mInsumo || mInsumo.id != insumo.id) return;
+
+    $('#cantidad-form').find('input[type=number]').attr('max', insumo.kg_reales);
+  }
 </script>
 
 </html>

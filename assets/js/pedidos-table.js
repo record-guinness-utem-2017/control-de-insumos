@@ -276,7 +276,7 @@ class PedidosEnviadosTable extends IndexPedidosTable {
   afterMarkPedidoAsEntregado(dialog, pedidoId) {
     const self = this;
 
-    return function() {
+    return function(response) {
       dialog.close();
 
       BootstrapDialog.alert({
@@ -286,7 +286,7 @@ class PedidosEnviadosTable extends IndexPedidosTable {
       });
 
       self.dropPedido(pedidoId);
-      self.socket.emit('pedido_entregado', { id: pedidoId });
+      self.socket.emit('pedido_entregado', { id: pedidoId, insumo: response.objetos[0].insumo });
     };
   }
 
