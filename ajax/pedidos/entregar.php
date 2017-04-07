@@ -14,7 +14,11 @@ $fila              = get_filas_desde_query($conexion, $query)[0];
 $kilos_disponibles = $fila['kg_reales'];
 
 if ($kilos_disponibles >= $pedido['cantidad']) {
-  $conexion->query("UPDATE insumos_config SET kg_reales = kg_reales - {$pedido['cantidad']} WHERE id_almacen = {$pedido['insumo_id']} AND kg_reales >= {$pedido['cantidad']}");
+  $sql0 = "UPDATE insumos_config SET 
+             kg_reales     = kg_reales - {$pedido['cantidad']},
+             kg_entregados = kg_entregados + {$pedido['cantidad']}
+           WHERE id_almacen = {$pedido['insumo_id']}";
+  $conexion->query($sql0) or reportar_error_sql($conexion, $sql0);
 
   $sql = 'UPDATE pedidos SET estado = "' . PEDIDO_ENTREGADO . '", entregado_en = NOW(), updated_at = NOW() WHERE id = ' . $pedido_id;
   $conexion->query($sql) or reportar_error_sql($conexion, $sql);
@@ -36,7 +40,7 @@ if ($kilos_disponibles >= $pedido['cantidad']) {
     return $fila;
   });
 
-  responder_json_de_objetos($pedidos, compact('query', 'sql', 'sql2'));
+  responder_json_de_objetos($pedidos, compact('query', 'sql0', 'sql', 'sql2'));
 } else {
   http_response_code(422);
   responder_json_de_objetos([], []);
