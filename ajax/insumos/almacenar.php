@@ -12,7 +12,7 @@ $conexion->begin_transaction();
   $cajas = empty($_POST['cajas']) ? 0 : $conexion->escape_string($_POST['cajas']);
 
   if ($kilos || $cajas) {
-    $query = "UPDATE insumos_config SET kg_reales = kg_reales + $kilos, cajas_reales = cajas_reales + $cajas";
+    $query = "UPDATE insumos_config SET kg_reales = kg_reales + $kilos, cajas_reales = cajas_reales + $cajas WHERE id_almacen = $id";
     $conexion->query($query) or reportar_error_sql($conexion, $query);
     $query2 = "INSERT INTO insumos_historial VALUES (null, $id, $cajas, $kilos, '" . date('Y-m-d H:i:s') . "')";
     $conexion->query($query2) or reportar_error_sql($conexion, $query);

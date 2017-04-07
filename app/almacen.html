@@ -171,7 +171,9 @@
 
         container.on('submit', '.insumo-form', function (e) {
           e.preventDefault();
+
           const form = $(this);
+          form.find(['type=submit']).prop('disabled', true);
 
           const insumoId = form.data('insumo-id');
           $.ajax({
@@ -180,13 +182,14 @@
             data: form.serialize(),
             success: function (response) {
               form.get(0).reset();
+              form.find(['type=submit']).prop('disabled', false);
 
               const insumo = response.objetos[0];
               mSocket.emit('insertar_insumo_en_almacen', {insumo: insumo});
-              BootstrapDialog.alert('Se registraron las cajas y kilos de ' + insumo.nombre + ' en el almacén.');
             },
             error: function () {
               form.get(0).reset();
+              form.find(['type=submit']).prop('disabled', false);
 
               BootstrapDialog.alert({
                 message: 'Ocurrió un error al contactar al servidor. Intenta de nuevo o consulta con los administradores del sistema.',
@@ -229,7 +232,7 @@
                   '<input type="number" class="form-control" name="cajas" min="1" placeholder="Cajas">' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                  '<h5 id="caja-counter" class="text-right counter" data-insumo-id="' + insumo.id + '">' + insumo.cajas_reales + '</h5>' +
+                  '<h5 class="text-right cajas counter" data-insumo-id="' + insumo.id + '">' + insumo.cajas_reales + '</h5>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<h5 class="text-right counter">' + insumo.cajas_planeadas + '</h5>' +
@@ -241,7 +244,7 @@
                   '<input type="number" class="form-control" name="kilos" min="1" placeholder="Kilos">' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                  '<h5 id="kilos-counter" class="text-right counter" data-insumo-id="' + insumo.id + '">' + insumo.kg_reales + '</h5>' +
+                  '<h5 class="text-right kilos counter" data-insumo-id="' + insumo.id + '">' + insumo.kg_reales + '</h5>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<h5 class="text-right counter">' + insumo.kg_planeados + '</h5>' +
@@ -261,9 +264,23 @@
     const decimalCount = 0;
     const duration     = 1.5;
 
-    const counter = new CountUp(this, startVal, endVal, decimalCount, duration);
-    counter.start();
+    this.counter = new CountUp(this, startVal, endVal, decimalCount, duration);
+    this.counter.start();
   }
+
+  mSocket.on('insertar_insumo_en_almacen', function (data) {
+    $('.kilos.counter').each(function () {
+      if (data.insumo.id != $(this).data('insumo-id')) return;
+
+      this.counter.update(data.insumo.kg_reales);
+    });
+
+    $('.cajas.counter').each(function () {
+      if (data.insumo.id != $(this).data('insumo-id')) return;
+
+      this.counter.update(data.insumo.cajas_reales);
+    });
+  });
 </script>
 
 </html>
