@@ -263,7 +263,7 @@
 <script src="../assets/js/pedidos-table.js"></script>
 
 <script>
-  const mSocket           = io('http://localhost:2021');
+  const mSocket           = io('//localhost:2021');
   const mEnviadosTable    = new MisPedidosEnviadosTable($('#pedidos-table-enviados'), mSocket);
   const mEntregadosTable  = new MisPedidosEntregadosTable($('#pedidos-table-entregados'), mSocket);
   const mPorAtenderTable  = new MisPedidosPorAtenderTable($('#pedidos-table-por-atender'), mSocket);

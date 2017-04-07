@@ -154,7 +154,7 @@
 <script src="/assets/js/countUp.js"></script>
 
 <script>
-  var mSocket = io('http://localhost:2021');
+  const mSocket = io('//localhost:2021');
 
   $(function () {
     $.ajax({
@@ -268,7 +268,10 @@
     this.counter.start();
   }
 
-  mSocket.on('insertar_insumo_en_almacen', function (data) {
+  mSocket.on('insertar_insumo_en_almacen', updateCounters);
+  mSocket.on('pedido_entregado', updateCounters);
+
+  function updateCounters (data) {
     $('.kilos.counter').each(function () {
       if (data.insumo.id != $(this).data('insumo-id')) return;
 
@@ -280,7 +283,7 @@
 
       this.counter.update(data.insumo.cajas_reales);
     });
-  });
+  }
 </script>
 
 </html>
