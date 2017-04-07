@@ -192,15 +192,12 @@ function check2(contra,sessionn){
     if(contra=="empty"){
         mensajes.PassEmpty();
         return false;
-    }else if(sessionn==1){
-        mensajes.UserOn();
-        return false;
-    }else{
+    º}else{
         return true;
     }
 }
 
-function FaceFinal(nombre, rank, idPersona){
+function FaceFinal(nombre, rank, idPersona, module) {
     localStorage['nombre']=nombre;
     localStorage['rank']=rank;
     localStorage['ids']=idPersona;

@@ -70,10 +70,10 @@ function LoadPrivileges(rank, id){
 			var sp = module.split(",");
 			var sp2 = module2.split(",");//SEPARADOR NUEVO
 			//console.log(sp+" | "+sp2);
-			if((sp[0]!=sp2[0])||(sp[1]!=sp2[1])||(sp[2]!=sp2[2])||(sp[3]!=sp2[3])){//NUEVA VALIDACION
+			/*if((sp[0]!=sp2[0])||(sp[1]!=sp2[1])||(sp[2]!=sp2[2])||(sp[3]!=sp2[3])){//NUEVA VALIDACION
 				mensajes.UpdateModules();//MENSAJE NUEVO
 				btnSecionClose();//FUNCION YA EXISTENTE
-			}
+			}*/
 			/////________________INSERCCIONES AL MENU SEGUN PRIVILEGIOS_______
 			break;
 		}
