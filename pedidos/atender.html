@@ -266,7 +266,7 @@
 <script src="../assets/js/pedidos-table.js"></script>
 
 <script>
-  const mSocket                  = io('//localhost:2021');
+  const mSocket                  = io('//' + location.hostname + ':2021');
   const mTablaPorAtenderPedidos  = new AtenderPedidosTable($('#pedidos-table-por-atender'), mSocket);
   const mTablaPedidosEnviados    = new AdminPedidosEnviadosTable($('#pedidos-table-enviados'), mSocket);
   const mTablaPedidosEntregados  = new AdminPedidosEntregadosTable($('#pedidos-table-entregados'), mSocket);
