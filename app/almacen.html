@@ -151,6 +151,7 @@
 
 <script src="../assets/bower/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
 <script src="/assets/js/socket.io.min.js"></script>
+<script src="/assets/js/countUp.js"></script>
 
 <script>
   var mSocket = io('http://localhost:2021');
@@ -165,6 +166,8 @@
         response.objetos.forEach(function (insumo) {
           container.append(elementForInsumo(insumo));
         });
+
+        $('.counter').each(setUpCounters);
 
         container.on('submit', '.insumo-form', function (e) {
           e.preventDefault();
@@ -205,7 +208,7 @@
   function elementForInsumo (insumo) {
     return '' +
       '<div class="col-sm-6 col-md-4">' +
-        '<form class="card">' +
+        '<div class="card">' +
           '<div class="content">' +
             '<h4 style="margin-top: 0; margin-bottom: 1em;">' + insumo.nombre + '</h4>' +
             '<div class="row">' +
@@ -250,6 +253,16 @@
           '</div>' +
         '</div>' +
       '</div>';
+  }
+
+  function setUpCounters () {
+    const startVal     = 0;
+    const endVal       = $(this).text();
+    const decimalCount = 0;
+    const duration     = 1.5;
+
+    const counter = new CountUp(this, startVal, endVal, decimalCount, duration);
+    counter.start();
   }
 </script>
 
