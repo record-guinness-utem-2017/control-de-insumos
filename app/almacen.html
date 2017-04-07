@@ -222,7 +222,7 @@
                 '<p class="text-right">Almacenado</p>' +
               '</div>' +
               '<div class="col-xs-4">' +
-                '<p class="text-right">Planeado</p>' +
+                '<p class="text-right">Entregado</p>' +
               '</div>' +
             '</div>' +
 
@@ -232,10 +232,13 @@
                   '<input type="number" class="form-control" name="cajas" min="1" placeholder="Cajas" required>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                  '<h5 class="text-right cajas counter" data-insumo-id="' + insumo.id + '">' + insumo.cajas_reales + '</h5>' +
+                  '<h5 class="text-right">' +
+                    '<span class="text-success cajas almacenadas counter" data-insumo-id="' + insumo.id + '">' + insumo.cajas_reales + '</span> / ' +
+                    '<span class="counter">' + insumo.cajas_planeadas + '</span>' +
+                  '</h5>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                  '<h5 class="text-right counter">' + insumo.cajas_planeadas + '</h5>' +
+                  '<h5 class="text-right counter">0</h5>' +
                 '</div>' +
               '</div>' +
 
@@ -244,10 +247,13 @@
                   '<input type="number" class="form-control" name="kilos" min="1" placeholder="Kilos" required>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                  '<h5 class="text-right kilos counter" data-insumo-id="' + insumo.id + '">' + insumo.kg_reales + '</h5>' +
+                  '<h5 class="text-right">' +
+                    '<span class="text-success kilos almacenados counter" data-insumo-id="' + insumo.id + '">' + insumo.kg_reales + '</span> / ' +
+                    '<span class="counter">' + insumo.kg_planeados + '</span>' +
+                  '</h5>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                  '<h5 class="text-right counter">' + insumo.kg_planeados + '</h5>' +
+                  '<h5 class="text-right counter">0</h5>' +
                 '</div>' +
               '</div>' +
 
@@ -268,17 +274,16 @@
     this.counter.start();
   }
 
-  mSocket.on('insertar_insumo_en_almacen', updateCounters);
-  mSocket.on('pedido_entregado', updateCounters);
+  mSocket.on('insertar_insumo_en_almacen', updateAlmacenadoCounters);
 
-  function updateCounters (data) {
-    $('.kilos.counter').each(function () {
+  function updateAlmacenadoCounters (data) {
+    $('.kilos.almacenados.counter').each(function () {
       if (data.insumo.id != $(this).data('insumo-id')) return;
 
       this.counter.update(data.insumo.kg_reales);
     });
 
-    $('.cajas.counter').each(function () {
+    $('.cajas.almacenadas.counter').each(function () {
       if (data.insumo.id != $(this).data('insumo-id')) return;
 
       this.counter.update(data.insumo.cajas_reales);
