@@ -15,6 +15,10 @@ if ($id = $_GET['id'] ?? null) {
   $query .= ' AND id = ' . $conexion->escape_string($id);
 }
 
+if ($user = $_GET['user'] ?? null) {
+  $query .= ' AND encargado_por = ' . $conexion->escape_string($user);
+}
+
 $query .= ' ORDER BY updated_at DESC, creado_en DESC, id DESC';
 
 if ($pag = $_GET['pag'] ?? 1) {
@@ -48,8 +52,9 @@ if (count($pedidos) > 0) {
   }, $personas);
 
   $pedidos = array_map(function($pedido) use ($personas) {
-    $filtrar                 = function($persona) use ($pedido) { return $persona['id'] == $pedido['encargado_por']; };
-    $pedido['encargado_por'] = array_filter($personas, $filtrar)[0] ?? null;
+    $filtrar                  = function($persona) use ($pedido) { return $persona['id'] == $pedido['encargado_por']; };
+    $persona                  = array_filter($personas, $filtrar);
+    $pedido['encargado_por']  = reset($persona) ?? null;
 
     return $pedido;
   }, $pedidos);

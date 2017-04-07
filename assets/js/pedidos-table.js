@@ -129,7 +129,7 @@ class PedidosTable {
             type: BootstrapDialog.TYPE_INFO,
           });
 
-          self.socket.emit('pedido_descartado', { id: pedidoId });
+          self.socket.emit('pedido_descartado', { id: pedidoId, user: localStorage['ids'] });
         });
 
         return false;
@@ -164,7 +164,7 @@ class PedidosTable {
             type: BootstrapDialog.TYPE_SUCCESS,
           });
 
-          self.socket.emit('pedido_enviado', { id : pedidoId });
+          self.socket.emit('pedido_enviado', { id : pedidoId, user: localStorage['ids'] });
         });
 
         return false;
@@ -202,7 +202,9 @@ class AtenderPedidosTable extends PedidosTable {
   bindSocketIoEvents() {
     super.bindSocketIoEvents();
 
-    this.socket.on('nuevo_pedido_creado', function(data) { this.fetchAndPrependSinglePedido(data.id)}.bind(this));
+    this.socket.on('nuevo_pedido_creado', function(data) {
+      this.fetchAndPrependSinglePedido(data.id)}.bind(this)
+    );
 
     const removePedido = function(data) { this.dropPedido(data.id) }.bind(this);
     this.socket.on('pedido_enviado', removePedido).on('pedido_descartado', removePedido);
@@ -228,7 +230,16 @@ class IndexPedidosTable extends PedidosTable {
 
 }
 
-class PedidosEnviadosTable extends IndexPedidosTable {
+class MisPedidosTable extends IndexPedidosTable {
+
+  loadPedidos(params = {}) {
+    params.user = localStorage['ids'] || 0;
+    super.loadPedidos(params);
+  }
+
+}
+
+class MisPedidosEnviadosTable extends MisPedidosTable {
 
   newActionButtonsForPedido(pedido) {
     return $('<div class="text-center"></div>')
@@ -299,21 +310,29 @@ class PedidosEnviadosTable extends IndexPedidosTable {
       });
 
       self.dropPedido(pedidoId);
-      self.socket.emit('pedido_entregado', { id: pedidoId, insumo: response.objetos[0].insumo });
+      self.socket.emit('pedido_entregado', {
+        id: pedidoId,
+        insumo: response.objetos[0].insumo,
+        user: localStorage['ids'],
+      });
     };
   }
 
   bindSocketIoEvents() {
     super.bindSocketIoEvents();
 
-    this.socket.on('pedido_enviado', function(data) { this.fetchAndPrependSinglePedido(data.id) }.bind(this));
+    this.socket.on('pedido_enviado', function(data) {
+      if (localStorage['ids'] != data.user) return;
+
+      this.fetchAndPrependSinglePedido(data.id)
+    }.bind(this));
 
     this.socket.on('pedido_entregado', function(data) { this.dropPedido(data.id) }.bind(this));
   }
 
 }
 
-class PedidosPorAtenderTable extends IndexPedidosTable {
+class MisPedidosPorAtenderTable extends MisPedidosTable {
 
   newActionButtonsForPedido(pedido) {
     return $('<div class="text-center"></div>')
@@ -323,7 +342,11 @@ class PedidosPorAtenderTable extends IndexPedidosTable {
   bindSocketIoEvents() {
     super.bindSocketIoEvents();
 
-    this.socket.on('nuevo_pedido_creado', function(data) { this.fetchAndPrependSinglePedido(data.id) }.bind(this));
+    this.socket.on('nuevo_pedido_creado', function(data) {
+      if (localStorage['ids'] != data.user) return;
+
+      this.fetchAndPrependSinglePedido(data.id);
+    }.bind(this));
 
     const removePedido = function(data) { this.dropPedido(data.id) }.bind(this);
     this.socket.on('pedido_descartado', removePedido).on('pedido_enviado', removePedido);
@@ -331,7 +354,7 @@ class PedidosPorAtenderTable extends IndexPedidosTable {
 
 }
 
-class PedidosDescartadosTable extends PedidosTable {
+class MisPedidosDescartadosTable extends MisPedidosTable {
 
   newRowForPedido(pedido) {
     return $(
@@ -349,12 +372,16 @@ class PedidosDescartadosTable extends PedidosTable {
   bindSocketIoEvents() {
     super.bindSocketIoEvents();
 
-    this.socket.on('pedido_descartado', function(data) { this.fetchAndPrependSinglePedido(data.id) }.bind(this));
+    this.socket.on('pedido_descartado', function(data) {
+      if (localStorage['ids'] != data.user) return;
+
+      this.fetchAndPrependSinglePedido(data.id);
+    }.bind(this));
   }
 
 }
 
-class PedidosEntregadosTable extends PedidosTable {
+class MisPedidosEntregadosTable extends MisPedidosTable {
 
   newRowForPedido(pedido) {
     return $(
@@ -373,12 +400,16 @@ class PedidosEntregadosTable extends PedidosTable {
   bindSocketIoEvents() {
     super.bindSocketIoEvents();
 
-    this.socket.on('pedido_entregado', function(data) { this.fetchAndPrependSinglePedido(data.id) }.bind(this));
+    this.socket.on('pedido_entregado', function(data) {
+      if (localStorage['ids'] != data.user) return;
+
+      this.fetchAndPrependSinglePedido(data.id);
+    }.bind(this));
   }
 
 }
 
-class AdminPedidosEnviadosTable extends PedidosEnviadosTable {
+class AdminPedidosEnviadosTable extends MisPedidosEnviadosTable {
 
   newRowForPedido(pedido) {
     return $(
@@ -395,8 +426,9 @@ class AdminPedidosEnviadosTable extends PedidosEnviadosTable {
   }
 
 }
+AdminPedidosEnviadosTable.prototype.loadPedidos = IndexPedidosTable.prototype.loadPedidos;
 
-class AdminPedidosEntregadosTable extends PedidosEntregadosTable {
+class AdminPedidosEntregadosTable extends MisPedidosEntregadosTable {
 
   newRowForPedido(pedido) {
     return $(
@@ -414,8 +446,9 @@ class AdminPedidosEntregadosTable extends PedidosEntregadosTable {
   }
 
 }
+AdminPedidosEntregadosTable.prototype.loadPedidos = IndexPedidosTable.prototype.loadPedidos;
 
-class AdminPedidosDescartadosTable extends PedidosDescartadosTable {
+class AdminPedidosDescartadosTable extends MisPedidosDescartadosTable {
 
   newRowForPedido(pedido) {
     return $(
@@ -432,4 +465,5 @@ class AdminPedidosDescartadosTable extends PedidosDescartadosTable {
   }
 
 }
+AdminPedidosDescartadosTable.prototype.loadPedidos = IndexPedidosTable.prototype.loadPedidos;
 

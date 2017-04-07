@@ -195,6 +195,7 @@
                   <input type="hidden" name="insumo_id">
                   <input type="hidden" name="cantidad">
                   <input type="hidden" name="unidad">
+                  <input type="hidden" name="encargado_por">
                   <input id="confirmar-submit" type="submit" value="Confirmar" class="btn btn-danger">
                 </form>
               </div>
@@ -281,8 +282,8 @@
       error: function() {
         BootstrapDialog.alert('Ocurrió un error de conexión y no se ha podido registrar el nuevo pedido.');
       },
-      success: function(pedido) {
-        mSocket.emit('nuevo_pedido_creado', { id: pedido.id });
+        success: function(pedido) {
+        mSocket.emit('nuevo_pedido_creado', { id: pedido.id, user: localStorage['ids'] });
         mostrarPaso(5);
       }
     });
@@ -437,6 +438,7 @@
     container.find('[name=insumo_id]').val(mInsumo.id);
     container.find('[name=cantidad]').val(mCantidad);
     container.find('[name=unidad]').val(mUnidad);
+    container.find('[name=encargado_por]').val( localStorage['ids'] );
   }
 
   mSocket.on('insertar_insumo_en_almacen', function(data) {

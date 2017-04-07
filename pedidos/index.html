@@ -264,10 +264,10 @@
 
 <script>
   const mSocket           = io('http://localhost:2021');
-  const mEnviadosTable    = new PedidosEnviadosTable($('#pedidos-table-enviados'), mSocket);
-  const mEntregadosTable  = new PedidosEntregadosTable($('#pedidos-table-entregados'), mSocket);
-  const mPorAtenderTable  = new PedidosPorAtenderTable($('#pedidos-table-por-atender'), mSocket);
-  const mDescartadosTable = new PedidosDescartadosTable($('#pedidos-table-descartados'), mSocket);
+  const mEnviadosTable    = new MisPedidosEnviadosTable($('#pedidos-table-enviados'), mSocket);
+  const mEntregadosTable  = new MisPedidosEntregadosTable($('#pedidos-table-entregados'), mSocket);
+  const mPorAtenderTable  = new MisPedidosPorAtenderTable($('#pedidos-table-por-atender'), mSocket);
+  const mDescartadosTable = new MisPedidosDescartadosTable($('#pedidos-table-descartados'), mSocket);
 
   $(function() {
     mEnviadosTable.init({ estado: 'enviado' });
