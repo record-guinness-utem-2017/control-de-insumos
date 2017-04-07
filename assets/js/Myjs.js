@@ -178,8 +178,9 @@ function chekDB(numero, contra){
                 var sessionn= json.ok[i].sessionn;
                 var rank= json.ok[i].rank;
                 var idPersona= json.ok[i].idPersona;
+                var module= json.ok[i].module;
                 if(check2(contra,sessionn)==true){
-                    FaceFinal(nombre, rank, idPersona);
+                    FaceFinal(nombre, rank, idPersona, module);
                     //console.log(idPersona);
                 }
             }
@@ -203,6 +204,7 @@ function FaceFinal(nombre, rank, idPersona){
     localStorage['nombre']=nombre;
     localStorage['rank']=rank;
     localStorage['ids']=idPersona;
+    localStorage['RankAllUser']=module;//NUEVO PARA VALIDACION
 
     var url = '/ajax/login/update_status.php';
     params={
