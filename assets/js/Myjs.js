@@ -192,7 +192,7 @@ function check2(contra,sessionn){
     if(contra=="empty"){
         mensajes.PassEmpty();
         return false;
-    º}else{
+    }else{
         return true;
     }
 }
