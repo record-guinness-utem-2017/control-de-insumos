@@ -352,6 +352,7 @@
     respuesta.objetos.forEach(function (insumo) {
       container.append(generarBotonSelectorInsumo(insumo));
     });
+    setUpCounters();
   }
 
   function generarBotonSelectorInsumo(insumo) {
@@ -363,6 +364,10 @@
           $('<img src="' + insumo.img_url + '">')
         ).append(
           $('<p>' + insumo.nombre + '</p>')
+        ).append(
+          $('<p><h6><span class="cajas disponibles counter" data-insumo-id="' + insumo.id + '">' +
+            (insumo.cajas_reales - insumo.cajas_entregadas) +
+            '</span> cajas disponibles</h6></p>')
         )
       ).click(function(e) {
         e.preventDefault();
@@ -377,6 +382,7 @@
     mostrarIndicadorDeInsumoSeleccionado(insumo, function() {
       mostrarInsumoEnSelectorDeCantidad(insumo);
       mostrarUnidadesEnSelectorDeUnidades(insumo.unidades);
+      setUpCounters();
       mostrarPaso(3);
     });
   }
@@ -395,6 +401,11 @@
     var container = $('#cantidad-form').find('.mesa');
     container.find('img').attr('src', insumo.img_url);
     container.find('p').text(insumo.nombre);
+    container.append(
+      $('<p><h6><span class="cajas disponibles counter" data-insumo-id="' + insumo.id + '">' +
+        (insumo.cajas_reales - insumo.cajas_entregadas) +
+        '</span> cajas disponibles</h6></p>')
+    );
     container.parent().find('input[type=number]').attr('max', insumo.kg_reales);
   }
 
@@ -455,5 +466,8 @@
     $('#cantidad-form').find('input[type=number]').attr('max', insumo.kg_reales);
   }
 </script>
+
+<script src="/assets/js/countUp.js"></script>
+<script src="/assets/js/counters.js"></script>
 
 </html>

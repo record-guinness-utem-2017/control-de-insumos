@@ -8,14 +8,13 @@ $pedido_id = $conexion->escape_string($_POST['id']);
 
 $conexion->begin_transaction();
 
-$pedido            = get_filas_desde_query($conexion, "SELECT * FROM pedidos WHERE id = $pedido_id")[0];
-$query             = "SELECT cajas_reales FROM insumos_config WHERE id_almacen = {$pedido['insumo_id']}";
-$fila              = get_filas_desde_query($conexion, $query)[0];
-$kilos_disponibles = $fila['cajas_reales'];
+$pedido     = get_filas_desde_query($conexion, "SELECT * FROM pedidos WHERE id = $pedido_id")[0];
+$query      = "SELECT (cajas_reales - cajas_entregadas) AS disponible FROM insumos_config WHERE id_almacen = {$pedido['insumo_id']}";
+$fila       = get_filas_desde_query($conexion, $query)[0];
+$disponible = $fila['disponible'];
 
-if ($kilos_disponibles >= $pedido['cantidad']) {
-  $sql0 = "UPDATE insumos_config SET 
-             cajas_reales     = cajas_reales - {$pedido['cantidad']},
+if ($disponible >= $pedido['cantidad']) {
+  $sql0 = "UPDATE insumos_config SET
              cajas_entregadas = cajas_entregadas + {$pedido['cantidad']}
            WHERE id_almacen = {$pedido['insumo_id']}";
   $conexion->query($sql0) or reportar_error_sql($conexion, $sql0);

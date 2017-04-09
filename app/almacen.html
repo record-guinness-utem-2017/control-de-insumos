@@ -167,7 +167,7 @@
           container.append(elementForInsumo(insumo));
         });
 
-        $('.counter').each(setUpCounters);
+        setUpCounters();
 
         container.on('submit', '.insumo-form', function (e) {
           e.preventDefault();
