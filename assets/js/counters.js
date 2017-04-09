@@ -23,12 +23,6 @@ mSocket.on('insertar_insumo_en_almacen', function (data) {
 });
 
 mSocket.on('pedido_entregado', function (data) {
-  $('.kilos.entregados.counter').each(function () {
-    if (data.insumo.id != $(this).data('insumo-id')) return;
-
-    this.counter.update(data.insumo.kg_entregados);
-  });
-
   $('.cajas.entregadas.counter').each(function () {
     if (data.insumo.id != $(this).data('insumo-id')) return;
 
