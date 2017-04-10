@@ -2,7 +2,7 @@ function setUpCounters () {
   $('.counter').each(function () {
     const startVal     = 0;
     const endVal       = $(this).text();
-    const decimalCount = 0;
+    const decimalCount = $(this).data('decimales') || 0;
     const duration     = 1.5;
 
     this.counter = new CountUp(this, startVal, endVal, decimalCount, duration);
