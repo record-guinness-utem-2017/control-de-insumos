@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
   <title>Nuevo pedido - Control de insumos</title>
@@ -13,22 +13,22 @@
 
 
   <!-- Bootstrap core CSS     -->
-  <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
 
   <!-- Animation library for notifications   -->
-  <link href="../assets/css/animate.min.css" rel="stylesheet"/>
+  <link href="/assets/css/animate.min.css" rel="stylesheet"/>
 
   <!--  Paper Dashboard core CSS    -->
-  <link href="../assets/css/paper-dashboard.css" rel="stylesheet"/>
+  <link href="/assets/css/paper-dashboard.css" rel="stylesheet"/>
 
   <!--  CSS for Demo Purpose, don't include it in your project     -->
-  <link href="../assets/css/demo.css" rel="stylesheet"/>
+  <link href="/assets/css/demo.css" rel="stylesheet"/>
 
   <!--  Fonts and icons     -->
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-  <link href="../assets/css/themify-icons.css" rel="stylesheet">
-  <link href="../assets/css/styles.css" rel="stylesheet">
+  <link href="/assets/css/themify-icons.css" rel="stylesheet">
+  <link href="/assets/css/styles.css" rel="stylesheet">
 
 </head>
 <body>
@@ -113,7 +113,7 @@
         <div id="indicador-mesa" class="indicador animated" hidden>
           <h5 class="text-success">Mesa destino</h5>
           <div class="mesa">
-            <img src="../assets/img/mesa.png">
+            <img src="/assets/img/mesa.png">
             <p></p>
           </div>
         </div>
@@ -139,14 +139,14 @@
           <div class="paso 1 animated active">
             <h4>Paso 1 - Elige una mesa destino:</h4>
             <div id="selector-mesas" class="selector text-center">
-              <img src="../assets/img/loading-wheel.gif">
+              <img src="/assets/img/loading-wheel.gif">
             </div>
           </div>
 
           <div class="paso 2 animated" hidden>
             <h4>Paso 2 - Elige un insumo:</h4>
             <div id="selector-insumos" class="selector text-center">
-              <img src="../assets/img/loading-wheel.gif">
+              <img src="/assets/img/loading-wheel.gif">
             </div>
           </div>
 
@@ -218,25 +218,25 @@
 </body>
 
 <!--   Core JS Files   -->
-<script src="../assets/js/jquery-1.10.2.js" type="text/javascript"></script>
-<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
-<script src="../assets/js/bootstrap-checkbox-radio.js"></script>
+<script src="/assets/js/bootstrap-checkbox-radio.js"></script>
 
 <!--  Charts Plugin -->
-<script src="../assets/js/chartist.min.js"></script>
+<script src="/assets/js/chartist.min.js"></script>
 
 <!--  Notifications Plugin    -->
-<script src="../assets/js/bootstrap-notify.js"></script>
+<script src="/assets/js/bootstrap-notify.js"></script>
 
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
 <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
-<script src="../assets/js/paper-dashboard.js"></script>
+<script src="/assets/js/paper-dashboard.js"></script>
 
-<script src="../assets/js/socket.io.min.js"></script>
+<script src="/assets/js/socket.io.min.js"></script>
 
 <script>
   var mSocket = io('//' + location.hostname + ':2021');
@@ -256,7 +256,7 @@
     e.preventDefault();
     $.ajax({
       type: 'post',
-      url: '../ajax/pedidos/create.php',
+      url: '/ajax/pedidos/create.php',
       data: $(this).serialize(),
       error: function() {
         BootstrapDialog.alert('Ocurrió un error de conexión y no se ha podido registrar el nuevo pedido.');
@@ -269,7 +269,7 @@
   }
 
   function cargarSelectorMesa() {
-    $.get('../ajax/mesas/index.php', construirSelectorMesa);
+    $.get('/ajax/mesas/index.php', construirSelectorMesa);
   }
 
   function construirSelectorMesa(respuesta) {
@@ -285,7 +285,7 @@
     container.append(
       $('<a href="#"></a>').append(
         $('<div class="mesa"></div>').append(
-          $('<img src="../assets/img/mesa.png">')
+          $('<img src="/assets/img/mesa.png">')
         ).append(
           $('<p>' + mesa.nombre + '</p>')
         )
@@ -323,7 +323,7 @@
   }
 
   function cargarSelectorInsumo(mesa) {
-    $.get('../ajax/insumos/index.php?disponibles=1&mesaId=' + mesa.id, construirSelectorInsumo);
+    $.get('/ajax/insumos/index.php?disponibles=1&mesaId=' + mesa.id, construirSelectorInsumo);
   }
 
   function construirSelectorInsumo(respuesta) {
@@ -446,7 +446,7 @@
   }
 </script>
 
-<script src="/assets/js/countUp.js"></script>
-<script src="/assets/js/counters.js"></script>
+<script src="/js/countUp.js"></script>
+<script src="/js/counters.js"></script>
 
 </html>
