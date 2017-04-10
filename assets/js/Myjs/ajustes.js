@@ -152,7 +152,7 @@ function ListaFiltradoTres(){
 				rank="ADMINISTRADOR";
 			}else if(rank=="c"){
 				rank="Checador";
-			}else if (rank=="nulll"){
+			} else if (rank == null){
 				rank="Sin Privilegios";
 			}else if (rank=="s"){
 				rank="Supervisor de mesas";
@@ -249,7 +249,7 @@ function llenado_de_campos(nombre, numero, rank, idOriginal){
 				rank="ADMINISTRADOR";
 			}else if(rank=="c"){
 				rank="Checador";
-			}else if (rank=="nulll"){
+			}else if (rank==null){
 				rank="Sin Privilegios";
 			}else if (rank=="s"){
 				rank="Supervisor de mesas";

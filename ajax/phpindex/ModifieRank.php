@@ -6,7 +6,7 @@ $concatenado=$_POST['concatenado'];
  
 	if($concatenado=="0,0,0,0"){
 		$pass="empty";
-		$rango="nulll";
+		$rango=null;
 	}else if($concatenado=="1,1,1,1"){
 		$pass="123";
 		$rango="a";
