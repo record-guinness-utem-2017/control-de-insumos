@@ -59,7 +59,7 @@ sessionesInside();
 $('#ManuAcces').each(function(){
 	//$.when( LoadPrivileges ).done(function(){
 	var ModulesView=localStorage['RankAllUser'];
-	console.log(ModulesView);
+	console.log(ModulesView)
 	var space=ModulesView.split(",");
     if(space[0]==1){
 				$(this).append(CreateIndex());

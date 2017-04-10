@@ -55,7 +55,6 @@ function sessionesInside(){
 		var url="/app/index.html";
 		window.location=url;
 	}else{
-		LoadPrivileges(rank, id);
 		$('#NamePerson').html(nombre);
 		$('#name2Down').html(nombre);
 		$('#name3Down').html(nombre);
@@ -63,34 +62,24 @@ function sessionesInside(){
 }
 sessionesInside();
 
-function LoadPrivileges(rank, id){
-	var url = '/ajax/phpindex/SearchModules.php';
-	var params={
-		mensaje: id
-	};
-	$.post(url, params).done(function(data){
-		var json = JSON.parse(data);
-		for(var i=0;i<json.ok.length;i++){
-			var module=json.ok[i].module;
-			/////________________INSERCCIONES AL MENU SEGUN PRIVILEGIOS_______
-			var sp = module.split(",");
-			if(sp[0]==1){
-				$('#ManuAcces').append(CreateIndex());
-			}
-			if(sp[1]==1){
-				$('#ManuAcces').append(CreatePesos());
-			}
-			if(sp[2]==1){
-				$('#ManuAcces').append(CreateAjustes());
-			}
-			if(sp[3]==1){
-				$('#ManuAcces').append(CreateReportes());
-			}
-			/////________________INSERCCIONES AL MENU SEGUN PRIVILEGIOS_______
-			break;
-		}
-	});
-}
+  $('#ManuAcces').each(function(){
+    //$.when( LoadPrivileges ).done(function(){
+    var ModulesView=localStorage['RankAllUser'];
+    var space=ModulesView.split(",");
+    if(space[0]==1){
+      $(this).append(CreateIndex());
+    }
+    if(space[1]==1){
+      $(this).append(CreatePesos());
+    }
+    if(space[2]==1){
+      $(this).append(CreateAjustes());
+    }
+    if(space[3]==1){
+      $(this).append(CreateReportes());
+    }
+    //});
+  });
 
 function CreateIndex(){
 ////////____________creacion del INICIO______
@@ -463,3 +452,4 @@ function ChangueonDBRanks(index, ajustes, pesos, reportes){
 
 ///____________________________________________________________________________________________
 });
+
