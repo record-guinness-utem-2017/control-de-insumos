@@ -205,12 +205,11 @@ if((id!=undefined)||(nombre!=undefined)||(rank!=undefined)){//si ya existe que l
     localStorage.clear();
 }
 
-function FaceFinal(nombre, rank, idPersona, module) {
+function FaceFinal(nombre, rank, idPersona, module){
     localStorage['nombre']=nombre;
     localStorage['rank']=rank;
     localStorage['ids']=idPersona;
     localStorage['RankAllUser']=module;//NUEVO PARA VALIDACION
-  console.log(module);
 
     var url = '/ajax/login/update_status.php';
     params={

@@ -5,7 +5,8 @@ $con = include __DIR__ . '/../bd.php';
 $numero   = $_POST['mensaje'];
 $mensaje2 = $_POST['mensaje2'];
 
-$sql = "SELECT numeros_de_control.numero, numeros_de_control.sessionn, numeros_de_control.rank, numeros_de_control.contra, 
+$sql = "SELECT numeros_de_control.numero, numeros_de_control.sessionn, numeros_de_control.rank, numeros_de_control.contra,
+  numeros_de_control.module, 
 	personas.nombre, personas.id AS 'idPersona'
 	FROM numeros_de_control
  	LEFT JOIN personas ON numeros_de_control.persona_id=personas.id 

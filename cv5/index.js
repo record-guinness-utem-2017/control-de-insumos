@@ -47,34 +47,58 @@ function sessionesInside(){
 	if((id==undefined)||(nombre==undefined)||(rank==undefined)){
 		mensajes.sessionDeath();
 		localStorage.clear();
-		var url="/index.html";
+		var url="/app/index.html";
 		window.location=url;
 	}else{
+		LoadPrivileges(rank, id);
 		$('#NamePerson').html(nombre);
 	}
 }
 sessionesInside();
 
+function LoadPrivileges(rank, id){
+	var url = '/ajax/phpindex/SearchModules.php';
+	var params={
+		mensaje: id
+	};
+	$.post(url, params).done(function(data){
+		var json = JSON.parse(data);
+		for(var i=0;i<json.ok.length;i++){
+			var module=json.ok[i].module;
+			var module2=localStorage['RankAllUser'];
+			/////________________INSERCCIONES AL MENU SEGUN PRIVILEGIOS_______
+			var sp = module.split(",");
+			var sp2 = module2.split(",");//SEPARADOR NUEVO
+			//console.log(sp+" | "+sp2);
+			if((sp[0]!=sp2[0])||(sp[1]!=sp2[1])||(sp[2]!=sp2[2])||(sp[3]!=sp2[3])){//NUEVA VALIDACION
+				mensajes.UpdateModules();//MENSAJE NUEVO
+				btnSecionClose();//FUNCION YA EXISTENTE
+			}
+			/////________________INSERCCIONES AL MENU SEGUN PRIVILEGIOS_______
+			break;
+		}
+	});
+}
+
 //VALIDACION E INSERCCION DE LA VARIABLE DETECTADA EN RESPONSIVO_____________-
 $('#ManuAcces').each(function(){
 	//$.when( LoadPrivileges ).done(function(){
 	var ModulesView=localStorage['RankAllUser'];
-	console.log(ModulesView);
 	var space=ModulesView.split(",");
     if(space[0]==1){
-				$(this).append(CreateIndex());
-			}
+    	$('#ManuAcces').append(CreateIndex());
+    }
     if(space[1]==1){
-				$(this).append(CreatePesos());
-			}
+		$('#ManuAcces').append(CreatePesos());
+    }
     if(space[2]==1){
-				$(this).append(CreateAjustes());
-			}
+    	$('#ManuAcces').append(CreateAjustes());
+    }
     if(space[3]==1){
-				$(this).append(CreateReportes());
-			}
+    	$('#ManuAcces').append(CreateReportes());
+    }
 	//});
-	});
+});
 //VALIDACION E INSERCCION DE LA VARIABLE DETECTADA EN RESPONSIVO_____________-
 
 function CreateIndex(){
@@ -84,7 +108,7 @@ function CreateIndex(){
 	var i1=$("<i class='ti-home'></i>");
 	var p1=$("<p>INICIO</p>");
 	a1.append(i1); a1.append(p1); li1.append(a1);
-	return li1;
+	return li1;	
 ////////____________creacion del INICIO______
 }
 
