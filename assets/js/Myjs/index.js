@@ -177,7 +177,7 @@ btnClick=function(){
 
 
 function CreateSelect(){///////////////AGREGA ESTO
-	var select=$("<select id='inpArea_Db' class='selectpicker'></select>");
+	var select=$("<select id='inpArea_Db' class='form-control'></select>");
 	var op1=$("<option value='opcion1' selected>opcion1</option>");
 	var op2=$("<option value='opcion2'>opcion2</option>");
 	var op3=$("<option value='opcion3'>opcion3</option>");
@@ -186,7 +186,7 @@ function CreateSelect(){///////////////AGREGA ESTO
 	select.append(op2);
 	select.append(op3);
 	select.append(op4);
-	return select;
+	return $('<td></td>').append(select);
 }
 
 function llenado_de_campos(nombre, estatus_entrada, idOriginal){

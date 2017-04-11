@@ -1,7 +1,6 @@
 <?php
 $con = include __DIR__ . '/../bd.php';
 
-date_default_timezone_set('UTC');
 date_default_timezone_set("America/Mexico_City");
 
 $hoy = date("d-m-Y | H:i:s");
