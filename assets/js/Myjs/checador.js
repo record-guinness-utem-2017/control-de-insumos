@@ -10,7 +10,7 @@ $( window ).on( "load", function() {
 $(document).ready(function(){
 
 
-$('#LodadWindows').load('/app/windowsIndex.html');
+$('#LodadWindows').load('assets/WindowsEmergent/windowsIndex.html');
 
 mensajes={
 	mensaje:function(texto){
@@ -33,9 +33,6 @@ mensajes={
 	},
 	ReloaModul:function(){
 		demo.showNotification('top','center',"Actualizado.",2);
-	},
-	UpdateModules: function(){
-		mensajes.mensaje("Tu perfil a sido modificado, inisia de nuevo para continuar...");
 	}
 };
 
@@ -47,35 +44,49 @@ function sessionesInside(){
 	if((id==undefined)||(nombre==undefined)||(rank==undefined)){
 		mensajes.sessionDeath();
 		localStorage.clear();
-		var url="/index.html";
+		var url=VariableLocal+"/cevicheapp/index.html";
 		window.location=url;
 	}else{
+		LoadPrivileges(rank, id);
 		$('#NamePerson').html(nombre);
 	}
 }
 sessionesInside();
 
-//VALIDACION E INSERCCION DE LA VARIABLE DETECTADA EN RESPONSIVO_____________-
-$('#ManuAcces').each(function(){
-	//$.when( LoadPrivileges ).done(function(){
-	var ModulesView=localStorage['RankAllUser'];
-	console.log(ModulesView)
-	var space=ModulesView.split(",");
-    if(space[0]==1){
-				$(this).append(CreateIndex());
+function LoadPrivileges(rank, id){
+	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/SearchModules.php";
+	var params={
+		mensaje: id
+	};
+	$.post(url, params).done(function(data){
+		var json = JSON.parse(data);
+		for(var i=0;i<json.ok.length;i++){
+			var module=json.ok[i].module;
+			/////________________INSERCCIONES AL MENU SEGUN PRIVILEGIOS_______
+			var sp = module.split(",");
+			if(sp[0]==1){
+				$('#ManuAcces').append(CreateIndex());
 			}
-    if(space[1]==1){
-				$(this).append(CreatePesos());
+			if(sp[1]==1){
+				$('#ManuAcces').append(CreateAjustes());
 			}
-    if(space[2]==1){
-				$(this).append(CreateAjustes());
+			if(sp[2]==1){
+				$('#ManuAcces').append(CreateNPedido());
 			}
-    if(space[3]==1){
-				$(this).append(CreateReportes());
+			if(sp[3]==1){
+				$('#ManuAcces').append(CreateAtenderPedidos());
 			}
-	//});
+			if(sp[4]==1){
+				$('#ManuAcces').append(CreateVerPedidos());
+			}
+			if(sp[5]==1){
+				$('#ManuAcces').append(CreateAlmacen());
+			}
+			/////________________INSERCCIONES AL MENU SEGUN PRIVILEGIOS_______
+			break;
+		}
 	});
-//VALIDACION E INSERCCION DE LA VARIABLE DETECTADA EN RESPONSIVO_____________-
+}
 
 function CreateIndex(){
 ////////____________creacion del INICIO______
@@ -84,63 +95,62 @@ function CreateIndex(){
 	var i1=$("<i class='ti-home'></i>");
 	var p1=$("<p>CHECADOR</p>");
 	a1.append(i1); a1.append(p1); li1.append(a1);
-	return li1;
+	return li1;	
 ////////____________creacion del INICIO______
 }
 
-
-  function CreateAjustes(){
+function CreateAjustes(){
 ////////____________creacion del PESOS_________
-    var li2=$("<li></li>");
-    var a2=$("<a href='ajustes.html'></a>");
-    var i2=$("<i class='ti-panel'></i>");
-    var p2=$("<p>AJUSTES</p>");
-    a2.append(i2); a2.append(p2); li2.append(a2);
-    return li2;
+	var li2=$("<li></li>");
+	var a2=$("<a href='ajustes.html'></a>");
+	var i2=$("<i class='ti-panel'></i>");
+	var p2=$("<p>AJUSTES</p>");
+	a2.append(i2); a2.append(p2); li2.append(a2);
+	return li2;
 ////////____________creacion del PESOS_________
-  }
+}
 
-  function CreateNPedido(){
+function CreateNPedido(){
 ////////____________creacion del AJUSTES________
-    var li3=$("<li></li>");
-    var a3=$("<a href='nuevoPedido.html'></a>");
-    var i3=$("<i class='ti-exchange-vertical'></i>");
-    var p3=$("<p>NUEVO PEDIDO</p>");
-    a3.append(i3); a3.append(p3); li3.append(a3);
-    return li3;
+	var li3=$("<li></li>");
+	var a3=$("<a href='nuevoPedido.html'></a>");
+	var i3=$("<i class='ti-exchange-vertical'></i>");
+	var p3=$("<p>NUEVO PEDIDO</p>");
+	a3.append(i3); a3.append(p3); li3.append(a3);
+	return li3;
 ////////____________creacion del AJUSTES________
-  }
+}
 
-  function CreateAtenderPedidos(){
+function CreateAtenderPedidos(){
 ////////____________creacion del AJUSTES________
-    var li4=$("<li></li>");
-    var a4=$("<a href='atenderPedido.html'></a>");
-    var i4=$("<i class='ti-panel'></i>");
-    var p4=$("<p>ATENDER PEDIDO</p>");
-    a4.append(i4); a4.append(p4); li4.append(a4);
-    return li4;
+	var li4=$("<li></li>");
+	var a4=$("<a href='atenderPedido.html'></a>");
+	var i4=$("<i class='ti-panel'></i>");
+	var p4=$("<p>ATENDER PEDIDO</p>");
+	a4.append(i4); a4.append(p4); li4.append(a4);
+	return li4;
 ////////____________creacion del AJUSTES________
-  }
-  function CreateVerPedidos(){
+}
+function CreateVerPedidos(){
 ////////____________creacion del AJUSTES________
-    var li5=$("<li></li>");
-    var a5=$("<a href='verPedido.html'></a>");
-    var i5=$("<i class='ti-panel'></i>");
-    var p5=$("<p>VER MIS PEDIDOS</p>");
-    a5.append(i5); a5.append(p5); li5.append(a5);
-    return li5;
+	var li5=$("<li></li>");
+	var a5=$("<a href='verPedido.html'></a>");
+	var i5=$("<i class='ti-panel'></i>");
+	var p5=$("<p>VER MIS PEDIDOS</p>");
+	a5.append(i5); a5.append(p5); li5.append(a5);
+	return li5;
 ////////____________creacion del AJUSTES________
-  }
-  function CreateAlmacen(){
+}
+function CreateAlmacen(){
 ////////____________creacion del AJUSTES________
-    var li6=$("<li></li>");
-    var a6=$("<a href='almacen.html'></a>");
-    var i6=$("<i class='ti-panel'></i>");
-    var p6=$("<p>ALMACEN</p>");
-    a6.append(i6); a6.append(p6); li6.append(a6);
-    return li6;
+	var li6=$("<li></li>");
+	var a6=$("<a href='almacen.html'></a>");
+	var i6=$("<i class='ti-panel'></i>");
+	var p6=$("<p>ALMACEN</p>");
+	a6.append(i6); a6.append(p6); li6.append(a6);
+	return li6;
 ////////____________creacion del AJUSTES________
-  }
+}
 ///////////////---------VRIFICAMOS QUE ESTE LA SECION INICIADA-------------------
 /*
 btnClose= function(){
@@ -171,7 +181,7 @@ btnClick=function(){
 	if(check(inpNo)==true){
 
 	var Arrastrada=$('#inpNo_Control').val().trim();
-	var url = '/ajax/phpindex/phpindex.php';
+	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/phpindex.php";
 		var params={
 			mensaje: Arrastrada
 		};
@@ -196,20 +206,6 @@ btnClick=function(){
 	}
 }
 
-
-function CreateSelect(){///////////////AGREGA ESTO
-	var select=$("<select id='inpArea_Db' class='form-control'></select>");
-	var op1=$("<option value='opcion1' selected>opcion1</option>");
-	var op2=$("<option value='opcion2'>opcion2</option>");
-	var op3=$("<option value='opcion3'>opcion3</option>");
-	var op4=$("<option value='opcion4'>opcion4</option>");
-	select.append(op1);
-	select.append(op2);
-	select.append(op3);
-	select.append(op4);
-	return $('<td></td>').append(select);
-}
-
 function llenado_de_campos(nombre, estatus_entrada, idOriginal){
 	$('#insertDates').html("");
 	var tr=$("<tr></tr>");
@@ -217,14 +213,13 @@ function llenado_de_campos(nombre, estatus_entrada, idOriginal){
 	//console.log(estatus_entrada);
 	if(estatus_entrada==0){
 		var td2=$("<td><button type='button' class='btn btn-primary'>Entrada</button></td>");
-    var td5_5=$(CreateSelect());
 		$(td2).click({id: idOriginal},UpdateStatus);
 	}else{
 		var td2=$("<td><button type='button' class='btn btn-warning'>Salida</button></td>");
 		$(td2).click({id: idOriginal},UpdateStatusOut);
 	}
 
-	tr.append(td1); tr.append(td5_5); tr.append(td2);
+	tr.append(td1); tr.append(td2);
 
 	$('#insertDates').append(tr);
 }
@@ -234,7 +229,7 @@ UpdateStatusOut=function(id){
 
     var Security=confirm("Seguro de que este alumno saldra de las instalaciones?");
     if(Security==true){
-    	var url = '/ajax/phpindex/ModifieStatusOut.php';
+    	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/ModifieStatusOut.php";
 		var params={
 			mensaje: textt,
 			mensaje2: localStorage['nombre']
@@ -251,15 +246,13 @@ UpdateStatusOut=function(id){
 
 UpdateStatus=function(id){
     var textt=id.data.id;
-    var variable=$('#inpArea_Db').val();
 
-    var Security=confirm("Seguro de que este alumno ingresara a las instalaciones a el area | "+variable+" |");
+    var Security=confirm("Seguro de que este alumno ingresara a las instalaciones?");
     if(Security==true){
-    	var url = '/ajax/phpindex/ModifieStatus.php';
+    	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/ModifieStatus.php";
 		var params={
 			mensaje: textt,
-			mensaje2: localStorage['nombre'],
-      mensaje3: variable,
+			mensaje2: localStorage['nombre']
 		};
 		$.post(url, params).done(function(data){
 			PeopleInside();
@@ -280,14 +273,14 @@ function check(inpNo){
 }
 
 btnSecionClose= function(){
-	var url = '/ajax/phpindex/PeopleInside.php';
-	var url2 = '/ajax/phpindex/SessionOut.php';
+	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleInside.php";
+	var url2 =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/SessionOut.php";
 	var params={
 		mensaje: localStorage['ids']
 	};
 	$.post(url2, params).done(function(data){
 		localStorage.clear();
-		var url="/index.html";
+		var url=VariableLocal+"/cevicheapp/index.html";
 		window.location=url;
 	});
 }
@@ -296,7 +289,7 @@ btnSecionClose= function(){
 /////////////////////////_____________MODULO NUMERO DOS REPORTES DE PERSONAS DENTRO ETC...
 //////CONTADOR RAPIDO DE DATOS-_____________________________
 function PeopleSessionOn(){
-	var url = '/ajax/phpindex/PeopleSessionOn.php';
+	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleSessionOn.php";
 	contador=0;
 	$.post(url).done(function(data){
 		var json = JSON.parse(data);
@@ -310,7 +303,7 @@ function PeopleSessionOn(){
 PeopleSessionOn();
 
 function PeopleInside(){
-	var url = '/ajax/phpindex/PeopleInside.php';
+	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleInside.php";
 
 	$.post(url).done(function(data){
 		var json = JSON.parse(data);
@@ -324,7 +317,7 @@ function PeopleInside(){
 PeopleInside();
 
 function HistoryAll(){
-	var url = '/ajax/phpindex/HistoryAll.php';
+	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/HistoryAll.php";
 
 	$.post(url).done(function(data){
 		var json = JSON.parse(data);
@@ -386,11 +379,12 @@ $('#btnFiltroTres').on('click', function(){
 	ListaFiltradoTres();
 	$("#windowFiltroTres").modal("show");
 });
+////MOSTRAR VENTANA POR FILLTROS-----
 
 
 ///////cargando datos de filtrados----------------------------
 function ListaFiltradoUno(){
-	var url = '/ajax/phpindex/PeopleInsideFiltroUno.php';
+	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleInsideFiltroUno.php";
 	$('#insertDatesFiltroUno').html("");
 	var contador=0;
 	$.post(url).done(function(data){
@@ -412,7 +406,7 @@ function ListaFiltradoUno(){
 
 ///////cargando datos de filtrados----------------------------
 function ListaFiltradoDos(){
-	var url = '/ajax/phpindex/PeopleInsideFiltroDos.php';
+	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleInsideFiltroDos.php";
 	$('#insertDatesFiltroDos').html("");
 	var contador=0;
 	$.post(url).done(function(data){
@@ -425,7 +419,7 @@ function ListaFiltradoDos(){
 				rank="ADMINISTRADOR";
 			}else if(rank=="c"){
 				rank="Checador";
-			}else if ( ! rank){
+			}else if (rank=="nulll"){
 				rank="Sin Privilegios";
 			}else if (rank=="s"){
 				rank="Supervisor de mesas";
@@ -452,7 +446,7 @@ function ListaFiltradoDos(){
 
 ///////cargando datos de filtrados----------------------------
 function ListaFiltradoTres(){
-	var url = '/ajax/phpindex/PeopleInsideFiltroTres.php';
+	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleInsideFiltroTres.php";
 	$('#insertDatesFiltroTres').html("");
 	var contador=0;
 	$.post(url).done(function(data){
@@ -491,7 +485,7 @@ filtroTres=function(){
 }
 
 function DateSearch(inpFil){
-	var url = '/ajax/phpindex/DateSearch.php';
+	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/DateSearch.php";
 	$('#insertDatesFiltroTres').html("");
 	var params={
 		mensaje: inpFil

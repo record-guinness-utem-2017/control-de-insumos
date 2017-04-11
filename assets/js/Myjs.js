@@ -198,19 +198,11 @@ function check2(contra,sessionn){
     }
 }
 
-var id=localStorage['ids'];
-var nombre=localStorage['nombre'];
-var rank=localStorage['rank'];
-if((id!=undefined)||(nombre!=undefined)||(rank!=undefined)){//si ya existe que los borreeen xD
-    localStorage.clear();
-}
-
 function FaceFinal(nombre, rank, idPersona, module) {
     localStorage['nombre']=nombre;
     localStorage['rank']=rank;
     localStorage['ids']=idPersona;
     localStorage['RankAllUser']=module;//NUEVO PARA VALIDACION
-  console.log(module);
 
     var url = '/ajax/login/update_status.php';
     params={
