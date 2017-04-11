@@ -175,6 +175,20 @@ btnClick=function(){
 	}
 }
 
+
+function CreateSelect(){///////////////AGREGA ESTO
+	var select=$("<select id='inpArea_Db' class='selectpicker'></select>");
+	var op1=$("<option value='opcion1' selected>opcion1</option>");
+	var op2=$("<option value='opcion2'>opcion2</option>");
+	var op3=$("<option value='opcion3'>opcion3</option>");
+	var op4=$("<option value='opcion4'>opcion4</option>");
+	select.append(op1);
+	select.append(op2);
+	select.append(op3);
+	select.append(op4);
+	return select;
+}
+
 function llenado_de_campos(nombre, estatus_entrada, idOriginal){
 	$('#insertDates').html("");
 	var tr=$("<tr></tr>");
@@ -182,13 +196,14 @@ function llenado_de_campos(nombre, estatus_entrada, idOriginal){
 	//console.log(estatus_entrada);
 	if(estatus_entrada==0){
 		var td2=$("<td><button type='button' class='btn btn-primary'>Entrada</button></td>");
+    var td5_5=$(CreateSelect());
 		$(td2).click({id: idOriginal},UpdateStatus);
 	}else{
 		var td2=$("<td><button type='button' class='btn btn-warning'>Salida</button></td>");
 		$(td2).click({id: idOriginal},UpdateStatusOut);
 	}
 
-	tr.append(td1); tr.append(td2);
+	tr.append(td1); tr.append(td5_5); tr.append(td2);
 
 	$('#insertDates').append(tr);
 }
@@ -215,13 +230,15 @@ UpdateStatusOut=function(id){
 
 UpdateStatus=function(id){
     var textt=id.data.id;
+    var variable=$('#inpArea_Db').val();
 
-    var Security=confirm("Seguro de que este alumno ingresara a las instalaciones?");
+    var Security=confirm("Seguro de que este alumno ingresara a las instalaciones a el area | "+variable+" |");
     if(Security==true){
     	var url = '/ajax/phpindex/ModifieStatus.php';
 		var params={
 			mensaje: textt,
-			mensaje2: localStorage['nombre']
+			mensaje2: localStorage['nombre'],
+      mensaje3: variable,
 		};
 		$.post(url, params).done(function(data){
 			PeopleInside();
