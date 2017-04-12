@@ -56,42 +56,46 @@ function sessionesInside(){
 sessionesInside();
 
 //VALIDACION E INSERCCION DE LA VARIABLE DETECTADA EN RESPONSIVO_____________-
-$('#ManuAcces').each(function(){
-	//$.when( LoadPrivileges ).done(function(){
-	var ModulesView=localStorage['RankAllUser'];
-	console.log(ModulesView)
-	var space=ModulesView.split(",");
-    if(space[0]==1){
-				$(this).append(CreateIndex());
-			}
-    if(space[1]==1){
-				$(this).append(CreatePesos());
-			}
-    if(space[2]==1){
-				$(this).append(CreateAjustes());
-			}
-    if(space[3]==1){
-				$(this).append(CreateReportes());
-			}
-	//});
-	});
+  $('#ManuAcces').each(function(){
+    //$.when( LoadPrivileges ).done(function(){
+    var ModulesView=localStorage['RankAllUser'];
+    var sp=ModulesView.split(",");
+    if(sp[0]==1){
+      $('#ManuAcces').append(CreateIndex());
+    }
+    if(sp[1]==1){
+      $('#ManuAcces').append(CreateAjustes());
+    }
+    if(sp[2]==1){
+      $('#ManuAcces').append(CreateNPedido());
+    }
+    if(sp[3]==1){
+      $('#ManuAcces').append(CreateAtenderPedidos());
+    }
+    if(sp[4]==1){
+      $('#ManuAcces').append(CreateVerPedidos());
+    }
+    if(sp[5]==1){
+      $('#ManuAcces').append(CreateAlmacen());
+    }
+    //});
+  });
 //VALIDACION E INSERCCION DE LA VARIABLE DETECTADA EN RESPONSIVO_____________-
 
-function CreateIndex(){
+  function CreateIndex(){
 ////////____________creacion del INICIO______
-	var li1=$("<li class='active'></li>");
-	var a1=$("<a href='checador.html'></a>");
-	var i1=$("<i class='ti-home'></i>");
-	var p1=$("<p>CHECADOR</p>");
-	a1.append(i1); a1.append(p1); li1.append(a1);
-	return li1;
+    var li1=$("<li></li>");
+    var a1=$("<a href='checador.html'></a>");
+    var i1=$("<i class='ti-home'></i>");
+    var p1=$("<p>CHECADOR</p>");
+    a1.append(i1); a1.append(p1); li1.append(a1);
+    return li1;
 ////////____________creacion del INICIO______
-}
-
+  }
 
   function CreateAjustes(){
 ////////____________creacion del PESOS_________
-    var li2=$("<li></li>");
+    var li2=$("<li class='active'></li>");
     var a2=$("<a href='ajustes.html'></a>");
     var i2=$("<i class='ti-panel'></i>");
     var p2=$("<p>AJUSTES</p>");
