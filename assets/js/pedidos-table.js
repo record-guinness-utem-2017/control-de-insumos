@@ -240,6 +240,31 @@ class IndexPedidosTable extends PedidosTable {
 
 }
 
+class PedidosDescartadosTable extends IndexPedidosTable {
+
+  newRowForPedido(pedido) {
+    return $(
+      '<tr id="pedido-' + pedido.id + '">' +
+      '<td class="text-center">' + pedido.id + '</td>' +
+      '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
+      '<td class="text-center">' + pedido.cantidad + '</td>' +
+      '<td class="text-center">' + pedido.unidad + '</td>' +
+      '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
+      '<td class="text-center">' + pedido.creado_en + '</td>' +
+      '</tr>'
+    );
+  }
+
+  bindSocketIoEvents() {
+    super.bindSocketIoEvents();
+
+    this.socket.on('pedido_descartado', function(data) {
+      this.fetchAndPrependSinglePedido(data.id);
+    }.bind(this));
+  }
+
+}
+
 class MisPedidosTable extends IndexPedidosTable {
 
   loadPedidos(params = {}) {
@@ -364,24 +389,9 @@ class MisPedidosPorAtenderTable extends MisPedidosTable {
 
 }
 
-class MisPedidosDescartadosTable extends MisPedidosTable {
-
-  newRowForPedido(pedido) {
-    return $(
-      '<tr id="pedido-' + pedido.id + '">' +
-        '<td class="text-center">' + pedido.id + '</td>' +
-        '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
-        '<td class="text-center">' + pedido.cantidad + '</td>' +
-        '<td class="text-center">' + pedido.unidad + '</td>' +
-        '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
-        '<td class="text-center">' + pedido.creado_en + '</td>' +
-      '</tr>'
-    );
-  }
+class MisPedidosDescartadosTable extends PedidosDescartadosTable {
 
   bindSocketIoEvents() {
-    super.bindSocketIoEvents();
-
     this.socket.on('pedido_descartado', function(data) {
       if (localStorage['ids'] != data.user) return;
 
@@ -390,6 +400,7 @@ class MisPedidosDescartadosTable extends MisPedidosTable {
   }
 
 }
+MisPedidosDescartadosTable.prototype.loadPedidos = MisPedidosTable.prototype.loadPedidos;
 
 class MisPedidosEntregadosTable extends MisPedidosTable {
 
@@ -458,7 +469,7 @@ class AdminPedidosEntregadosTable extends MisPedidosEntregadosTable {
 }
 AdminPedidosEntregadosTable.prototype.loadPedidos = IndexPedidosTable.prototype.loadPedidos;
 
-class AdminPedidosDescartadosTable extends MisPedidosDescartadosTable {
+class AdminPedidosDescartadosTable extends PedidosDescartadosTable {
 
   newRowForPedido(pedido) {
     return $(
@@ -475,5 +486,3 @@ class AdminPedidosDescartadosTable extends MisPedidosDescartadosTable {
   }
 
 }
-AdminPedidosDescartadosTable.prototype.loadPedidos = IndexPedidosTable.prototype.loadPedidos;
-
