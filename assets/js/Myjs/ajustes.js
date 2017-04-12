@@ -65,7 +65,7 @@ sessionesInside();
   $('#ManuAcces').each(function(){
     //$.when( LoadPrivileges ).done(function(){
     var ModulesView=localStorage['RankAllUser'];
-    var space=ModulesView.split(",");
+    var sp=ModulesView.split(",");
     if(sp[0]==1){
       $('#ManuAcces').append(CreateIndex());
     }
