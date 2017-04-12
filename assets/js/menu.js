@@ -1,4 +1,6 @@
 $(function () {
+  $('#NamePerson').html(localStorage['nombre']).parent().addClass('text-center');
+
   $('.menu-acceso').each(function () {
     var menu        = $(this);
     var ModulesView = localStorage['RankAllUser'];
@@ -102,16 +104,16 @@ $(function () {
     li6.append(a6);
     return li6;
   }
-
-  function btnSecionClose() {
-    var url    = "/ajax/phpindex/PeopleInside.php";
-    var url2   = "/ajax/phpindex/SessionOut.php";
-    var params = {
-      mensaje: localStorage['ids']
-    };
-    $.post(url2, params).done(function(data){
-      localStorage.clear();
-      window.location = "/index.html";
-    });
-  }
 });
+
+function btnSecionClose() {
+  var url    = "/ajax/phpindex/PeopleInside.php";
+  var url2   = "/ajax/phpindex/SessionOut.php";
+  var params = {
+    mensaje: localStorage['ids']
+  };
+  $.post(url2, params).done(function(data){
+    localStorage.clear();
+    window.location = "/index.html";
+  });
+}
