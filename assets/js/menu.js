@@ -23,6 +23,9 @@ $(function () {
     if (sp[5] == 1) {
       menu.append(CreateAlmacen());
     }
+    if (sp[6] == 1) {
+      menu.append(CreateReportePedidos());
+    }
 
     console.log(CreateLogout());
     menu.append(CreateLogout());
@@ -99,6 +102,17 @@ $(function () {
     var a6 = $("<a href='#' onclick='btnSecionClose()'></a>");
     var i6 = $("<i class='ti-logout'></i>");
     var p6 = $("<p>CERRAR SESIÓN</p>");
+    a6.append(i6);
+    a6.append(p6);
+    li6.append(a6);
+    return li6;
+  }
+
+  function CreateReportePedidos() {
+    var li6 = $("<li></li>");
+    var a6 = $("<a href='/app/pedidos/reporte.html'></a>");
+    var i6 = $("<i class='ti-panel'></i>");
+    var p6 = $("<p>REPORTE DE PEDIDOS</p>");
     a6.append(i6);
     a6.append(p6);
     li6.append(a6);
