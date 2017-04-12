@@ -1,9 +1,10 @@
 class PedidosTable {
 
-  constructor(table, socket = null) {
-    this.table   = $(table);
-    this.pedidos = [];
-    this.socket  = socket;
+  constructor(table, socket = null, readonly) {
+    this.table    = $(table);
+    this.pedidos  = [];
+    this.socket   = socket;
+    this.readonly = readonly;
   }
 
   init(loadParams = {}) {
@@ -24,6 +25,7 @@ class PedidosTable {
       success: function(response) {
         this.pedidos = response.objetos;
         this.fillUpTable();
+        this.updatePedidosCount();
       }.bind(this),
     });
   }
@@ -70,7 +72,9 @@ class PedidosTable {
         '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
         '<td class="text-center">' + pedido.encargado_por.nombre_completo + '</td>' +
         '<td class="text-center">' + pedido.creado_en + '</td>' +
-        '<td class="text-center">' + this.newActionButtonsForPedido(pedido).get(0).outerHTML + '</td>' +
+        (this.readonly
+          ? ''
+          : '<td class="text-center">' + this.newActionButtonsForPedido(pedido).get(0).outerHTML + '</td>') +
       '</tr>'
     );
   }
@@ -83,6 +87,7 @@ class PedidosTable {
 
   prependPedido(pedido) {
     this.pedidos.unshift(pedido);
+    this.updatePedidosCount();
     this.table.prepend( this.newRowForPedido(pedido).addClass('success') );
 
     setTimeout(function() { $('tr.success').removeClass('success'); }, 3000);
@@ -175,10 +180,15 @@ class PedidosTable {
   dropPedido(pedidoId) {
     const index = this.pedidos.findIndex(function(pedido) { return pedido.id == pedidoId; });
     if (index >= 0) this.pedidos.splice(index, 1);
+    this.updatePedidosCount();
 
     this.table.find('#pedido-' + pedidoId).remove();
 
     this.showTableIfNeeded();
+  }
+
+  updatePedidosCount() {
+    this.table.parent().find('.pedidos-cantidad').text(this.pedidos.length);
   }
 
   fetchAndPrependSinglePedido(id) {

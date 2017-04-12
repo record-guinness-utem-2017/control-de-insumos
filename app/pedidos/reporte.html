@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../assets/img/favicon.png">
+
+
+  <title>Reporte de pedidos - Control de insumos</title>
+
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+  <meta name="viewport" content="width=device-width"/>
+
+
+  <!-- Bootstrap core CSS     -->
+  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Animation library for notifications   -->
+  <link href="../../assets/css/animate.min.css" rel="stylesheet"/>
+
+  <!--  Paper Dashboard core CSS    -->
+  <link href="../../assets/css/paper-dashboard.css" rel="stylesheet"/>
+
+  <!--  CSS for Demo Purpose, don't include it in your project     -->
+  <link href="../../assets/css/demo.css" rel="stylesheet"/>
+
+  <!--  Fonts and icons     -->
+
+
+  <link href="../../assets/css/themify-icons.css" rel="stylesheet">
+  <link href="../../assets/css/styles.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="sidebar" data-background-color="white" data-active-color="danger">
+    <div class="sidebar-wrapper">
+      <div id="TextName" class="logo">
+        <a class="simple-text">
+          Sistema Ceviche<br>
+          <a id="NamePerson">Name</a>
+        </a>
+      </div>
+
+      <ul class="menu-acceso nav">
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-panel">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar bar1"></span>
+            <span class="icon-bar bar2"></span>
+            <span class="icon-bar bar3"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse">
+        </div>
+      </div>
+    </nav>
+
+    <div class="content">
+      <div class="container-fluid">
+        <h4>Reporte de pedidos</h4>
+
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#por-atender">Por atender</a></li>
+          <li><a data-toggle="tab" href="#enviados">Enviados</a></li>
+          <li><a data-toggle="tab" href="#entregados">Entregados</a></li>
+          <li><a data-toggle="tab" href="#descartados">Descartados</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="por-atender" class="tab-pane fade in active">
+            <div class="table-responsive">
+              <h3>
+                Cantidad de pedidos: <span class="pedidos-cantidad">0</span>
+              </h3>
+
+              <h3 class="sin-pedidos" hidden>
+                <p>No hay pedidos por atender.</p>
+              </h3>
+
+              <table id="pedidos-table-por-atender" class="table table-condensed table-striped table-bordered" hidden>
+                <thead>
+                <tr>
+                  <th class="text-center">ID</th>
+                  <th class="text-center">Insumo</th>
+                  <th class="text-center">Cantidad</th>
+                  <th class="text-center">Unidad</th>
+                  <th class="text-center">Mesa destino</th>
+                  <th class="text-center">Encargado por</th>
+                  <th class="text-center">Fecha y hora de encargo<br>(24 horas)</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="enviados" class="tab-pane fade in">
+            <div class="table-responsive">
+              <h3>
+                Cantidad de pedidos: <span class="pedidos-cantidad">0</span>
+              </h3>
+
+              <h3 class="sin-pedidos" hidden>
+                <p>No hay pedidos enviados.</p>
+              </h3>
+
+              <table id="pedidos-table-enviados" class="table table-condensed table-striped table-bordered" hidden>
+                <thead>
+                <tr>
+                  <th class="text-center">ID</th>
+                  <th class="text-center">Insumo</th>
+                  <th class="text-center">Cantidad</th>
+                  <th class="text-center">Unidad</th>
+                  <th class="text-center">Mesa destino</th>
+                  <th class="text-center">Encargado por</th>
+                  <th class="text-center">Fecha y hora de encargo<br>(24 horas)</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="entregados" class="tab-pane fade in">
+            <div class="table-responsive">
+              <h3>
+                Cantidad de pedidos: <span class="pedidos-cantidad">0</span>
+              </h3>
+
+              <h3 class="sin-pedidos" hidden>
+                <p>No hay pedidos entregados aún.</p>
+              </h3>
+
+              <table id="pedidos-table-entregados" class="table table-condensed table-striped table-bordered" hidden>
+                <thead>
+                <tr>
+                  <th class="text-center">ID</th>
+                  <th class="text-center">Insumo</th>
+                  <th class="text-center">Cantidad</th>
+                  <th class="text-center">Unidad</th>
+                  <th class="text-center">Mesa destino</th>
+                  <th class="text-center">Encargado por</th>
+                  <th class="text-center">Fecha y hora de encargo<br>(24 horas)</th>
+                  <th class="text-center">Fecha y hora de entrega<br>(24 horas)</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="descartados" class="tab-pane fade in">
+            <div class="table-responsive">
+              <h3>
+                Cantidad de pedidos: <span class="pedidos-cantidad">0</span>
+              </h3>
+
+              <h3 class="sin-pedidos" hidden>
+                <p>No hay pedidos descartados.</p>
+              </h3>
+
+              <table id="pedidos-table-descartados" class="table table-condensed table-striped table-bordered" hidden>
+                <thead>
+                <tr>
+                  <th class="text-center">ID</th>
+                  <th class="text-center">Insumo</th>
+                  <th class="text-center">Cantidad</th>
+                  <th class="text-center">Unidad</th>
+                  <th class="text-center">Mesa destino</th>
+                  <th class="text-center">Encargado por</th>
+                  <th class="text-center">Fecha y hora de encargo<br>(24 horas)</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <nav class="pull-left">
+          <ul>
+
+            <li>
+              <a href="#">
+                Home
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright pull-right">
+          &copy;
+          <script>document.write(new Date().getFullYear())</script>
+
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+
+</body>
+
+<script src="/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/assets/bower/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js"></script>
+<script src="/assets/js/menu.js"></script>
+<script src="/assets/js/paper-dashboard.js"></script>
+<script src="/assets/js/socket.io.min.js"></script>
+<script src="/assets/js/pedidos-table.js"></script>
+
+<script>
+  const mSocket                  = io('//' + location.hostname + ':2021');
+  const mTablaPorAtenderPedidos  = new AtenderPedidosTable($('#pedidos-table-por-atender'), mSocket, true);
+  const mTablaPedidosEnviados    = new AdminPedidosEnviadosTable($('#pedidos-table-enviados'), mSocket, true);
+  const mTablaPedidosEntregados  = new AdminPedidosEntregadosTable($('#pedidos-table-entregados'), mSocket, true);
+  const mTablaPedidosDescartados = new AdminPedidosDescartadosTable($('#pedidos-table-descartados'), mSocket, true);
+
+  $(function() {
+    mTablaPorAtenderPedidos.init({ estado: 'pendiente', todos: true });
+    mTablaPedidosEnviados.init({ estado: 'enviado', todos: true });
+    mTablaPedidosEntregados.init({ estado: 'entregado', todos: true });
+    mTablaPedidosDescartados.init({ estado: 'descartado', todos: true });
+  });
+</script>
+
+</html>
