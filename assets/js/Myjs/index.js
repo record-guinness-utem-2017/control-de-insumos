@@ -199,14 +199,18 @@ btnClick=function(){
 
 function CreateSelect(){///////////////AGREGA ESTO
 	var select=$("<select id='inpArea_Db' class='form-control'></select>");
-	var op1=$("<option value='opcion1' selected>opcion1</option>");
-	var op2=$("<option value='opcion2'>opcion2</option>");
-	var op3=$("<option value='opcion3'>opcion3</option>");
-	var op4=$("<option value='opcion4'>opcion4</option>");
+	var op1=$("<option value='almacen' selected>Almacén</option>");
+	var op2=$("<option value='desinfeccion'>Desinfección</option>");
+	var op3=$("<option value='picado'>Picado</option>");
+	var op4=$("<option value='sistemas'>Sistemas</option>");
+  var op5=$("<option value='administrativos'>Administrativos</option>");
+  var op6=$("<option value='staff'>Staff</option>");
 	select.append(op1);
 	select.append(op2);
 	select.append(op3);
 	select.append(op4);
+  select.append(op5);
+  select.append(op6);
 	return $('<td></td>').append(select);
 }
 
