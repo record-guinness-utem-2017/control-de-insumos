@@ -27,7 +27,6 @@ $(function () {
       menu.append(CreateReportePedidos());
     }
 
-    console.log(CreateLogout());
     menu.append(CreateLogout());
   });
 
@@ -67,7 +66,7 @@ $(function () {
   function CreateAtenderPedidos() {
     var li4 = $("<li></li>");
     var a4 = $("<a href='/app/pedidos/atender.html'></a>");
-    var i4 = $("<i class='ti-panel'></i>");
+    var i4 = $("<i class='ti-shopping-cart'></i>");
     var p4 = $("<p>ATENDER PEDIDO</p>");
     a4.append(i4);
     a4.append(p4);
@@ -78,7 +77,7 @@ $(function () {
   function CreateVerPedidos() {
     var li5 = $("<li></li>");
     var a5 = $("<a href='/app/pedidos/index.html'></a>");
-    var i5 = $("<i class='ti-panel'></i>");
+    var i5 = $("<i class='ti-eye'></i>");
     var p5 = $("<p>VER MIS PEDIDOS</p>");
     a5.append(i5);
     a5.append(p5);
@@ -89,7 +88,7 @@ $(function () {
   function CreateAlmacen() {
     var li6 = $("<li></li>");
     var a6 = $("<a href='/app/almacen.html'></a>");
-    var i6 = $("<i class='ti-panel'></i>");
+    var i6 = $("<i class='ti-save'></i>");
     var p6 = $("<p>ALMACEN</p>");
     a6.append(i6);
     a6.append(p6);
@@ -100,7 +99,7 @@ $(function () {
   function CreateLogout() {
     var li6 = $("<li></li>");
     var a6 = $("<a href='#' onclick='btnSecionClose()'></a>");
-    var i6 = $("<i class='ti-logout'></i>");
+    var i6 = $("<i class='ti-close'></i>");
     var p6 = $("<p>CERRAR SESIÓN</p>");
     a6.append(i6);
     a6.append(p6);
