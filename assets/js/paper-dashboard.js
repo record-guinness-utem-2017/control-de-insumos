@@ -71,9 +71,10 @@ lbd = {
 
             // add the content from the sidebar to the right menu
             content_buff = $sidebar.find('.nav').html();
+            console.log(content_buff);
             ul_content = ul_content + '<li class="divider"></li>'+ content_buff;
 
-            ul_content = '<ul class="nav navbar-nav">' + ul_content + '</ul>';
+            ul_content = '<ul class="menu-accesso nav navbar-nav">' + ul_content + '</ul>';
 
             navbar_content = logo_content + ul_content;
             navbar_content = '<div class="sidebar-wrapper">' + navbar_content + '</div>';

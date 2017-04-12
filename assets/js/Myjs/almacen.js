@@ -193,18 +193,5 @@ myFunction=function(event){
 		return true;
 	}
 }
-
-btnSecionClose= function(){
-	var url =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/PeopleInside.php";
-	var url2 =VariableLocal+"/cevicheapp/cevicheapp/assets/php/phpindex/SessionOut.php";
-	var params={
-		mensaje: localStorage['ids']
-	};
-	$.post(url2, params).done(function(data){
-		localStorage.clear();
-		var url=VariableLocal+"/cevicheapp/index.html";
-		window.location=url;
-	});
-}
 ///____________________________________________________________________________________________
 });
