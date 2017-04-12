@@ -38,7 +38,7 @@ $(function() {
 
   function CreateAjustes(){
 ////////____________creacion del PESOS_________
-    var li2=$("<li class='active'></li>");
+    var li2=$("<li></li>");
     var a2=$("<a href='/app/ajustes.html'></a>");
     var i2=$("<i class='ti-panel'></i>");
     var p2=$("<p>AJUSTES</p>");
