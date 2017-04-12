@@ -120,7 +120,7 @@ class PedidosTable {
         this.disable();
         this.spin();
 
-        $.get('../ajax/pedidos/descartar.php?id=' + pedidoId, function() {
+        $.get('/ajax/pedidos/descartar.php?id=' + pedidoId, function() {
           self.dropPedido(pedidoId);
           dialog.close();
           BootstrapDialog.alert({
@@ -155,7 +155,7 @@ class PedidosTable {
         this.disable();
         this.spin();
 
-        $.post('../ajax/pedidos/atender.php', { id: pedidoId }, function() {
+        $.post('/ajax/pedidos/atender.php', { id: pedidoId }, function() {
           self.dropPedido(pedidoId);
           dialog.close();
           BootstrapDialog.alert({
