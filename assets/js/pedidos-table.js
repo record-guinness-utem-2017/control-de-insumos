@@ -71,7 +71,7 @@ class PedidosTable {
         '<td class="text-center">' + pedido.unidad + '</td>' +
         '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
         '<td class="text-center">' + pedido.encargado_por.nombre_completo + '</td>' +
-        '<td class="text-center">' + pedido.creado_en + '</td>' +
+        '<td class="text-center">' + pedido.human_creado_en + '<br><small>' + pedido.creado_en + '</small></td>' +
         (this.readonly
           ? ''
           : '<td class="text-center">' + this.newActionButtonsForPedido(pedido).get(0).outerHTML + '</td>') +
@@ -232,7 +232,7 @@ class IndexPedidosTable extends PedidosTable {
         '<td class="text-center">' + pedido.cantidad + '</td>' +
         '<td class="text-center">' + pedido.unidad + '</td>' +
         '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
-        '<td class="text-center">' + pedido.creado_en + '</td>' +
+        '<td class="text-center">' + pedido.human_creado_en + '<br><small>' + pedido.creado_en + '</small></td>' +
         '<td class="text-center">' + this.newActionButtonsForPedido(pedido).get(0).outerHTML + '</td>' +
       '</tr>'
     );
@@ -374,7 +374,7 @@ class MisPedidosDescartadosTable extends MisPedidosTable {
         '<td class="text-center">' + pedido.cantidad + '</td>' +
         '<td class="text-center">' + pedido.unidad + '</td>' +
         '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
-        '<td class="text-center">' + pedido.creado_en + '</td>' +
+        '<td class="text-center">' + pedido.human_creado_en + '<br><small>' + pedido.creado_en + '</small></td>' +
       '</tr>'
     );
   }
@@ -401,8 +401,8 @@ class MisPedidosEntregadosTable extends MisPedidosTable {
         '<td class="text-center">' + pedido.cantidad + '</td>' +
         '<td class="text-center">' + pedido.unidad + '</td>' +
         '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
-        '<td class="text-center">' + pedido.creado_en + '</td>' +
-        '<td class="text-center">' + pedido.entregado_en + '</td>' +
+        '<td class="text-center">' + pedido.human_creado_en + '<br><small>' + pedido.creado_en + '</small></td>' +
+        '<td class="text-center">' + pedido.human_entregado_en + '<br><small>' + pedido.entregado_en + '</small></td>' +
       '</tr>'
     );
   }
@@ -430,7 +430,7 @@ class AdminPedidosEnviadosTable extends MisPedidosEnviadosTable {
       '<td class="text-center">' + pedido.unidad + '</td>' +
       '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
       '<td class="text-center">' + pedido.encargado_por.nombre_completo + '</td>' +
-      '<td class="text-center">' + pedido.creado_en + '</td>' +
+      '<td class="text-center">' + pedido.human_creado_en + '<br><small>' + pedido.creado_en + '</small></td>' +
       '</tr>'
     );
   }
@@ -449,7 +449,7 @@ class AdminPedidosEntregadosTable extends MisPedidosEntregadosTable {
       '<td class="text-center">' + pedido.unidad + '</td>' +
       '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
       '<td class="text-center">' + pedido.encargado_por.nombre_completo + '</td>' +
-      '<td class="text-center">' + pedido.creado_en + '</td>' +
+      '<td class="text-center">' + pedido.human_creado_en + '<br><small>' + pedido.creado_en + '</small></td>' +
       '<td class="text-center">' + pedido.entregado_en + '</td>' +
       '</tr>'
     );
@@ -469,7 +469,7 @@ class AdminPedidosDescartadosTable extends MisPedidosDescartadosTable {
         '<td class="text-center">' + pedido.unidad + '</td>' +
         '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
         '<td class="text-center">' + pedido.encargado_por.nombre_completo + '</td>' +
-        '<td class="text-center">' + pedido.creado_en + '</td>' +
+        '<td class="text-center">' + pedido.human_creado_en + '<br><small>' + pedido.creado_en + '</small></td>' +
       '</tr>'
     );
   }

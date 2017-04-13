@@ -1,8 +1,15 @@
 <?php
 
+use Carbon\Carbon;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../helpers.php';
 
-const POR_PAGINA = 50;
+Carbon::setLocale('es');
+
+const POR_PAGINA   = 50;
+const ZONA_HORARIA = 'America/Mexico_City';
+
 /** @var Mysqli $conexion */
 $conexion = require_once __DIR__ . '/../bd.php';
 $query    = 'SELECT * FROM pedidos WHERE 1=1';
@@ -37,6 +44,10 @@ $pedidos = get_filas_desde_query($conexion, $query, function(array $pedido) use 
     return $insumo;
   });
 
+  $ahora                        =  Carbon::now(ZONA_HORARIA);
+  $pedido['human_creado_en']    = ( new Carbon($pedido['creado_en'], ZONA_HORARIA) )->diffForHumans($ahora);
+  $pedido['human_entregado_en'] = ( new Carbon($pedido['entregado_en'], ZONA_HORARIA) )->diffForHumans($ahora);
+
   return $pedido;
 });
 
@@ -53,9 +64,9 @@ if (count($pedidos) > 0) {
   }, $personas);
 
   $pedidos = array_map(function($pedido) use ($personas) {
-    $filtrar                  = function($persona) use ($pedido) { return $persona['id'] == $pedido['encargado_por']; };
-    $persona                  = array_filter($personas, $filtrar);
-    $pedido['encargado_por']  = reset($persona) ?? null;
+    $filtrar                 = function($persona) use ($pedido) { return $persona['id'] == $pedido['encargado_por']; };
+    $persona                 = array_filter($personas, $filtrar);
+    $pedido['encargado_por'] = reset($persona) ?? null;
 
     return $pedido;
   }, $pedidos);

@@ -1,0 +1,12 @@
+{
+    "name": "kevin/control-de-insumos",
+    "authors": [
+        {
+            "name": "Kevin Perez",
+            "email": "kevindperezm@gmail.com"
+        }
+    ],
+    "require": {
+        "nesbot/carbon": "^1.22"
+    }
+}
