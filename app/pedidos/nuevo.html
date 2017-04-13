@@ -212,7 +212,8 @@
   }
 
   function cargarSelectorMesa() {
-    $.get('/ajax/mesas/index.php', construirSelectorMesa);
+    const user = localStorage['ids'];
+    $.get('/ajax/mesas/index.php?user=' + user, construirSelectorMesa);
   }
 
   function construirSelectorMesa(respuesta) {
