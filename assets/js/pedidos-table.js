@@ -85,10 +85,10 @@ class PedidosTable {
       .append( $('<p><button class="btn btn-danger descartar" data-pedido-id="' + pedido.id + '">Descartar</button></p>') )
   }
 
-  prependPedido(pedido) {
-    this.pedidos.unshift(pedido);
+  appendPedido(pedido) {
+    this.pedidos.push(pedido);
     this.updatePedidosCount();
-    this.table.prepend( this.newRowForPedido(pedido).addClass('success') );
+    this.table.append( this.newRowForPedido(pedido).addClass('success') );
 
     setTimeout(function() { $('tr.success').removeClass('success'); }, 3000);
 
@@ -192,7 +192,7 @@ class PedidosTable {
   }
 
   fetchAndPrependSinglePedido(id) {
-    this.getSinglePedido(id, function(pedido) { this.prependPedido(pedido) }.bind(this));
+    this.getSinglePedido(id, function(pedido) { this.appendPedido(pedido) }.bind(this));
   }
 
   showTableIfNeeded() {

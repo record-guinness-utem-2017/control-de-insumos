@@ -3,13 +3,14 @@
 $bd = require_once __DIR__ . '/../bd.php';
 
 $datos = array_map([$bd, 'escape_string'], $_POST);
-$query = "INSERT INTO pedidos (mesa_id, insumo_id, cantidad, unidad, encargado_por, estado) VALUES (" .
+$query = "INSERT INTO pedidos (mesa_id, insumo_id, cantidad, unidad, encargado_por, estado, updated_at) VALUES (" .
            "{$datos['mesa_id']}, " .
            "{$datos['insumo_id']}, " .
            "{$datos['cantidad']}, " .
            "'{$datos['unidad']}'," .
            "{$datos['encargado_por']}," .
-           "'" . PEDIDO_PENDIENTE . "'" .
+           "'" . PEDIDO_PENDIENTE . "', " .
+           "'" . date('Y-m-d H:i:s') . "'" .
          ")";
 
 if ($bd->query($query)) {

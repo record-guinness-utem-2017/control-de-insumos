@@ -19,7 +19,7 @@ if ($user = $_GET['user'] ?? null) {
   $query .= ' AND encargado_por = ' . $conexion->escape_string($user);
 }
 
-$query .= ' ORDER BY updated_at DESC, creado_en DESC, id DESC';
+$query .= ' ORDER BY updated_at ASC';
 
 if ($pag = $_GET['pag'] ?? 1) {
   $offset = POR_PAGINA * ($pag - 1);
