@@ -198,10 +198,10 @@ class PedidosTable {
   showTableIfNeeded() {
     if (this.pedidos.length <= 0) {
       this.table.hide();
-      this.table.parent().find('#sin-pedidos').show();
+      this.table.parent().find('.sin-pedidos').show();
     } else {
       this.table.show();
-      this.table.parent().find('#sin-pedidos').hide();
+      this.table.parent().find('.sin-pedidos').hide();
     }
   }
 
