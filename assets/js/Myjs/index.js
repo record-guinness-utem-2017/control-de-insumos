@@ -102,6 +102,8 @@ btnClick=function(){
 			}
 		});
 	}
+
+  $('#inpNo_Control').val('').focus();
 }
 
 
