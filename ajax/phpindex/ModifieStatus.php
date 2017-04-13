@@ -3,7 +3,7 @@ $con = include __DIR__ . '/../bd.php';
 
 date_default_timezone_set("America/Mexico_City");
 
-$hoy = date("d-m-Y | H:i:s");
+$hoy = date("d-m-Y H:i:s");
 
 $CualPiPo_xD=$_POST['mensaje'];
 $CualPiPo_xD2=$_POST['mensaje2'];
