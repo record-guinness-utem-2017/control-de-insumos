@@ -62,8 +62,7 @@
         <div id="indicador-insumo" class="indicador animated" hidden>
           <h5 class="text-success">Insumo</h5>
           <div class="mesa">
-            <img src="#">
-            <p></p>
+            <p class="insumo"></p>
           </div>
         </div>
 
@@ -98,7 +97,6 @@
               <div class="col-xs-12 col-sm-6 col-md-4">
                 <form id="cantidad-form" method="post">
                   <div class="mesa">
-                    <img src="#">
                     <p></p>
                   </div>
                   <input class="form-control" type="number" name="cantidad" placeholder="Cantidad" min="1" required>
@@ -276,8 +274,6 @@
     container.append(
       $('<a href="#"></a>').append(
         $('<div class="mesa"></div>').append(
-          $('<img src="' + insumo.img_url + '">')
-        ).append(
           $('<p>' + insumo.nombre + '</p>')
         ).append(
           $('<p><h6><span class="cajas disponibles counter" data-insumo-id="' + insumo.id + '">' +

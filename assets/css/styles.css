@@ -54,10 +54,14 @@
   font-size: 100%;
 }
 
+.indicador .mesa p.insumo {
+  margin-top: 1em;
+}
+
 .indicador {
   position: absolute;
   text-align: center;
-  top: 5em;
+  top: 0.2em;
   min-width: 6em;
 }
 .indicador h4 {
