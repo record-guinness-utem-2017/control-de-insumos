@@ -240,31 +240,6 @@ class IndexPedidosTable extends PedidosTable {
 
 }
 
-class PedidosDescartadosTable extends IndexPedidosTable {
-
-  newRowForPedido(pedido) {
-    return $(
-      '<tr id="pedido-' + pedido.id + '">' +
-      '<td class="text-center">' + pedido.id + '</td>' +
-      '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
-      '<td class="text-center">' + pedido.cantidad + '</td>' +
-      '<td class="text-center">' + pedido.unidad + '</td>' +
-      '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
-      '<td class="text-center">' + pedido.creado_en + '</td>' +
-      '</tr>'
-    );
-  }
-
-  bindSocketIoEvents() {
-    super.bindSocketIoEvents();
-
-    this.socket.on('pedido_descartado', function(data) {
-      this.fetchAndPrependSinglePedido(data.id);
-    }.bind(this));
-  }
-
-}
-
 class MisPedidosTable extends IndexPedidosTable {
 
   loadPedidos(params = {}) {
@@ -357,9 +332,9 @@ class MisPedidosEnviadosTable extends MisPedidosTable {
     super.bindSocketIoEvents();
 
     this.socket.on('pedido_enviado', function(data) {
-      if (localStorage['ids'] != data.user) return;
-
-      this.fetchAndPrependSinglePedido(data.id)
+      if (this.readonly || localStorage['ids'] == data.user) {
+        this.fetchAndPrependSinglePedido(data.id)
+      }
     }.bind(this));
 
     this.socket.on('pedido_entregado', function(data) { this.dropPedido(data.id) }.bind(this));
@@ -378,9 +353,9 @@ class MisPedidosPorAtenderTable extends MisPedidosTable {
     super.bindSocketIoEvents();
 
     this.socket.on('nuevo_pedido_creado', function(data) {
-      if (localStorage['ids'] != data.user) return;
-
-      this.fetchAndPrependSinglePedido(data.id);
+      if (this.readonly || localStorage['ids'] == data.user) {
+        this.fetchAndPrependSinglePedido(data.id);
+      }
     }.bind(this));
 
     const removePedido = function(data) { this.dropPedido(data.id) }.bind(this);
@@ -389,18 +364,32 @@ class MisPedidosPorAtenderTable extends MisPedidosTable {
 
 }
 
-class MisPedidosDescartadosTable extends PedidosDescartadosTable {
+class MisPedidosDescartadosTable extends MisPedidosTable {
+
+  newRowForPedido(pedido) {
+    return $(
+      '<tr id="pedido-' + pedido.id + '">' +
+        '<td class="text-center">' + pedido.id + '</td>' +
+        '<td class="text-center">' + pedido.insumo.nombre + '</td>' +
+        '<td class="text-center">' + pedido.cantidad + '</td>' +
+        '<td class="text-center">' + pedido.unidad + '</td>' +
+        '<td class="text-center">' + pedido.mesa.nombre + '</td>' +
+        '<td class="text-center">' + pedido.creado_en + '</td>' +
+      '</tr>'
+    );
+  }
 
   bindSocketIoEvents() {
-    this.socket.on('pedido_descartado', function(data) {
-      if (localStorage['ids'] != data.user) return;
+    super.bindSocketIoEvents();
 
-      this.fetchAndPrependSinglePedido(data.id);
+    this.socket.on('pedido_descartado', function(data) {
+      if (this.readonly || localStorage['ids'] == data.user) {
+        this.fetchAndPrependSinglePedido(data.id);
+      }
     }.bind(this));
   }
 
 }
-MisPedidosDescartadosTable.prototype.loadPedidos = MisPedidosTable.prototype.loadPedidos;
 
 class MisPedidosEntregadosTable extends MisPedidosTable {
 
@@ -422,9 +411,9 @@ class MisPedidosEntregadosTable extends MisPedidosTable {
     super.bindSocketIoEvents();
 
     this.socket.on('pedido_entregado', function(data) {
-      if (localStorage['ids'] != data.user) return;
-
-      this.fetchAndPrependSinglePedido(data.id);
+      if (this.readonly || localStorage['ids'] == data.user) {
+        this.fetchAndPrependSinglePedido(data.id);
+      }
     }.bind(this));
   }
 
@@ -469,7 +458,7 @@ class AdminPedidosEntregadosTable extends MisPedidosEntregadosTable {
 }
 AdminPedidosEntregadosTable.prototype.loadPedidos = IndexPedidosTable.prototype.loadPedidos;
 
-class AdminPedidosDescartadosTable extends PedidosDescartadosTable {
+class AdminPedidosDescartadosTable extends MisPedidosDescartadosTable {
 
   newRowForPedido(pedido) {
     return $(
@@ -486,3 +475,5 @@ class AdminPedidosDescartadosTable extends PedidosDescartadosTable {
   }
 
 }
+AdminPedidosDescartadosTable.prototype.loadPedidos = IndexPedidosTable.prototype.loadPedidos;
+
