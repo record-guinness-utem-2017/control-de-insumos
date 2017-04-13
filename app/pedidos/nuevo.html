@@ -212,8 +212,16 @@
   }
 
   function cargarSelectorMesa() {
-    const user = localStorage['ids'];
-    $.get('/ajax/mesas/index.php?user=' + user, construirSelectorMesa);
+    let url = null;
+
+    if (localStorage['rank'] == 'a' || localStorage['rank'] == 'd') {
+      url = '/ajax/mesas/index.php';
+    } else {
+      const user = localStorage['ids'];
+      url        = '/ajax/mesas/index.php?user=' + user;
+    }
+
+    $.get(url, construirSelectorMesa);
   }
 
   function construirSelectorMesa(respuesta) {
