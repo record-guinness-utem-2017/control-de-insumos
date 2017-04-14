@@ -1,0 +1,20 @@
+<html>
+  <body>
+    <script src="/assets/js/jquery-1.10.2.js"></script>
+    <script>
+      $(function() {
+        setInterval(toc(), 1000);
+      });
+
+      function toc() {
+        return function() {
+          const time = Date.now() / 1000;
+          $.get('/ajax/test.php', function(response) {
+            diff = response.tac - time;
+            $('body').html('<p>TOC ' + diff + 'ms</p>');
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
