@@ -160,16 +160,39 @@ class PedidosTable {
         this.disable();
         this.spin();
 
-        $.post('/ajax/pedidos/atender.php', { id: pedidoId }, function() {
-          self.dropPedido(pedidoId);
-          dialog.close();
-          BootstrapDialog.alert({
-            title: '',
-            message: 'Pedido marcado como enviado',
-            type: BootstrapDialog.TYPE_SUCCESS,
-          });
+        $.ajax({
+          type: 'post',
+          url: '/ajax/pedidos/atender.php',
+          data: { id: pedidoId },
+          success: function() {
+            self.dropPedido(pedidoId);
+            dialog.close();
+            BootstrapDialog.alert({
+              title: '',
+              message: 'Pedido marcado como enviado',
+              type: BootstrapDialog.TYPE_SUCCESS,
+            });
 
-          self.socket.emit('pedido_enviado', { id : pedidoId, user: localStorage['ids'] });
+            self.socket.emit('pedido_enviado', { id : pedidoId, user: localStorage['ids'] });
+          },
+          error: function(response) {
+            dialog.close();
+
+            if (response.status == 422) {
+              const mensaje = response.responseJSON.objetos.error;
+              BootstrapDialog.alert({
+                type: BootstrapDialog.TYPE_DANGER,
+                title: 'No hay suficiente insumo en el almacén',
+                message: mensaje,
+              });
+            } else {
+              BootstrapDialog.alert({
+                type: BootstrapDialog.TYPE_DANGER,
+                title: 'Error fatal',
+                message: 'Ocurrió un error. Contacta al personal de sistemas.',
+              });
+            }
+          }
         });
 
         return false;
