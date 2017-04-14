@@ -3918,7 +3918,7 @@ LOCK TABLES `insumos_config` WRITE;
 INSERT INTO `insumos_config` VALUES (1,'Atun',3923,0,262,0,0,0);
 INSERT INTO `insumos_config` VALUES (2,'Jitomate',3200,3092.5,213,85,31,0);
 INSERT INTO `insumos_config` VALUES (3,'Cebolla',2658,2527.5,177,137,137,0);
-INSERT INTO `insumos_config` VALUES (4,'Limon',2035,2091.5,136,136,119,0);
+INSERT INTO `insumos_config` VALUES (4,'Limon',2035,2091.5,136,136,120,0);
 INSERT INTO `insumos_config` VALUES (5,'Zanahoria',750,776,50,40,40,0);
 INSERT INTO `insumos_config` VALUES (6,'Chile',255,259.5,17,15,15,0);
 INSERT INTO `insumos_config` VALUES (7,'Cilantro',220,0,15,0,0,0);
@@ -7863,7 +7863,7 @@ INSERT INTO `pedidos` VALUES (233,4,2,1,'cajas',2190,'2017-04-14 04:55:21','entr
 INSERT INTO `pedidos` VALUES (234,16,4,1,'cajas',2155,'2017-04-14 04:58:25','enviado',NULL,'2017-04-14 04:59:11');
 INSERT INTO `pedidos` VALUES (235,19,4,1,'cajas',2138,'2017-04-14 04:58:48','enviado',NULL,'2017-04-14 04:59:14');
 INSERT INTO `pedidos` VALUES (236,8,2,1,'cajas',2129,'2017-04-14 04:59:52','enviado',NULL,'2017-04-14 05:00:08');
-INSERT INTO `pedidos` VALUES (237,21,4,1,'cajas',2645,'2017-04-14 05:03:36','enviado',NULL,'2017-04-14 05:03:53');
+INSERT INTO `pedidos` VALUES (237,21,4,1,'cajas',2645,'2017-04-14 05:03:36','entregado','2017-04-14 05:06:59','2017-04-14 05:06:59');
 INSERT INTO `pedidos` VALUES (238,22,4,2,'cajas',2645,'2017-04-14 05:03:58','enviado',NULL,'2017-04-14 05:04:24');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
