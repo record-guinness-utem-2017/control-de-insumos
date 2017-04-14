@@ -3430,7 +3430,7 @@ CREATE TABLE `historyinsides` (
   `Por` varchar(200) NOT NULL,
   `area_destino` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=436 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=437 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `historyinsides` WRITE;
@@ -3870,6 +3870,7 @@ INSERT INTO `historyinsides` VALUES (432,'Entrada','2017-04-14 03:35:39',2138,'L
 INSERT INTO `historyinsides` VALUES (433,'Entrada','2017-04-14 03:36:03',3560,'Luis Adrian','sistemas');
 INSERT INTO `historyinsides` VALUES (434,'Entrada','2017-04-14 03:59:36',3341,'Luis Adrian','almacen');
 INSERT INTO `historyinsides` VALUES (435,'Entrada','2017-04-14 04:00:31',2877,'Luis Adrian','almacen');
+INSERT INTO `historyinsides` VALUES (436,'Entrada','2017-04-14 04:43:36',2645,'Sergio','almacen');
 /*!40000 ALTER TABLE `historyinsides` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `insumos`;
@@ -10772,7 +10773,7 @@ INSERT INTO `personas` VALUES (2641,'estudiante','Darcy Noemi','Martínez','Guzm
 INSERT INTO `personas` VALUES (2642,'estudiante','Norelia','Aguilar','Serafin','mujer','AUSN910916MMNGRR16',NULL,'soltero(a)','meaguilar@live.com.mx','mexicana','1991-09-16','Belisario Dominguez','504','NUEVO SALAGUA','manzanillo',76,'28239','','7531267386',NULL,'2016-05-23 22:44:21','2017-01-05 14:24:24',0);
 INSERT INTO `personas` VALUES (2643,'estudiante','Jennifer Monserrat','Sanchez','Meraz','mujer','SAMJ940504MCMNRN04',NULL,'soltero(a)','moonsanchez134@gmail.com','mexicana','1994-05-04','Las Huertas','4','Campos','manzanillo',76,'28239','3359384','3141163280',NULL,'2016-05-23 22:44:21','2017-01-13 17:42:00',0);
 INSERT INTO `personas` VALUES (2644,'estudiante','Julio Cesar','Castillo','Chavez','hombre','CACJ960318HMNSHL04',NULL,'soltero(a)','transp_carri@hotmail.com','mexicana','1996-03-18','Limon','56','Barrio 3,Valle de las Garzas',NULL,76,'28219','1381488','3141350897',NULL,'2016-05-23 22:44:21','2016-05-23 22:44:21',0);
-INSERT INTO `personas` VALUES (2645,'estudiante','Karina Yaralitza','Villa','Macias','mujer','VIMK960606MCMLCR03',NULL,'soltero(a)','karina_yaralitza@hotmail.com','mexicana','1996-06-06','Venustiano Carranza','26Bis','El colomo','manzanillo',76,'28239','3376445','3141439490',NULL,'2016-05-23 22:44:21','2017-02-01 12:45:08',0);
+INSERT INTO `personas` VALUES (2645,'estudiante','Karina Yaralitza','Villa','Macias','mujer','VIMK960606MCMLCR03',NULL,'soltero(a)','karina_yaralitza@hotmail.com','mexicana','1996-06-06','Venustiano Carranza','26Bis','El colomo','manzanillo',76,'28239','3376445','3141439490',NULL,'2016-05-23 22:44:21','2017-02-01 12:45:08',1);
 INSERT INTO `personas` VALUES (2646,'estudiante','Jasson Raul','Jimenez','Torres','hombre','JITJ970912HCMMRS02',NULL,'soltero(a)','daniel-martin1996w@hotmail.com','mexicana','1997-09-12','COLIMA','S/N','Nuevo Cuyutlan','manzanillo',76,'28239','3143349457','3141394677',NULL,'2016-05-23 22:44:21','2017-01-03 14:29:19',0);
 INSERT INTO `personas` VALUES (2647,'estudiante','Oscar Uriel','Escobedo','Andrade','hombre','EOAO970806HCMSNS03',NULL,'soltero(a)','hello_sur@hotmail.com','mexicano','1997-08-06','Santiago Hermosillo','54','Tapeixtles',NULL,76,'28239','3344321','3141421581',NULL,'2016-05-23 22:44:21','2016-05-23 22:44:21',0);
 INSERT INTO `personas` VALUES (2648,'estudiante','Alma Melisa','Rivera','Estrada','mujer','RIEA961109MCMVSL07',NULL,'soltero(a)','alma_lachikis@hotmail.com','otra','1996-11-09','privada rio colorado','23','el paraiso','manzanillo',76,'28239','3141295565','3141086443',NULL,'2016-05-23 22:44:21','2017-01-03 13:31:25',0);
