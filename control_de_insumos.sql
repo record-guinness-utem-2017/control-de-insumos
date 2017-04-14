@@ -7718,7 +7718,7 @@ CREATE TABLE `pedidos` (
   `entregado_en` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=189 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7915,6 +7915,7 @@ INSERT INTO `pedidos` VALUES (185,29,4,1,'cajas',2386,'2017-04-14 03:40:58','ent
 INSERT INTO `pedidos` VALUES (186,29,4,1,'cajas',2386,'2017-04-14 03:44:32','enviado',NULL,'2017-04-14 03:45:13');
 INSERT INTO `pedidos` VALUES (187,50,4,1,'cajas',2386,'2017-04-14 03:44:46','enviado',NULL,'2017-04-14 03:45:17');
 INSERT INTO `pedidos` VALUES (188,19,4,1,'cajas',2138,'2017-04-14 03:46:20','pendiente',NULL,'2017-04-14 03:46:20');
+INSERT INTO `pedidos` VALUES (189,10,4,1,'cajas',2166,'2017-04-14 03:47:02','pendiente',NULL,'2017-04-14 03:47:02');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -11933,4 +11934,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-14  3:47:01
+-- Dump completed on 2017-04-14  3:48:02
