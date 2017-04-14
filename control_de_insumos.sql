@@ -3922,7 +3922,7 @@ LOCK TABLES `insumos_config` WRITE;
 INSERT INTO `insumos_config` VALUES (1,'Atun',3923,0,262,0,0,0);
 INSERT INTO `insumos_config` VALUES (2,'Jitomate',3200,3382,213,100,46,0);
 INSERT INTO `insumos_config` VALUES (3,'Cebolla',2658,2527.5,177,137,137,0);
-INSERT INTO `insumos_config` VALUES (4,'Limon',2035,2092.5,136,152,137,0);
+INSERT INTO `insumos_config` VALUES (4,'Limon',2035,2092.5,136,152,138,0);
 INSERT INTO `insumos_config` VALUES (5,'Zanahoria',750,776,50,40,40,0);
 INSERT INTO `insumos_config` VALUES (6,'Chile',255,259.5,17,15,15,0);
 INSERT INTO `insumos_config` VALUES (7,'Cilantro',220,0,15,0,0,0);
@@ -7635,7 +7635,7 @@ CREATE TABLE `pedidos` (
   `entregado_en` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=266 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=271 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `pedidos` WRITE;
@@ -7897,7 +7897,7 @@ INSERT INTO `pedidos` VALUES (254,22,4,2,'cajas',2645,'2017-04-14 05:37:12','ent
 INSERT INTO `pedidos` VALUES (255,29,4,1,'cajas',2386,'2017-04-14 05:37:29','entregado','2017-04-14 05:42:21','2017-04-14 05:42:21');
 INSERT INTO `pedidos` VALUES (256,21,4,1,'cajas',2645,'2017-04-14 05:39:14','entregado','2017-04-14 05:43:57','2017-04-14 05:43:57');
 INSERT INTO `pedidos` VALUES (257,4,2,1,'cajas',2190,'2017-04-14 05:45:09','entregado','2017-04-14 05:49:03','2017-04-14 05:49:03');
-INSERT INTO `pedidos` VALUES (258,50,4,1,'cajas',2386,'2017-04-14 05:47:11','enviado',NULL,'2017-04-14 05:54:09');
+INSERT INTO `pedidos` VALUES (258,50,4,1,'cajas',2386,'2017-04-14 05:47:11','entregado','2017-04-14 06:07:40','2017-04-14 06:07:40');
 INSERT INTO `pedidos` VALUES (259,1,2,1,'cajas',2538,'2017-04-14 05:50:21','entregado','2017-04-14 05:55:38','2017-04-14 05:55:38');
 INSERT INTO `pedidos` VALUES (260,4,2,1,'cajas',2190,'2017-04-14 06:01:39','entregado','2017-04-14 06:02:37','2017-04-14 06:02:37');
 INSERT INTO `pedidos` VALUES (261,2,2,1,'cajas',2538,'2017-04-14 06:03:22','enviado',NULL,'2017-04-14 06:04:45');
@@ -7905,6 +7905,11 @@ INSERT INTO `pedidos` VALUES (262,11,2,1,'cajas',3341,'2017-04-14 06:04:34','env
 INSERT INTO `pedidos` VALUES (263,13,2,1,'cajas',2289,'2017-04-14 06:05:08','enviado',NULL,'2017-04-14 06:06:19');
 INSERT INTO `pedidos` VALUES (264,14,2,1,'cajas',2289,'2017-04-14 06:05:21','enviado',NULL,'2017-04-14 06:06:22');
 INSERT INTO `pedidos` VALUES (265,8,2,1,'cajas',2129,'2017-04-14 06:07:01','pendiente',NULL,'2017-04-14 06:07:01');
+INSERT INTO `pedidos` VALUES (266,50,2,2,'cajas',2386,'2017-04-14 06:07:04','pendiente',NULL,'2017-04-14 06:07:04');
+INSERT INTO `pedidos` VALUES (267,21,2,2,'cajas',2645,'2017-04-14 06:07:15','pendiente',NULL,'2017-04-14 06:07:15');
+INSERT INTO `pedidos` VALUES (268,8,2,1,'cajas',2129,'2017-04-14 06:07:19','pendiente',NULL,'2017-04-14 06:07:19');
+INSERT INTO `pedidos` VALUES (269,3,2,1,'cajas',2190,'2017-04-14 06:07:20','pendiente',NULL,'2017-04-14 06:07:20');
+INSERT INTO `pedidos` VALUES (270,15,2,1,'cajas',2386,'2017-04-14 06:07:27','pendiente',NULL,'2017-04-14 06:07:27');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `personal`;
