@@ -15,7 +15,7 @@ $con->query($sql) or die('SQL: ' . $con->error);
 $sql2 = "INSERT INTO historyinsides VALUES(null,'Salida', '$hoy','$CualPiPo_xD','$CualPiPo_xD2', null)";
 $con->query($sql2) or die('SQL2: ' . $con->error . '; ' . $sql2);
 
-if($result = $con->query("SELECT * FROM personas WHERE id = '$CUAlPiPo_xD'")){
+if($result = $con->query("SELECT * FROM personas WHERE id = '$CualPiPo_xD'")){
   $json["ok"] = $result->fetch_all(MYSQLI_ASSOC);
   echo json_encode($json, JSON_PRETTY_PRINT);
 }
