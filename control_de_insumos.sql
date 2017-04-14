@@ -3918,7 +3918,7 @@ LOCK TABLES `insumos_config` WRITE;
 INSERT INTO `insumos_config` VALUES (1,'Atun',3923,0,262,0,0,0);
 INSERT INTO `insumos_config` VALUES (2,'Jitomate',3200,3092.5,213,85,30,0);
 INSERT INTO `insumos_config` VALUES (3,'Cebolla',2658,2527.5,177,137,137,0);
-INSERT INTO `insumos_config` VALUES (4,'Limon',2035,2091.5,136,136,118,0);
+INSERT INTO `insumos_config` VALUES (4,'Limon',2035,2091.5,136,136,119,0);
 INSERT INTO `insumos_config` VALUES (5,'Zanahoria',750,776,50,40,40,0);
 INSERT INTO `insumos_config` VALUES (6,'Chile',255,259.5,17,15,15,0);
 INSERT INTO `insumos_config` VALUES (7,'Cilantro',220,0,15,0,0,0);
@@ -6774,7 +6774,7 @@ INSERT INTO `numeros_de_control` VALUES (2638,2641,20150131,'2017-04-13 23:23:44
 INSERT INTO `numeros_de_control` VALUES (2639,2642,20150132,'2017-04-13 23:23:44','record2017',NULL,0,'0,0,0,0,0,0,0,0');
 INSERT INTO `numeros_de_control` VALUES (2640,2643,20150133,'2017-04-13 23:23:44','record2017',NULL,0,'0,0,0,0,0,0,0,0');
 INSERT INTO `numeros_de_control` VALUES (2641,2644,20150134,'2017-04-13 23:23:44','record2017',NULL,0,'0,0,0,0,0,0,0,0');
-INSERT INTO `numeros_de_control` VALUES (2642,2645,20150135,'2017-04-14 10:00:29','123',NULL,0,'0,0,0,0,0,0,0,0');
+INSERT INTO `numeros_de_control` VALUES (2642,2645,20150135,'2017-04-14 10:02:49','123',NULL,1,'0,0,1,0,1,0,0,0');
 INSERT INTO `numeros_de_control` VALUES (2643,2646,20150136,'2017-04-13 23:23:44','record2017',NULL,0,'0,0,0,0,0,0,0,0');
 INSERT INTO `numeros_de_control` VALUES (2644,2647,20150137,'2017-04-13 23:23:44','record2017',NULL,0,'0,0,0,0,0,0,0,0');
 INSERT INTO `numeros_de_control` VALUES (2645,2648,20150138,'2017-04-13 23:23:44','record2017',NULL,0,'0,0,0,0,0,0,0,0');
@@ -7858,7 +7858,7 @@ INSERT INTO `pedidos` VALUES (228,4,2,1,'cajas',2190,'2017-04-14 04:48:56','entr
 INSERT INTO `pedidos` VALUES (229,1,2,1,'cajas',2538,'2017-04-14 04:51:50','entregado','2017-04-14 04:52:20','2017-04-14 04:52:20');
 INSERT INTO `pedidos` VALUES (230,13,4,1,'cajas',2289,'2017-04-14 04:52:08','entregado','2017-04-14 04:55:03','2017-04-14 04:55:03');
 INSERT INTO `pedidos` VALUES (231,10,4,1,'cajas',2166,'2017-04-14 04:52:48','entregado','2017-04-14 04:54:19','2017-04-14 04:54:19');
-INSERT INTO `pedidos` VALUES (232,29,4,1,'cajas',2386,'2017-04-14 04:53:13','enviado',NULL,'2017-04-14 04:54:31');
+INSERT INTO `pedidos` VALUES (232,29,4,1,'cajas',2386,'2017-04-14 04:53:13','entregado','2017-04-14 05:02:20','2017-04-14 05:02:20');
 INSERT INTO `pedidos` VALUES (233,4,2,1,'cajas',2190,'2017-04-14 04:55:21','entregado','2017-04-14 04:56:31','2017-04-14 04:56:31');
 INSERT INTO `pedidos` VALUES (234,16,4,1,'cajas',2155,'2017-04-14 04:58:25','enviado',NULL,'2017-04-14 04:59:11');
 INSERT INTO `pedidos` VALUES (235,19,4,1,'cajas',2138,'2017-04-14 04:58:48','enviado',NULL,'2017-04-14 04:59:14');
