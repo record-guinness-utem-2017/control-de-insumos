@@ -7622,7 +7622,7 @@ CREATE TABLE `pedidos` (
   `entregado_en` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=237 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=239 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `pedidos` WRITE;
@@ -7863,6 +7863,8 @@ INSERT INTO `pedidos` VALUES (233,4,2,1,'cajas',2190,'2017-04-14 04:55:21','entr
 INSERT INTO `pedidos` VALUES (234,16,4,1,'cajas',2155,'2017-04-14 04:58:25','enviado',NULL,'2017-04-14 04:59:11');
 INSERT INTO `pedidos` VALUES (235,19,4,1,'cajas',2138,'2017-04-14 04:58:48','enviado',NULL,'2017-04-14 04:59:14');
 INSERT INTO `pedidos` VALUES (236,8,2,1,'cajas',2129,'2017-04-14 04:59:52','enviado',NULL,'2017-04-14 05:00:08');
+INSERT INTO `pedidos` VALUES (237,21,4,1,'cajas',2645,'2017-04-14 05:03:36','enviado',NULL,'2017-04-14 05:03:53');
+INSERT INTO `pedidos` VALUES (238,22,4,2,'cajas',2645,'2017-04-14 05:03:58','pendiente',NULL,'2017-04-14 05:03:57');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `personal`;
