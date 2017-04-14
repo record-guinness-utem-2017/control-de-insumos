@@ -3918,7 +3918,7 @@ CREATE TABLE `insumos_config` (
 LOCK TABLES `insumos_config` WRITE;
 /*!40000 ALTER TABLE `insumos_config` DISABLE KEYS */;
 INSERT INTO `insumos_config` VALUES (1,'Atun',3923,0,262,0,0,0);
-INSERT INTO `insumos_config` VALUES (2,'Jitomate',3200,3318,213,97,44,0);
+INSERT INTO `insumos_config` VALUES (2,'Jitomate',3200,3382,213,100,44,0);
 INSERT INTO `insumos_config` VALUES (3,'Cebolla',2658,2527.5,177,137,137,0);
 INSERT INTO `insumos_config` VALUES (4,'Limon',2035,2092.5,136,152,136,0);
 INSERT INTO `insumos_config` VALUES (5,'Zanahoria',750,776,50,40,40,0);
@@ -3967,7 +3967,7 @@ CREATE TABLE `insumos_historial` (
   `peso` double NOT NULL,
   `fecha/hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_historial`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `insumos_historial` WRITE;
@@ -4009,6 +4009,7 @@ INSERT INTO `insumos_historial` VALUES (34,2,4,77,'2017-04-14 10:49:12');
 INSERT INTO `insumos_historial` VALUES (35,2,4,79.5,'2017-04-14 10:50:12');
 INSERT INTO `insumos_historial` VALUES (36,2,4,69,'2017-04-14 10:52:05');
 INSERT INTO `insumos_historial` VALUES (37,4,16,1,'2017-04-14 10:53:00');
+INSERT INTO `insumos_historial` VALUES (38,2,3,64,'2017-04-14 10:53:31');
 /*!40000 ALTER TABLE `insumos_historial` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `insumos_unidades`;
