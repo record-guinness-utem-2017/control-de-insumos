@@ -1,8 +1,3 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
---
--- Host: localhost    Database: control_de_insumos
--- ------------------------------------------------------
--- Server version	5.7.17-0ubuntu0.16.10.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,11 +9,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `control_asistencia`
---
-
 DROP TABLE IF EXISTS `control_asistencia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -36,19 +26,10 @@ CREATE TABLE `control_asistencia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `control_asistencia`
---
-
 LOCK TABLES `control_asistencia` WRITE;
 /*!40000 ALTER TABLE `control_asistencia` DISABLE KEYS */;
 /*!40000 ALTER TABLE `control_asistencia` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `estudiantes`
---
-
 DROP TABLE IF EXISTS `estudiantes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -69,10 +50,6 @@ CREATE TABLE `estudiantes` (
   PRIMARY KEY (`persona_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `estudiantes`
---
 
 LOCK TABLES `estudiantes` WRITE;
 /*!40000 ALTER TABLE `estudiantes` DISABLE KEYS */;
@@ -3442,11 +3419,6 @@ INSERT INTO `estudiantes` VALUES (3707,NULL,'Luis Jorge Diaz Sanchez','EMPLEADO 
 INSERT INTO `estudiantes` VALUES (3708,NULL,'Jose Alfredo Muñoz Benitez','Albañil',NULL,'Maria Eugenia Martinez Castellanos','Hogar',NULL,76,15529,9.86,'2017-03-06 13:42:00','2017-03-06 13:42:00');
 /*!40000 ALTER TABLE `estudiantes` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `historyinsides`
---
-
 DROP TABLE IF EXISTS `historyinsides`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -3460,10 +3432,6 @@ CREATE TABLE `historyinsides` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=434 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `historyinsides`
---
 
 LOCK TABLES `historyinsides` WRITE;
 /*!40000 ALTER TABLE `historyinsides` DISABLE KEYS */;
@@ -3902,11 +3870,6 @@ INSERT INTO `historyinsides` VALUES (432,'Entrada','2017-04-14 03:35:39',2138,'L
 INSERT INTO `historyinsides` VALUES (433,'Entrada','2017-04-14 03:36:03',3560,'Luis Adrian','sistemas');
 /*!40000 ALTER TABLE `historyinsides` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `insumos`
---
-
 DROP TABLE IF EXISTS `insumos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -3918,10 +3881,6 @@ CREATE TABLE `insumos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `insumos`
---
-
 LOCK TABLES `insumos` WRITE;
 /*!40000 ALTER TABLE `insumos` DISABLE KEYS */;
 INSERT INTO `insumos` VALUES (1,'Jitomate','/assets/img/atun.png');
@@ -3929,11 +3888,6 @@ INSERT INTO `insumos` VALUES (2,'Cebolla','/assets/img/atun.png');
 INSERT INTO `insumos` VALUES (3,'Cilantro','/assets/img/atun.png');
 /*!40000 ALTER TABLE `insumos` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `insumos_config`
---
-
 DROP TABLE IF EXISTS `insumos_config`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -3950,16 +3904,12 @@ CREATE TABLE `insumos_config` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `insumos_config`
---
-
 LOCK TABLES `insumos_config` WRITE;
 /*!40000 ALTER TABLE `insumos_config` DISABLE KEYS */;
 INSERT INTO `insumos_config` VALUES (1,'Atun',3923,0,262,0,0,0);
 INSERT INTO `insumos_config` VALUES (2,'Jitomate',3200,3092.5,213,85,0,0);
 INSERT INTO `insumos_config` VALUES (3,'Cebolla',2658,2527.5,177,137,137,0);
-INSERT INTO `insumos_config` VALUES (4,'Limon',2035,2091.5,136,136,69,0);
+INSERT INTO `insumos_config` VALUES (4,'Limon',2035,2091.5,136,136,71,0);
 INSERT INTO `insumos_config` VALUES (5,'Zanahoria',750,776,50,40,40,0);
 INSERT INTO `insumos_config` VALUES (6,'Chile',255,259.5,17,15,15,0);
 INSERT INTO `insumos_config` VALUES (7,'Cilantro',220,0,15,0,0,0);
@@ -3967,11 +3917,6 @@ INSERT INTO `insumos_config` VALUES (8,'Sal',220,0,15,0,0,0);
 INSERT INTO `insumos_config` VALUES (9,'Tostada',9000,0,0,0,0,0);
 /*!40000 ALTER TABLE `insumos_config` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `insumos_config_backup`
---
-
 DROP TABLE IF EXISTS `insumos_config_backup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -3988,10 +3933,6 @@ CREATE TABLE `insumos_config_backup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `insumos_config_backup`
---
-
 LOCK TABLES `insumos_config_backup` WRITE;
 /*!40000 ALTER TABLE `insumos_config_backup` DISABLE KEYS */;
 INSERT INTO `insumos_config_backup` VALUES (1,'Atun',3923,100,262,100,5,0);
@@ -4005,11 +3946,6 @@ INSERT INTO `insumos_config_backup` VALUES (8,'Sal',220,100,15,100,54,0);
 INSERT INTO `insumos_config_backup` VALUES (9,'Tostada',9000,167,0,167,32,0);
 /*!40000 ALTER TABLE `insumos_config_backup` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `insumos_historial`
---
-
 DROP TABLE IF EXISTS `insumos_historial`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -4022,10 +3958,6 @@ CREATE TABLE `insumos_historial` (
   PRIMARY KEY (`id_historial`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `insumos_historial`
---
 
 LOCK TABLES `insumos_historial` WRITE;
 /*!40000 ALTER TABLE `insumos_historial` DISABLE KEYS */;
@@ -4064,11 +3996,6 @@ INSERT INTO `insumos_historial` VALUES (32,2,6,229,'2017-04-14 08:39:21');
 INSERT INTO `insumos_historial` VALUES (33,2,7,264.5,'2017-04-14 08:40:16');
 /*!40000 ALTER TABLE `insumos_historial` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `insumos_unidades`
---
-
 DROP TABLE IF EXISTS `insumos_unidades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -4084,10 +4011,6 @@ CREATE TABLE `insumos_unidades` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `insumos_unidades`
---
-
 LOCK TABLES `insumos_unidades` WRITE;
 /*!40000 ALTER TABLE `insumos_unidades` DISABLE KEYS */;
 INSERT INTO `insumos_unidades` VALUES (1,1,'cajas');
@@ -4098,11 +4021,6 @@ INSERT INTO `insumos_unidades` VALUES (5,3,'cajas');
 INSERT INTO `insumos_unidades` VALUES (6,3,'kilos');
 /*!40000 ALTER TABLE `insumos_unidades` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `mesas`
---
-
 DROP TABLE IF EXISTS `mesas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -4112,10 +4030,6 @@ CREATE TABLE `mesas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `mesas`
---
 
 LOCK TABLES `mesas` WRITE;
 /*!40000 ALTER TABLE `mesas` DISABLE KEYS */;
@@ -4151,11 +4065,6 @@ INSERT INTO `mesas` VALUES (49,'11C');
 INSERT INTO `mesas` VALUES (50,'15B');
 /*!40000 ALTER TABLE `mesas` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `mesas_encargados`
---
-
 DROP TABLE IF EXISTS `mesas_encargados`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -4166,10 +4075,6 @@ CREATE TABLE `mesas_encargados` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `mesas_encargados`
---
 
 LOCK TABLES `mesas_encargados` WRITE;
 /*!40000 ALTER TABLE `mesas_encargados` DISABLE KEYS */;
@@ -4214,11 +4119,6 @@ INSERT INTO `mesas_encargados` VALUES (44,2166,9);
 INSERT INTO `mesas_encargados` VALUES (45,2166,10);
 /*!40000 ALTER TABLE `mesas_encargados` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `numeros_de_control`
---
-
 DROP TABLE IF EXISTS `numeros_de_control`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -4234,10 +4134,6 @@ CREATE TABLE `numeros_de_control` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `numeros_de_control`
---
 
 LOCK TABLES `numeros_de_control` WRITE;
 /*!40000 ALTER TABLE `numeros_de_control` DISABLE KEYS */;
@@ -6420,7 +6316,7 @@ INSERT INTO `numeros_de_control` VALUES (2183,2186,20140072,'2017-04-14 08:18:03
 INSERT INTO `numeros_de_control` VALUES (2184,2187,20140073,'2017-04-13 23:23:44','record2017',NULL,0,'0,0,0,0,0,0,0,0');
 INSERT INTO `numeros_de_control` VALUES (2185,2188,20140074,'2017-04-13 23:23:44','record2017',NULL,0,'0,0,0,0,0,0,0,0');
 INSERT INTO `numeros_de_control` VALUES (2186,2189,20140075,'2017-04-13 23:23:44','record2017',NULL,0,'0,0,0,0,0,0,0,0');
-INSERT INTO `numeros_de_control` VALUES (2187,2190,20140076,'2017-04-14 07:46:59','123','s',0,'0,0,1,0,1,0,0,0');
+INSERT INTO `numeros_de_control` VALUES (2187,2190,20140076,'2017-04-14 08:48:32','123','s',1,'0,0,1,0,1,0,0,0');
 INSERT INTO `numeros_de_control` VALUES (2188,2191,20140077,'2017-04-14 02:06:08','123','s',1,'0,0,1,0,1,0,0,0');
 INSERT INTO `numeros_de_control` VALUES (2189,2192,20140078,'2017-04-12 21:16:15','123',NULL,0,'0,0,0,0,0,0,0,0');
 INSERT INTO `numeros_de_control` VALUES (2190,2193,20140079,'2017-04-14 02:18:13','123',NULL,1,'0,0,0,0,0,0,0,0');
@@ -7698,11 +7594,6 @@ INSERT INTO `numeros_de_control` VALUES (3502,3674,354,'2017-04-13 23:23:44','re
 INSERT INTO `numeros_de_control` VALUES (3503,3675,350,'2017-04-13 23:23:44','record2017',NULL,0,'0,0,0,0,0,0,0,0');
 /*!40000 ALTER TABLE `numeros_de_control` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `pedidos`
---
-
 DROP TABLE IF EXISTS `pedidos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -7718,12 +7609,8 @@ CREATE TABLE `pedidos` (
   `entregado_en` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=193 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pedidos`
---
 
 LOCK TABLES `pedidos` WRITE;
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
@@ -7906,7 +7793,7 @@ INSERT INTO `pedidos` VALUES (176,21,4,2,'cajas',2198,'2017-04-14 03:30:39','ent
 INSERT INTO `pedidos` VALUES (177,22,4,1,'cajas',2198,'2017-04-14 03:32:00','entregado','2017-04-14 03:32:24','2017-04-14 03:32:24');
 INSERT INTO `pedidos` VALUES (178,29,4,1,'cajas',2386,'2017-04-14 03:34:31','entregado','2017-04-14 03:34:57','2017-04-14 03:34:57');
 INSERT INTO `pedidos` VALUES (179,22,4,1,'cajas',2198,'2017-04-14 03:34:55','entregado','2017-04-14 03:36:49','2017-04-14 03:36:49');
-INSERT INTO `pedidos` VALUES (180,21,4,2,'cajas',2198,'2017-04-14 03:36:32','entregado','2017-04-14 03:39:59','2017-04-14 03:39:59');
+INSERT INTO `pedidos` VALUES (180,21,4,2,'cajas',2198,'2017-04-14 03:36:32','entregado','2017-04-14 03:48:29','2017-04-14 03:48:29');
 INSERT INTO `pedidos` VALUES (181,18,4,1,'cajas',2133,'2017-04-14 03:37:57','entregado','2017-04-14 03:39:38','2017-04-14 03:39:38');
 INSERT INTO `pedidos` VALUES (182,50,4,1,'cajas',2386,'2017-04-14 03:38:57','entregado','2017-04-14 03:41:13','2017-04-14 03:41:13');
 INSERT INTO `pedidos` VALUES (183,13,4,1,'cajas',2289,'2017-04-14 03:39:53','entregado','2017-04-14 03:42:21','2017-04-14 03:42:21');
@@ -7916,13 +7803,11 @@ INSERT INTO `pedidos` VALUES (186,29,4,1,'cajas',2386,'2017-04-14 03:44:32','env
 INSERT INTO `pedidos` VALUES (187,50,4,1,'cajas',2386,'2017-04-14 03:44:46','enviado',NULL,'2017-04-14 03:45:17');
 INSERT INTO `pedidos` VALUES (188,19,4,1,'cajas',2138,'2017-04-14 03:46:20','pendiente',NULL,'2017-04-14 03:46:20');
 INSERT INTO `pedidos` VALUES (189,10,4,1,'cajas',2166,'2017-04-14 03:47:02','pendiente',NULL,'2017-04-14 03:47:02');
+INSERT INTO `pedidos` VALUES (190,1,2,2,'cajas',2538,'2017-04-14 03:48:20','enviado',NULL,'2017-04-14 03:48:59');
+INSERT INTO `pedidos` VALUES (191,2,2,2,'cajas',2538,'2017-04-14 03:48:33','pendiente',NULL,'2017-04-14 03:48:33');
+INSERT INTO `pedidos` VALUES (192,4,2,2,'cajas',2538,'2017-04-14 03:48:57','pendiente',NULL,'2017-04-14 03:48:57');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `personal`
---
-
 DROP TABLE IF EXISTS `personal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -7947,10 +7832,6 @@ CREATE TABLE `personal` (
   `area_conocimiento_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `personal`
---
 
 LOCK TABLES `personal` WRITE;
 /*!40000 ALTER TABLE `personal` DISABLE KEYS */;
@@ -8193,11 +8074,6 @@ INSERT INTO `personal` VALUES (3668,'docente',NULL,NULL,NULL,NULL,NULL,NULL,NULL
 INSERT INTO `personal` VALUES (3675,'docente',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2017-02-08 03:00:00','2017-02-08 03:00:00',NULL,NULL);
 /*!40000 ALTER TABLE `personal` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `personas`
---
-
 DROP TABLE IF EXISTS `personas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -8228,10 +8104,6 @@ CREATE TABLE `personas` (
   `estatus_entrada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `personas`
---
 
 LOCK TABLES `personas` WRITE;
 /*!40000 ALTER TABLE `personas` DISABLE KEYS */;
@@ -11850,11 +11722,6 @@ INSERT INTO `personas` VALUES (3707,'estudiante','Christopher De Jesus','Diaz','
 INSERT INTO `personas` VALUES (3708,'estudiante','Jonatan','Muñoz','Martinez','hombre','MUMJ991121HCMXRN02',NULL,'soltero(a)','','mexicana','1999-11-21','Arpas','565','Marimar','Manzanillo',76,'28869','1375099','3141258679',NULL,'2017-03-06 13:42:00','2017-03-06 13:42:00',0);
 /*!40000 ALTER TABLE `personas` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `privilegios`
---
-
 DROP TABLE IF EXISTS `privilegios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -11865,19 +11732,10 @@ CREATE TABLE `privilegios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `privilegios`
---
-
 LOCK TABLES `privilegios` WRITE;
 /*!40000 ALTER TABLE `privilegios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `privilegios` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `privilegios_asignacion`
---
-
 DROP TABLE IF EXISTS `privilegios_asignacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -11892,19 +11750,10 @@ CREATE TABLE `privilegios_asignacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `privilegios_asignacion`
---
-
 LOCK TABLES `privilegios_asignacion` WRITE;
 /*!40000 ALTER TABLE `privilegios_asignacion` DISABLE KEYS */;
 /*!40000 ALTER TABLE `privilegios_asignacion` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `unidades`
---
-
 DROP TABLE IF EXISTS `unidades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -11913,10 +11762,6 @@ CREATE TABLE `unidades` (
   PRIMARY KEY (`unidad`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `unidades`
---
 
 LOCK TABLES `unidades` WRITE;
 /*!40000 ALTER TABLE `unidades` DISABLE KEYS */;
@@ -11934,4 +11779,3 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-14  3:48:02
