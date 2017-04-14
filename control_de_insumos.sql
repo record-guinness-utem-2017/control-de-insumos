@@ -3919,7 +3919,7 @@ CREATE TABLE `insumos_config` (
 LOCK TABLES `insumos_config` WRITE;
 /*!40000 ALTER TABLE `insumos_config` DISABLE KEYS */;
 INSERT INTO `insumos_config` VALUES (1,'Atun',3923,0,262,0,0,0);
-INSERT INTO `insumos_config` VALUES (2,'Jitomate',3200,3382,213,100,44,0);
+INSERT INTO `insumos_config` VALUES (2,'Jitomate',3200,3382,213,100,45,0);
 INSERT INTO `insumos_config` VALUES (3,'Cebolla',2658,2527.5,177,137,137,0);
 INSERT INTO `insumos_config` VALUES (4,'Limon',2035,2092.5,136,152,136,0);
 INSERT INTO `insumos_config` VALUES (5,'Zanahoria',750,776,50,40,40,0);
@@ -7897,7 +7897,7 @@ INSERT INTO `pedidos` VALUES (255,29,4,1,'cajas',2386,'2017-04-14 05:37:29','ent
 INSERT INTO `pedidos` VALUES (256,21,4,1,'cajas',2645,'2017-04-14 05:39:14','entregado','2017-04-14 05:43:57','2017-04-14 05:43:57');
 INSERT INTO `pedidos` VALUES (257,4,2,1,'cajas',2190,'2017-04-14 05:45:09','entregado','2017-04-14 05:49:03','2017-04-14 05:49:03');
 INSERT INTO `pedidos` VALUES (258,50,4,1,'cajas',2386,'2017-04-14 05:47:11','enviado',NULL,'2017-04-14 05:54:09');
-INSERT INTO `pedidos` VALUES (259,1,2,1,'cajas',2538,'2017-04-14 05:50:21','enviado',NULL,'2017-04-14 05:54:43');
+INSERT INTO `pedidos` VALUES (259,1,2,1,'cajas',2538,'2017-04-14 05:50:21','entregado','2017-04-14 05:55:38','2017-04-14 05:55:38');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `personal`;
