@@ -3430,7 +3430,7 @@ CREATE TABLE `historyinsides` (
   `Por` varchar(200) NOT NULL,
   `area_destino` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=445 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=446 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `historyinsides` WRITE;
@@ -3879,6 +3879,7 @@ INSERT INTO `historyinsides` VALUES (441,'Entrada','2017-04-14 04:55:02',1568,'S
 INSERT INTO `historyinsides` VALUES (442,'Entrada','2017-04-14 04:55:33',2740,'Luis Adrian','almacen');
 INSERT INTO `historyinsides` VALUES (443,'Entrada','2017-04-14 05:23:30',2170,'Luis Adrian','almacen');
 INSERT INTO `historyinsides` VALUES (444,'Entrada','2017-04-14 05:23:43',2273,'Luis Adrian','almacen');
+INSERT INTO `historyinsides` VALUES (445,'Entrada','2017-04-14 05:54:56',2676,'Luis Adrian','almacen');
 /*!40000 ALTER TABLE `historyinsides` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `insumos`;
@@ -7895,8 +7896,8 @@ INSERT INTO `pedidos` VALUES (254,22,4,2,'cajas',2645,'2017-04-14 05:37:12','ent
 INSERT INTO `pedidos` VALUES (255,29,4,1,'cajas',2386,'2017-04-14 05:37:29','entregado','2017-04-14 05:42:21','2017-04-14 05:42:21');
 INSERT INTO `pedidos` VALUES (256,21,4,1,'cajas',2645,'2017-04-14 05:39:14','entregado','2017-04-14 05:43:57','2017-04-14 05:43:57');
 INSERT INTO `pedidos` VALUES (257,4,2,1,'cajas',2190,'2017-04-14 05:45:09','entregado','2017-04-14 05:49:03','2017-04-14 05:49:03');
-INSERT INTO `pedidos` VALUES (258,50,4,1,'cajas',2386,'2017-04-14 05:47:11','pendiente',NULL,'2017-04-14 05:47:11');
-INSERT INTO `pedidos` VALUES (259,1,2,1,'cajas',2538,'2017-04-14 05:50:21','pendiente',NULL,'2017-04-14 05:50:21');
+INSERT INTO `pedidos` VALUES (258,50,4,1,'cajas',2386,'2017-04-14 05:47:11','enviado',NULL,'2017-04-14 05:54:09');
+INSERT INTO `pedidos` VALUES (259,1,2,1,'cajas',2538,'2017-04-14 05:50:21','enviado',NULL,'2017-04-14 05:54:43');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `personal`;
@@ -10859,7 +10860,7 @@ INSERT INTO `personas` VALUES (2672,'estudiante','Daniel','Gonzalez','Sanchez','
 INSERT INTO `personas` VALUES (2673,'estudiante','Juan Jose','Palomera','Vargas','hombre','PAVJ941212HJCLRN08',NULL,'soltero(a)','juanesoj5@gmail.com','mexicana','1994-12-12','Av Lazaro Cardenas','15','Brisas','manzanillo',76,'28239','','3148721182','2147483647','2016-05-23 22:44:21','2017-01-16 16:29:00',0);
 INSERT INTO `personas` VALUES (2674,'estudiante','David Orlando','Perez','Roque','hombre','PERD970315HCMRQV00',NULL,'soltero(a)','fifty_1531997@hotmal.com','mexicana','1997-03-15','10','21','Barrio 5, Valle de las garzas','manzanillo',76,'28239','','3141240325',NULL,'2016-05-23 22:44:22','2017-01-02 15:39:57',0);
 INSERT INTO `personas` VALUES (2675,'estudiante','Alma Delia','Santibañez','Estrella','mujer','SAEA970923MCMNSL05',NULL,'soltero(a)','madelis97@hotmail.com','mexicana','1997-09-23','Juan cervantes','9','La floreña','manzanillo',76,'28239','','3141426302',NULL,'2016-05-23 22:44:22','2017-01-02 12:31:18',0);
-INSERT INTO `personas` VALUES (2676,'estudiante','Hugo Alberto','Romero','Guerrero','hombre','ROGH970115HCMMRG05',NULL,'soltero(a)','misterio.hugo1@hotmail.com','mexicana','1997-01-15','guayabas','14','valle paraiso','manzanillo',76,'28239','3330726','3141012535',NULL,'2016-05-23 22:44:22','2017-01-05 17:56:52',0);
+INSERT INTO `personas` VALUES (2676,'estudiante','Hugo Alberto','Romero','Guerrero','hombre','ROGH970115HCMMRG05',NULL,'soltero(a)','misterio.hugo1@hotmail.com','mexicana','1997-01-15','guayabas','14','valle paraiso','manzanillo',76,'28239','3330726','3141012535',NULL,'2016-05-23 22:44:22','2017-01-05 17:56:52',1);
 INSERT INTO `personas` VALUES (2677,'estudiante','Luis Adrian','Solorzano','Perez','hombre','SOPL970604HCMLRS07',NULL,'soltero(a)','chocolate_lasp@hotmail.com','mexicana','1997-06-04','Oaxaca','44','16 de septiembre','manzanillo',76,'28239','3141141174','3121440192',NULL,'2016-05-23 22:44:22','2017-01-11 15:56:23',1);
 INSERT INTO `personas` VALUES (2678,'estudiante','Yuridiana Patricia','Manzano','Villalvazo','mujer','MAVY970909MCMNLR05',NULL,'soltero(a)','yurinza-56@hotmail.com','mexicana','1997-09-09','Calle Nueva','96','Barrio Nuevo','manzanillo',76,'28239','3344084','3141179023',NULL,'2016-05-23 22:44:22','2016-12-16 12:29:46',1);
 INSERT INTO `personas` VALUES (2679,'estudiante','Miguel Enrique','Vázquez','Dominguez','hombre','VADM960724HCMZMG01',NULL,'soltero(a)','mvd_1996@hotmail.com','mexicana','1996-07-24','Francisco Villa','111','Las joyas',NULL,76,'28230','33-28705','3141047118',NULL,'2016-05-23 22:44:22','2016-05-23 22:44:22',0);
