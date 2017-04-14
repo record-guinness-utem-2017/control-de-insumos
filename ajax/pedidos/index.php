@@ -33,7 +33,7 @@ if ($pag = $_GET['pag'] ?? 1) {
   $query .= ' LIMIT ' . POR_PAGINA . " OFFSET {$offset}";
 }
 
-$mesas   = get_filas_desde_query($conexion, 'SELECT * FROM mesas m JOIN mesas_encargados ON mesa_id = m.id');
+$mesas   = get_filas_desde_query($conexion, 'SELECT * FROM mesas');
 $insumos = get_filas_desde_query($conexion, 'SELECT * FROM insumos_config');
 $pedidos = get_filas_desde_query($conexion, $query, function(array $pedido) use ($mesas, $insumos) : array {
   $pedido['mesa']   = get_fila_relacionada('id', $pedido['mesa_id'], $mesas);
