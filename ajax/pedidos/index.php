@@ -28,7 +28,7 @@ if ($user = $_GET['user'] ?? null) {
 
 $query .= ' ORDER BY updated_at ASC';
 
-if ($pag = $_GET['pag'] ?? 1) {
+if (($pag = $_GET['pag'] ?? 1) && empty($_GET['todos'])) {
   $offset = POR_PAGINA * ($pag - 1);
   $query .= ' LIMIT ' . POR_PAGINA . " OFFSET {$offset}";
 }
