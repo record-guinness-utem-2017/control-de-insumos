@@ -157,6 +157,7 @@ UpdateStatusOut=function(id){
 			HistoryAll();
 			PeopleSessionOn();
 			mensajes.UpdateTrue();
+      $('#inpNo_Control').val('');
 		});
     }
 };
@@ -178,6 +179,7 @@ UpdateStatus=function(id){
 			btnClick();
 			HistoryAll();
 			mensajes.UpdateTrue();
+      $('#inpNo_Control').val('');
 		});
     }
 };
